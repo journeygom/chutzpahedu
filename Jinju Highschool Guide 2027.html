@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>진주시 고교 분석 · 2027학년도 입학 대비 | 후츠파입시컨설팅</title>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+:root{
+  --paper:#F6F4EF; --surface:#FFFFFF; --ink:#2C2C29; --muted:#70706A; --line:#E7E2D8; --line2:#EFEBE2;
+  --accent:#2C7A6B; --accent-soft:#E8F1EE; --accent-d:#20564B;
+  --bar:#AEB2A9;
+  --tA:#BC4A3C; --tA-bg:#F7EBE8; --tB:#C0812F; --tB-bg:#F7F0E3; --tC:#2E9E73; --tC-bg:#E6F3EC; --tD:#3F6597; --tD-bg:#EAF0F7;
+  --gU:#5B6EA8; --gC:#56A7BE; --gO:#D49A4E;
+  --radius:14px;
+  --font:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);line-height:1.62;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+@media(max-width:720px){.wrap{padding:0 16px}}
+
+/* CTA (차분) */
+.cta{display:inline-flex;align-items:center;gap:7px;font-family:var(--font);font-weight:700;font-size:14px;text-decoration:none;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:12px 20px;cursor:pointer;transition:background .15s}
+.cta:hover{background:var(--accent-d)}
+.cta-outline{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.cta-outline:hover{background:var(--accent-soft)}
+.cta-ghost{background:none;color:var(--accent);border:none;font-weight:700;text-decoration:underline;text-underline-offset:3px;padding:6px 0;cursor:pointer;font-family:var(--font);font-size:14px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(246,244,239,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px;min-height:54px}
+.brand{font-weight:800;letter-spacing:-0.02em;font-size:15px;white-space:nowrap}
+.brand b{color:var(--accent)}
+.viewnav{display:flex;gap:4px;flex-wrap:wrap}
+.viewnav button{font-family:var(--font);font-size:13.5px;font-weight:600;color:var(--muted);background:none;border:none;padding:8px 13px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.viewnav button:hover{color:var(--ink);background:rgba(0,0,0,0.04)}
+.viewnav button.active{color:#fff;background:var(--ink)}
+.spacer{flex:1}
+.seg-label{font-size:11.5px;font-weight:700;color:var(--muted);white-space:nowrap}
+.seg{display:inline-flex;border:1px solid var(--accent);border-radius:9px;overflow:hidden}
+.seg button{font-family:var(--font);font-size:13px;font-weight:700;color:var(--accent);background:var(--surface);border:none;padding:8px 15px;cursor:pointer;white-space:nowrap}
+.seg button+button{border-left:1px solid var(--accent)}
+.seg button.on{background:var(--accent);color:#fff}
+@media(max-width:720px){
+  .brand{flex:1 1 auto;font-size:14px}
+  .viewnav{order:3;flex:1 1 100%;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .spacer{display:none}
+}
+
+/* hero (차분, 상단 CTA 없음) */
+.hero{padding:34px 0 18px}
+.hero .kicker{display:inline-block;font-size:12px;font-weight:700;color:var(--accent-d);background:var(--accent-soft);border:1px solid #CFE3DD;border-radius:999px;padding:6px 13px;margin-bottom:15px}
+.hero h1{font-size:clamp(26px,5.4vw,40px);font-weight:800;line-height:1.16;letter-spacing:-0.03em;margin:0 0 12px}
+.hero h1 .yr{color:var(--accent)}
+.hero .sub{font-size:15px;color:var(--muted);max-width:640px;margin:0 0 12px}
+.hero .producer{font-size:12.5px;color:var(--muted)} .hero .producer b{color:var(--ink);font-weight:700}
+.hero .meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:16px;font-size:12.5px;color:var(--muted)}
+.hero .meta b{color:var(--ink);font-weight:600}
+@media(max-width:720px){.hero{padding:26px 0 14px}}
+
+.view{display:none}.view.active{display:block}
+.block{padding:30px 0;border-top:1px solid var(--line)}
+.block:first-child{border-top:none}
+@media(max-width:720px){.block{padding:24px 0}}
+.sec-label{display:flex;align-items:baseline;gap:11px;margin-bottom:6px}
+.sec-label .tick{width:22px;height:3px;background:var(--accent);border-radius:2px;flex:none;transform:translateY(-5px)}
+.sec-label h2{font-size:21px;font-weight:800;letter-spacing:-0.02em;margin:0}
+@media(max-width:720px){.sec-label h2{font-size:18.5px}}
+.sec-desc{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:800px}
+.mode-tag{display:inline-block;font-size:11.5px;font-weight:700;color:var(--accent-d);background:var(--accent-soft);border-radius:7px;padding:3px 10px;margin-left:6px;white-space:nowrap}
+.scroll-hint{display:none}
+@media(max-width:720px){.scroll-hint{display:block;font-size:11.5px;color:var(--muted);margin-bottom:8px}}
+
+/* ===== matcher (MAIN, 드롭다운) ===== */
+.matcher{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
+@media(max-width:720px){.matcher{padding:22px 18px}}
+.matcher h2{font-size:clamp(20px,3.4vw,25px);font-weight:800;margin:0 0 6px;letter-spacing:-0.02em}
+.matcher .msub{font-size:14px;color:var(--muted);margin:0 0 20px}
+.sem-pick{display:flex;align-items:center;gap:13px;flex-wrap:wrap;background:var(--accent-soft);border:1px solid #CFE3DD;border-radius:11px;padding:12px 16px;margin-bottom:20px}
+.sem-pick .spl{font-size:13px;font-weight:700;color:var(--accent-d)}
+.seg-lg button{padding:10px 20px;font-size:14px}
+.match-row{display:flex;flex-wrap:wrap;gap:16px}
+.fg{display:flex;flex-direction:column;gap:7px;flex:1;min-width:180px}
+.fg label{font-size:12.5px;font-weight:700;color:var(--muted)}
+.fg select{font-family:var(--font);font-size:15px;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:#FCFBF8;color:var(--ink);width:100%}
+.fg select:focus{outline:none;border-color:var(--accent)}
+.match-reco{margin-top:18px;padding:15px 17px;border-radius:11px;background:#FBF9F4;border:1px solid var(--line);font-size:14px;color:var(--muted)}
+.match-reco.hot{background:var(--accent-soft);border-color:#CFE3DD;color:var(--ink)}
+.match-reco .reco-title{font-weight:800;margin-bottom:9px;font-size:14.5px;color:var(--ink)}
+.match-reco .reco-sem{font-weight:600;color:var(--muted);font-size:12px}
+.match-reco .why{color:var(--muted);font-size:12.5px;margin-top:9px}
+.chip-sm{display:inline-block;background:var(--surface);border:1px solid var(--accent);border-radius:8px;padding:6px 12px;font-weight:700;font-size:13.5px;margin:4px 6px 0 0;cursor:pointer;color:var(--accent-d)}
+.chip-sm:hover{background:var(--accent);color:#fff}
+.result-label{font-size:12.5px;font-weight:800;color:var(--muted);margin:24px 0 12px;text-transform:uppercase;letter-spacing:0.05em}
+.match-after{margin-top:22px;padding:18px 20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);display:none}
+.match-after.on{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.match-after .mtxt{font-size:13.5px;color:var(--muted)} .match-after .mtxt b{color:var(--ink)}
+.match-nav{margin-top:18px;display:flex;justify-content:center}
+
+/* legend */
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+@media(max-width:760px){.legend{grid-template-columns:repeat(2,1fr)}}
+.lg{border:1px solid var(--line);border-radius:11px;padding:12px 13px;background:var(--surface);border-left:4px solid}
+.lg .nm{font-weight:800;font-size:13.5px;margin-bottom:3px}
+.lg .dc{font-size:11.5px;color:var(--muted);line-height:1.45}
+.legend-inline{font-size:12.5px;color:var(--muted);margin:14px 0 4px}
+
+/* tables */
+.tbl-wrap,.heat-wrap,.fit-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+table.cmp,table.heat,table.fit{border-collapse:collapse;width:100%;font-size:14px}
+table.cmp{min-width:880px}
+table.cmp th,table.cmp td{padding:11px 12px;text-align:center;border-bottom:1px solid var(--line2)}
+table.cmp thead th{background:#F1EDE4;font-weight:700;font-size:12px;color:var(--muted);cursor:pointer;user-select:none;white-space:nowrap}
+table.cmp thead th:hover{color:var(--accent)}
+table.cmp th.name,table.cmp td.name{text-align:left;font-weight:700;white-space:nowrap;position:sticky;left:0;background:var(--surface);box-shadow:1px 0 0 var(--line2)}
+table.cmp thead th.name{background:#F1EDE4}
+table.cmp tbody tr{cursor:pointer} table.cmp tbody tr:hover td{background:#FBF9F4}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.num{font-variant-numeric:tabular-nums;font-weight:600}
+.sub-strong{color:var(--ink);font-weight:800} .sub-weak{color:#A7A69F}
+.link-name{color:var(--ink);border-bottom:1.5px dotted var(--accent)}
+
+table.heat{min-width:520px}
+table.heat th,table.heat td{padding:11px 6px;text-align:center;font-size:13px}
+table.heat thead th{font-weight:700;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);white-space:nowrap}
+table.heat th.name{text-align:left;font-weight:700;white-space:nowrap;color:var(--ink);cursor:pointer}
+table.heat td{font-variant-numeric:tabular-nums;font-weight:600;border-radius:6px}
+.heat-caption{font-size:12px;color:var(--muted);margin-top:10px}
+.heat-key{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:12px;color:var(--muted)}
+.heat-key .bar{height:12px;width:140px;border-radius:6px;background:linear-gradient(90deg,hsl(170 32% 94%),hsl(170 34% 46%))}
+
+/* 진로 */
+.grad-host{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:8px 18px}
+.grad-row{display:grid;grid-template-columns:66px 1fr;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line2);cursor:pointer}
+.grad-row:last-child{border-bottom:none} .grad-row:hover{background:#FBF9F4}
+.grad-name{font-weight:700;font-size:13.5px;white-space:nowrap}
+.grad-main{display:flex;flex-direction:column;gap:6px;min-width:0}
+.grad-bar{display:flex;height:22px;border-radius:6px;overflow:hidden;background:#EFEBE2;font-size:11px;font-weight:700;color:#fff}
+.grad-bar.big{height:28px;font-size:12.5px}
+.grad-bar>div{display:flex;align-items:center;justify-content:center;min-width:0;overflow:hidden}
+.seg-u{background:var(--gU)} .seg-c{background:var(--gC)} .seg-o{background:var(--gO)}
+.grad-nums{font-size:11.5px;color:var(--muted)} .grad-nums b{color:var(--ink)} .grad-nums .o b{color:var(--gO)}
+.grad-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 16px;font-size:12.5px;color:var(--muted)}
+.grad-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:middle}
+
+/* cards (차분) */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+@media(max-width:760px){.cards{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;transition:border-color .15s,box-shadow .15s;position:relative;cursor:pointer}
+.card:hover{border-color:#D6CFC1;box-shadow:0 6px 18px rgba(40,30,20,0.06)}
+.card.reco{border-color:var(--accent);box-shadow:0 0 0 1.5px var(--accent)}
+.card .reco-tag{position:absolute;top:-11px;right:15px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:none}
+.card.reco .reco-tag{display:block}
+.card .head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:3px}
+.card h3{font-size:17.5px;font-weight:800;margin:0;letter-spacing:-0.02em}
+.card .avg{text-align:right;flex:none}
+.card .avg .v{font-size:22px;font-weight:800;line-height:1}
+.card .avg .l{font-size:11px;color:var(--muted);font-weight:600}
+.card .stat{display:flex;flex-wrap:wrap;gap:6px 15px;font-size:12px;color:var(--muted);margin:9px 0 13px}
+.card .stat b{color:var(--ink);font-weight:700}
+.bars{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.bar-row{display:grid;grid-template-columns:84px 1fr 44px;align-items:center;gap:9px;font-size:12px}
+.bar-row .sl{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{height:7px;background:#EFEBE2;border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;background:var(--bar)}
+.bar-row .bv{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.verdict{font-size:12.5px;line-height:1.5;color:var(--ink);background:#FAF8F3;border-radius:10px;padding:11px 13px;border-left:3px solid var(--accent)}
+.tap-hint{font-size:11.5px;color:var(--muted);margin-top:10px}
+
+/* picker / detail / track */
+.picker{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.picker button{font-family:var(--font);font-size:13.5px;font-weight:700;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px 14px;cursor:pointer;transition:all .12s}
+.picker button:hover{border-color:var(--accent)}
+.picker button.on{color:#fff;background:var(--ink);border-color:var(--ink)}
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;border-top:4px solid}
+.detail .dhead{padding:22px 24px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line2)}
+.detail .dhead h2{font-size:23px;font-weight:800;margin:0 0 8px;letter-spacing:-0.02em}
+.detail .dhead .note{font-size:13.5px;color:var(--muted);max-width:560px}
+.detail .dhead .big{text-align:right;flex:none}
+.detail .dhead .big .v{font-size:31px;font-weight:800;line-height:1}
+.detail .dhead .big .l{font-size:11.5px;color:var(--muted);font-weight:600}
+.dbody{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:760px){.dbody{grid-template-columns:1fr}}
+.dcol{padding:22px 24px}
+.dcol+.dcol{border-left:1px solid var(--line2)}
+@media(max-width:760px){.dcol+.dcol{border-left:none;border-top:1px solid var(--line2)}}
+.dcol h4,.dgrad h4{font-size:12.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin:0 0 14px}
+.kv{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-bottom:16px} .kv b{color:var(--ink);font-weight:700}
+.prog{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:center;margin-bottom:11px}
+.prog-area{font-weight:800;font-size:13px}
+.prog-bars{display:flex;flex-direction:column;gap:5px;min-width:0}
+.prog-sem{display:grid;grid-template-columns:86px 1fr 44px;align-items:center;gap:8px;font-size:11.5px}
+.prog-sem .ps-l{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog-sem.cur .ps-l{color:var(--ink);font-weight:700}
+.prog-sem.cur .bar-fill{background:var(--accent)}
+.prog-sem .ps-v{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.fit-row{display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;transition:all .12s;background:#FCFBF8}
+.fit-row:hover{border-color:var(--accent);background:var(--accent-soft)}
+.fit-row .ic{font-size:18px;flex:none} .fit-row .ftxt{flex:1;min-width:0}
+.fit-row .ftxt .fn{font-weight:700;font-size:14px} .fit-row .ftxt .fr{font-size:11.5px;color:var(--muted)}
+.fit-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;flex:none}
+.b-star{background:#F7F0E3;color:#9C6A1E} .b-adv{background:#EAF0F7;color:#345580} .b-base{background:#EFEBE2;color:#70706A}
+.advlist{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.advtag{font-size:12px;font-weight:600;background:#F1EDE4;color:#56554f;border-radius:7px;padding:4px 10px}
+.advtag.rel{background:var(--accent-soft);color:var(--accent-d)}
+.dgrad{padding:20px 24px;border-top:1px solid var(--line2);background:#FCFBF8}
+.detail .dnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 24px;border-top:1px solid var(--line2);background:#FCFBF8}
+.detail .dnav .nv{font-family:var(--font);font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer}
+.detail .dnav .nv:hover{color:var(--accent)}
+.uni-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 14px}
+.uni-tabs button{font-family:var(--font);font-size:13px;font-weight:700;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 15px;cursor:pointer}
+.uni-tabs button.on{color:#fff;background:var(--ink);border-color:var(--ink)}
+.guide-box{background:#FCFBF8;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:15px 18px;font-size:13.5px;white-space:pre-line;line-height:1.7;color:var(--ink)}
+.core-box{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.core-grp{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px}
+.core-grp .ct{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
+.core-grp .cc{font-weight:700}
+table.fit{min-width:520px}
+table.fit th,table.fit td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line2);font-size:13.5px}
+table.fit thead th{background:#F1EDE4;font-weight:700;font-size:12px;color:var(--muted)}
+table.fit tbody tr{cursor:pointer} table.fit tbody tr:hover td{background:#FBF9F4}
+table.fit td.ok{color:var(--tC);font-weight:700}
+.callout{background:var(--accent-soft);border:1px solid #CFE3DD;border-radius:12px;padding:14px 17px;font-size:13.5px;margin-bottom:20px} .callout b{color:var(--accent-d)}
+
+footer{padding:34px 0 56px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+.fcta{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-bottom:20px}
+.fcta .ftitle{font-weight:800;font-size:16px;color:var(--ink)} .fcta .fsmall{font-size:12.5px;color:var(--muted);margin-top:4px}
+footer .fnote{background:#FCFBF8;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 16px;margin:0 0 16px;color:var(--ink)} footer .fnote b{color:var(--accent-d)}
+.btn-print{border:1px solid var(--line);background:var(--surface);color:var(--muted);font-family:var(--font);font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:8px;cursor:pointer}
+.btn-print:hover{border-color:var(--accent);color:var(--accent)}
+code{background:#EEEAE0;padding:2px 6px;border-radius:5px;font-size:12px;font-family:Consolas,monospace}
+
+@media(prefers-reduced-motion:no-preference){.reveal{opacity:0;transform:translateY(8px);animation:rise .4s ease forwards}@keyframes rise{to{opacity:1;transform:none}}}
+@media print{
+  @page{size:A4;margin:13mm}
+  body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .nav,.picker,.dnav,.tap-hint,.uni-tabs,.scroll-hint,.sem-pick,.match-after,.match-nav,.cta,.fcta .cta{display:none!important}
+  .view{display:block!important}.block{page-break-inside:avoid}
+  .card,.detail{break-inside:avoid;box-shadow:none!important}
+  .reveal{opacity:1!important;transform:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <div class="brand">후츠파 <b>고교분석</b></div>
+  <div class="viewnav">
+    <button data-view="match" class="active">맞춤 찾기</button>
+    <button data-view="compare">전체 비교</button>
+    <button data-view="school">학교별 상세</button>
+    <button data-view="track">계열별 분석</button>
+  </div>
+  <div class="spacer"></div>
+  <span class="seg-label">학기</span>
+  <div class="seg" id="seg-sem"><button data-m="s1" class="on">1학기</button><button data-m="s2">2학기</button></div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="kicker">2027학년도 입학 예정 · 현 중3 학생·학부모를 위한 진학 가이드</span>
+  <h1>우리 아이에게 맞는<br><span class="yr">고등학교</span>, 데이터로 찾으세요</h1>
+  <p class="sub">진주시 11개 일반고의 1·2학기 내신 경쟁 구도, 졸업생 진로, 5개 대학·5개 계열 교육과정 준비도를 한곳에 모았습니다.</p>
+  <p class="producer">제작 · <b>후츠파입시컨설팅 원격학원</b> (후츠파에듀케이션)</p>
+  <div class="meta" id="hero-meta"></div>
+</div></header>
+
+<!-- ===== MAIN: 맞춤 찾기 ===== -->
+<main class="view active" id="view-match"><div class="wrap">
+  <section class="block">
+    <div class="matcher">
+      <h2>우리 아이에게 맞는 학교 찾기</h2>
+      <p class="msub">강점 과목과 학습 성향을 고르면, 진주 11개 일반고 중 데이터로 가장 유리한 학교를 추천해 드립니다.</p>
+      <div class="sem-pick">
+        <span class="spl">어느 학기 성적 기준으로 볼까요?</span>
+        <div class="seg seg-lg" id="seg-sem-2"><button data-m="s1" class="on">1학기</button><button data-m="s2">2학기</button></div>
+      </div>
+      <div class="match-row">
+        <div class="fg"><label>강점 과목</label><select id="f-subj">
+          <option value="">선택 안 함</option><option value="국">국어</option><option value="수">수학</option>
+          <option value="영">영어</option><option value="사">통합사회</option><option value="과">통합과학</option></select></div>
+        <div class="fg"><label>학습 성향</label><select id="f-pref">
+          <option value="">선택 안 함</option><option value="AB">경쟁에 강함 (만점·고집중)</option>
+          <option value="C">안정·성실 (꾸준히 관리)</option><option value="D">심화·도전 (어려운 문제 선호)</option></select></div>
+      </div>
+      <div class="match-reco" id="match-reco"></div>
+    </div>
+
+    <div id="match-result"></div>
+
+    <div class="match-after" id="match-after">
+      <span class="mtxt">학교는 <b>출발점</b>일 뿐, 합격은 그 안에서 무엇을 하느냐로 갈립니다. 우리 아이 상황에 맞춘 정밀 진단이 필요하시면 도와드리겠습니다.</span>
+      <a class="cta" href="https://m.booking.naver.com/booking/6/bizes/510701/items/3944024?area=pll&amp;lang=ko&amp;map-search=1&amp;service-target=map-pc&amp;theme=place" target="_blank" rel="noopener">1:1 진학 상담 예약</a>
+    </div>
+
+    <div class="match-nav"><button class="cta-ghost" onclick="showView('compare')">11개 학교 전체 데이터 보기 →</button></div>
+  </section>
+</div></main>
+
+<!-- ===== 전체 비교 ===== -->
+<main class="view" id="view-compare"><div class="wrap">
+  <section class="block">
+    <div class="sec-label"><span class="tick"></span><h2>11개 학교 한눈 비교</h2></div>
+    <p class="sec-desc">핵심과목(국·수·영) A비율 평균으로 4개 유형을 나눴습니다. 머리글을 누르면 정렬, 학교 줄을 누르면 상세로 이동합니다.<span class="mode-tag" id="mode-tag-1"></span></p>
+    <div class="legend" id="legend"></div>
+    <div class="scroll-hint">← 표를 좌우로 넘겨 보세요 →</div>
+    <div class="tbl-wrap"><table class="cmp" id="cmp"><thead><tr>
+      <th class="name" data-k="short">학교</th><th data-k="type">유형</th><th data-k="avg">핵심 A평균</th>
+      <th data-k="students">학생 수</th><th data-k="grade1">1등급≈</th><th data-k="other">기타(재수)</th><th data-k="adv">심화·전문</th>
+      <th data-k="국">국어</th><th data-k="수">수학</th><th data-k="영">영어</th><th data-k="사">통합사회</th><th data-k="과">통합과학</th>
+    </tr></thead><tbody></tbody></table></div>
+  </section>
+  <section class="block">
+    <div class="sec-label"><span class="tick"></span><h2>졸업생 진로 현황</h2></div>
+    <p class="sec-desc">가장 최근 졸업 기수의 진로입니다. <b>기타</b>는 재수·취업·미진학 등으로 ‘재수생 비율’의 근거가 됩니다. (대학 진학률 순)</p>
+    <div class="grad-legend"><span><i style="background:var(--gU)"></i>대학(4년제·국외 포함)</span><span><i style="background:var(--gC)"></i>전문대학</span><span><i style="background:var(--gO)"></i>기타·재수</span></div>
+    <div class="grad-host" id="grad-host"></div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:10px">※ 진로 현황은 졸업 기수(3학년) 기준으로, 내신 데이터(2025학년도 1학년)와는 다른 기수입니다.</p>
+  </section>
+  <section class="block">
+    <div class="sec-label"><span class="tick"></span><h2>과목별 난이도 히트맵</h2></div>
+    <p class="sec-desc">색이 <b>진할수록 A비율↑</b>(시험 쉬움·만점 경쟁), <b>연할수록 A비율↓</b>(어려움·변별력↑).<span class="mode-tag" id="mode-tag-2"></span></p>
+    <div class="scroll-hint">← 표를 좌우로 넘겨 보세요 →</div>
+    <div class="heat-wrap"><table class="heat" id="heat"><thead><tr></tr></thead><tbody></tbody></table></div>
+    <div class="heat-caption" id="heat-caption"></div>
+    <div class="heat-key"><span>A비율 낮음 (어려움·변별↑)</span><span class="bar"></span><span>A비율 높음 (쉬움·만점경쟁)</span></div>
+  </section>
+  <section class="block">
+    <div class="sec-label"><span class="tick"></span><h2>학교별 통합 카드</h2></div>
+    <p class="sec-desc">카드를 누르면 1·2학기 추이·진로·계열 적합도까지 자세히 봅니다.<span class="mode-tag" id="mode-tag-3"></span></p>
+    <div class="cards" id="cards-grid"></div>
+  </section>
+</div></main>
+
+<!-- ===== 학교별 상세 ===== -->
+<main class="view" id="view-school"><div class="wrap">
+  <section class="block">
+    <div class="sec-label"><span class="tick"></span><h2>학교별 상세</h2></div>
+    <p class="sec-desc">학교를 선택하면 1·2학기 내신 추이, 졸업생 진로, 5개 계열 교육과정 준비도를 한 화면에서 봅니다.</p>
+    <div class="picker" id="school-picker"></div>
+    <div id="detail-host"></div>
+  </section>
+</div></main>
+
+<!-- ===== 계열별 분석 ===== -->
+<main class="view" id="view-track"><div class="wrap">
+  <section class="block">
+    <div class="sec-label"><span class="tick"></span><h2>대학·계열별 학습 준비</h2></div>
+    <p class="sec-desc">계열과 대학을 고르면 권장 가이드라인과 11개 학교 준비도를 비교합니다. (교육과정은 학기와 무관하게 동일합니다.)</p>
+    <div class="callout">진주 11개 일반고는 5개 대학·5개 계열의 <b>핵심·권장 과목을 대부분 충족</b>합니다. 결정적 차이는 <b>심화·전문 교과</b> — 고급/전문 5과목의 <b>사대부고</b>, 4개 과학실험의 <b>명신고</b>가 ⭐ 계열 추천, 전문수학의 <b>진주고</b>가 그다음입니다.</div>
+    <div class="picker" id="track-picker"></div>
+    <div id="track-host"></div>
+  </section>
+</div></main>
+
+<footer><div class="wrap">
+  <div class="fcta">
+    <div><div class="ftitle">후츠파입시컨설팅 원격학원 (후츠파에듀케이션)</div><div class="fsmall">진주 학생부종합전형·고교 선택 전문 컨설팅 · 현 중3 2027학년도 입학 대비</div></div>
+    <a class="cta" href="https://m.booking.naver.com/booking/6/bizes/510701/items/3944024?area=pll&amp;lang=ko&amp;map-search=1&amp;service-target=map-pc&amp;theme=place" target="_blank" rel="noopener">1:1 진학 상담 예약</a>
+  </div>
+  <div class="fnote"><b>↻ 데이터 업데이트</b> — 모든 화면은 코드 맨 아래 <code>SCHOOLS</code>(학교별 <code>s1</code>=1학기·<code>s2</code>=2학기 과목 A비율, <code>grad</code>=졸업생 진로)·<code>TRACKS</code>·<code>ADV</code>에서 자동 생성됩니다. 다음 학년도 데이터가 나오면 해당 값만 교체하면 됩니다.</div>
+  <p>데이터 출처: <span id="ft-source"></span> · 과목명은 학교알리미 공시 그대로(공통국어1·2, 공통수학1·2, 공통영어1·2, 통합사회1·2, 통합과학1·2)이며 ‘1’=1학기, ‘2’=2학기 과목입니다. 본 자료는 후보를 2~3개로 압축하기 위한 ‘판단의 시작점’입니다.</p>
+  <p style="margin-top:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="opacity:0.75">© 후츠파입시컨설팅 원격학원(후츠파에듀케이션) · 무단 배포 금지 · 2025학년도 1·2학기 내신 + 졸업생 진로 기준</span><button class="btn-print" onclick="window.print()">인쇄 / PDF로 저장</button></p>
+</div></footer>
+
+<script>
+/* =========================================================================
+   ▼ 데이터 레이어 — 갱신은 여기만 수정합니다.
+   s1=1학기(공통국어1/공통수학1/공통영어1/통합사회1/통합과학1) A비율(%)
+   s2=2학기(공통국어2/공통수학2/공통영어2/통합사회2/통합과학2) A비율(%)
+   grad=졸업생 진로 {total 졸업자, univ 대학(4년제·국외포함), college 전문대학, other 기타·재수}
+   ========================================================================= */
+const META={year:'2027학년도 입학 대비 (현 중3)', semester:'2025학년도 1·2학기 (1학년)',
+  source:'학교알리미 · 2025학년도 학업성취사항 및 졸업생 진로 현황', district:'경상남도 진주시 · 3학군 11개 일반고'};
+
+const SCHOOLS=[
+ {name:'경상국립대학교사범대학부설고',short:'사대부고',students:146,note:'고급·전문 교과 5과목으로 진주 최다 — 심화 탐구 주도형에게. (2학기 공통국어2 A 3.4%로 급변)',
+  s1:{국:14.9,수:25,영:29.1,사:38.5,과:25},   s2:{국:3.4,수:14.3,영:19,사:12.2,과:31.3}, grad:{total:135,univ:100,college:19,other:16}},
+ {name:'경해여자고등학교',short:'경해여고',students:214,note:'대학 진학 82.6%·기타(재수) 4.6%로 안정적. (2학기 공통영어2 A 67.6%로 급등)',
+  s1:{국:17.1,수:29.4,영:12.8,사:16.6,과:5.7}, s2:{국:15.5,수:34.3,영:67.6,사:26.1,과:17.4}, grad:{total:219,univ:181,college:28,other:10}},
+ {name:'대아고등학교',short:'대아고',students:211,note:'수학 A 1.4%(1학기) 등 극강 변별 — 어려운 문제에 강하고 정시까지 노리는 학생에게.',
+  s1:{국:6.6,수:1.4,영:9,사:10.9,과:10.4},     s2:{국:8.3,수:6.9,영:7.4,사:7.9,과:13},     grad:{total:226,univ:174,college:35,other:17}},
+ {name:'진주동명고등학교',short:'동명고',students:213,note:'수학 A 82.1%(1학기)→68.9%(2학기) 진주 최고 — 사실상 만점 경쟁. 대학 진학 80.6%.',
+  s1:{국:27.8,수:82.1,영:55.2,사:25.9,과:51.4},s2:{국:29.7,수:68.9,영:38.2,사:25.5,과:52.8}, grad:{total:222,univ:179,college:33,other:10}},
+ {name:'명신고등학교',short:'명신고',students:190,note:'물리·화학·생명·지구 4개 과학실험을 모두 개설한 유일 학교. 기타(재수) 16.3%.',
+  s1:{국:38.3,수:16,영:31.9,사:51.6,과:15.4}, s2:{국:21.6,수:19.5,영:27.9,사:21.1,과:19.5}, grad:{total:203,univ:152,college:18,other:33}},
+ {name:'삼현여자고등학교',short:'삼현여고',students:216,note:'2학기 통합과학2 A 41.1% 등 후반 강세. 대학 진학 70.3%.',
+  s1:{국:14.4,수:10.7,영:14.9,사:27,과:18.6}, s2:{국:23.8,수:12.1,영:21.5,사:16.4,과:41.1}, grad:{total:219,univ:154,college:42,other:23}},
+ {name:'진주제일여자고등학교',short:'제일여고',students:214,note:'대학 진학 86.1%로 진주 최고·기타(재수) 2.2%로 최저. 과목 선택 폭 넓음. (2학기 국어 A 31.5%)',
+  s1:{국:8.4,수:20.5,영:15.8,사:18.6,과:11.6},s2:{국:31.5,수:20.8,영:18.5,사:11.6,과:27.3}, grad:{total:230,univ:198,college:27,other:5}},
+ {name:'진주중앙고등학교',short:'중앙고',students:168,note:"'인공지능수학' 등 SW 과목 개설 — 컴퓨터·AI 관심 학생에 유리. 기타(재수) 19.5%로 높음.",
+  s1:{국:18.2,수:4.5,영:15.3,사:5.1,과:10.8}, s2:{국:24.3,수:10.1,영:8.9,사:17.8,과:10.7}, grad:{total:185,univ:114,college:35,other:36}},
+ {name:'진양고등학교',short:'진양고',students:239,note:'학생 수 239명으로 진주 최다 — 내신 등급 안정성이 가장 높음.',
+  s1:{국:16.7,수:11.3,영:7.1,사:18.3,과:24.2},s2:{국:18.5,수:13.4,영:13.4,사:17.2,과:26.5}, grad:{total:207,univ:152,college:32,other:23}},
+ {name:'진주고등학교',short:'진주고',students:168,note:'전문수학 개설 — 수학 심화가 필요한 이공계에 강점. 대학 진학 77.2%.',
+  s1:{국:12.1,수:7.5,영:14.4,사:41.4,과:19},  s2:{국:14.6,수:12.3,영:16.4,사:32.2,과:22.8}, grad:{total:180,univ:139,college:24,other:17}},
+ {name:'진주여자고등학교',short:'진주여고',students:200,note:'기타(재수) 16.9%로 높은 편 — 정시 경쟁력을 함께 기를 학생에게.',
+  s1:{국:7,수:25.9,영:16.4,사:18.9,과:35.8}, s2:{국:16.9,수:11.8,영:8.2,사:18.5,과:31.3}, grad:{total:207,univ:132,college:40,other:35}}
+];
+const ADV={'사대부고':['전문수학','고급물리학','고급화학','고급생명과학','고급지구과학'],'명신고':['물리학실험','화학실험','생명과학실험','지구과학실험'],'진주고':['전문수학']};
+const STARS=['사대부고','명신고'];
+const UNIS=['서울대','고려대','경희대','중앙대','부산대'];
+const TRACKS=[
+ {key:'med',name:'의약학',icon:'🩺',core:{'핵심(일반)':'생명과학, 화학','핵심(진로)':'미적분Ⅱ, 기하','권장(진로)':'세포와 물질대사, 생물의 유전'},rel:['고급생명과학','생명과학실험','고급화학','화학실험','전문수학'],
+  guides:{서울대:"의예 — 생명과학, 기하/미적분Ⅱ, '세포와 물질대사'·'생물의 유전' 포함 과학 3과목+\n약학 — 화학 or 생명과학, 기하/미적분Ⅱ, 과학 3과목+\n치의예 — 기하 or 미적분Ⅱ, 과학 3과목+",고려대:"수학 — 미적분Ⅱ\n과학 — 물질과 에너지·화학 반응의 세계·세포와 물질대사·생물의 유전 중 2개+",경희대:"핵심 — 확률과통계·미적분Ⅱ, 화학·생명과학, 진로과학 4과목 중 3과목\n권장 — 물리학",중앙대:"수학 — 미적분Ⅱ·기하\n과학(일반) — 생명과학·화학\n과학(진로) — 진로과학 4과목 중 3개+",부산대:"화학·생명과학 관련 과목(화학/물질과 에너지/화학 반응/생명과학/세포와 물질대사/생물의 유전) 중 3개+ 이수"}},
+ {key:'cs',name:'컴퓨터 / AI',icon:'💻',core:{'핵심(일반)':'물리학','핵심(진로)':'미적분Ⅱ, 기하'},rel:['전문수학','고급물리학'],
+  guides:{서울대:"[일반] 물리학   [진로] 기하·미적분Ⅱ 권장 (과학 3과목+ 권장)",고려대:"수학 — 미적분Ⅱ·기하",경희대:"핵심 — 확률과통계·미적분Ⅱ·기하\n권장 — 인공지능수학",중앙대:"수학 — 미적분Ⅱ·기하\n과학 — 물리학 + 역학과 에너지·전자기와 양자",부산대:"확률과통계·기하·미적분Ⅱ 중 1개+ 이수"}},
+ {key:'ee',name:'전기·전자·반도체',icon:'⚡',core:{'핵심(일반)':'물리학','핵심(진로)':'미적분Ⅱ, 기하'},rel:['고급물리학','물리학실험','전문수학','고급화학','화학실험'],
+  guides:{서울대:"[일반] 물리학   [진로] 기하·미적분Ⅱ 권장 (과학 3과목+ 권장)",고려대:"수학 — 미적분Ⅱ·기하\n과학 — 역학과 에너지·전자기와 양자·물질과 에너지·화학 반응 중 2개+",경희대:"핵심 — 확률과통계·미적분Ⅱ·기하 + 물리학·화학·역학과 에너지·전자기와 양자",중앙대:"수학 — 미적분Ⅱ·기하\n과학 — 물리학·화학 + 역학과 에너지·전자기와 양자",부산대:"기하·미적분Ⅱ 중 1개+ & 물리·화학 관련 과목 중 3개+ 이수"}},
+ {key:'mech',name:'기계·항공우주',icon:'✈️',core:{'핵심(일반)':'물리학','핵심(진로)':'미적분Ⅱ, 기하'},rel:['고급물리학','물리학실험','전문수학'],
+  guides:{서울대:"[일반] 물리학   [진로] 기하·미적분Ⅱ 권장 (과학 3과목+ 권장)",고려대:"수학 — 미적분Ⅱ\n과학 — 역학과 에너지·전자기와 양자",경희대:"핵심 — 확률과통계·미적분Ⅱ·기하 + 물리학·화학·역학과 에너지·전자기와 양자\n권장 — 물질과 에너지·화학 반응의 세계",중앙대:"수학 — 미적분Ⅱ·기하\n과학 — 물리학 + 역학과 에너지·전자기와 양자",부산대:"기하·미적분Ⅱ 중 1개+ & 물리·화학 관련 과목 중 3개+ 이수"}},
+ {key:'bio',name:'생명',icon:'🧬',core:{'핵심(일반)':'생명과학','핵심(진로)':'미적분Ⅱ, 기하'},rel:['고급생명과학','생명과학실험','고급화학','화학실험','전문수학'],
+  guides:{서울대:"[일반] 생명과학   [진로] 미적분Ⅱ·기하 권장 (과학 3과목+ 권장)",고려대:"수학 — 미적분Ⅱ\n과학 — 물질과 에너지·화학 반응·세포와 물질대사·생물의 유전 중 2개+",경희대:"핵심 — 확률과통계 + 화학·생명과학·세포와 물질대사·생물의 유전\n권장 — 미적분Ⅱ·물리학",중앙대:"수학 — 미적분Ⅱ 또는 기하\n과학(일반) — 화학·생명과학",부산대:"화학·생명과학 관련 과목 중 3개+ 이수"}}
+];
+
+const SUBJ=[['국','국어','공통국어'],['수','수학','공통수학'],['영','영어','공통영어'],['사','통합사회','통합사회'],['과','통합과학','통합과학']];
+const CORE=['국','수','영'];
+const MODELBL={s1:'1학기',s2:'2학기'};
+const TYPE={A:{nm:'만점 필수',c:'var(--tA)',bg:'var(--tA-bg)',desc:'A비율 40%+ · 만점 아니면 1등급이 어려운 극한 경쟁'},
+  B:{nm:'치열한 경쟁',c:'var(--tB)',bg:'var(--tB-bg)',desc:'A비율 20~40% · 1등급 커트라인에 다수 밀집, 작은 실수가 등급을 가름'},
+  C:{nm:'균형 표준',c:'var(--tC)',bg:'var(--tC-bg)',desc:'A비율 12~20% · 노력한 만큼 결과가 나오는 표준 환경'},
+  D:{nm:'고난도 변별',c:'var(--tD)',bg:'var(--tD-bg)',desc:'A비율 12% 미만 · 어려운 시험으로 실력을 확실히 증명'}};
+let MODE='s1';
+const vals=(sc,m)=>sc[m];
+const subjLabel=(k,m)=>{const r=SUBJ.find(x=>x[0]===k);return r[2]+(m==='s1'?'1':'2');};
+const subjShort=(k,m)=>{const r=SUBJ.find(x=>x[0]===k);return r[1]+(m==='s1'?'1':'2');};
+const coreAvg=(sc,m)=>{const v=vals(sc,m);return (v.국+v.수+v.영)/3;};
+const typeKey=a=>a>=40?'A':a>=20?'B':a>=12?'C':'D';
+const grade1=sc=>Math.round(sc.students*0.10);
+const gradPct=g=>({univ:+(g.univ/g.total*100).toFixed(1),college:+(g.college/g.total*100).toFixed(1),other:+(g.other/g.total*100).toFixed(1)});
+const byShort=s=>SCHOOLS.find(x=>x.short===s);
+const cardsMax=()=>Math.max(...SCHOOLS.flatMap(s=>{const v=vals(s,MODE);return SUBJ.map(([k])=>v[k]);}));
+function verdict(sc,m){const v=vals(sc,m),t=typeKey(coreAvg(sc,m));const a=SUBJ.map(([k])=>({l:subjLabel(k,m),v:v[k]}));
+  const hi=a.reduce((x,y)=>y.v>x.v?y:x),lo=a.reduce((x,y)=>y.v<x.v?y:x);
+  if(t==='A')return `${hi.l} A ${hi.v}% — 사실상 만점 경쟁. 실수가 거의 없는 최상위권에게 기회의 땅.`;
+  if(t==='B')return `1등급 커트라인이 치열 — ${hi.l}(${hi.v}%) 강세. A보다 높은 원점수가 관건.`;
+  if(t==='C')return `예측 가능한 표준 환경 — ${lo.l}(${lo.v}%)에서 변별. 꾸준함으로 상위권을 노릴 학생에게.`;
+  return `${lo.l} A ${lo.v}% 등 변별력 높은 시험 — 실력으로 1등급, 정시 경쟁력까지 함께.`;}
+function heatColor(v){const t=Math.min(v/70,1);return `hsl(170 33% ${94-t*47}%)`;}
+function heatText(v){return (94-Math.min(v/70,1)*47)<60?'#fff':'#1f4a40';}
+function trackGrade(short,track){if(STARS.includes(short))return{t:'star',label:'⭐ 계열 추천'};
+  const adv=ADV[short]||[];const rel=adv.filter(c=>track.rel.includes(c));return rel.length?{t:'adv',label:'심화 보유'}:{t:'base',label:'기본 충족'};}
+function gradBar(g,big){const seg=(cls,p)=>`<div class="${cls}" style="width:${p}%">${p>=14?p+'%':''}</div>`;
+  return `<div class="grad-bar${big?' big':''}">${seg('seg-u',g.univ)}${seg('seg-c',g.college)}${seg('seg-o',g.other)}</div>`;}
+
+document.getElementById('hero-meta').innerHTML=`<span><b>대상</b> ${META.year}</span><span><b>데이터</b> ${META.semester}</span><span><b>범위</b> ${META.district}</span>`;
+document.getElementById('ft-source').textContent=META.source;
+function renderModeTags(){['mode-tag-1','mode-tag-2','mode-tag-3'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='지금: '+MODELBL[MODE];});}
+function renderLegend(){const el=document.getElementById('legend');if(el)el.innerHTML=['A','B','C','D'].map(k=>{const t=TYPE[k];const n=SCHOOLS.filter(s=>typeKey(coreAvg(s,MODE))===k).length;
+  return `<div class="lg" style="border-left-color:${t.c}"><div class="nm" style="color:${t.c}">유형 ${k} · ${t.nm} <span style="color:var(--muted);font-weight:600;font-size:11px">(${n}교)</span></div><div class="dc">${t.desc}</div></div>`;}).join('');}
+
+function cardHTML(sc,i,hl,mx){const v=vals(sc,MODE),a=coreAvg(sc,MODE),t=TYPE[typeKey(a)],g=gradPct(sc.grad);
+  const bars=SUBJ.map(([k])=>{const val=v[k];return `<div class="bar-row"><span class="sl">${subjLabel(k,MODE)}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(val/mx*100)}%"></div></div><span class="bv">${val}%</span></div>`;}).join('');
+  const adv=(ADV[sc.short]||[]).length;
+  return `<div class="card reveal${hl?' reco':''}" data-name="${sc.short}" onclick="goSchool('${sc.short}')" style="animation-delay:${i*30}ms">
+    <span class="reco-tag">추천</span>
+    <div class="head"><div><h3>${sc.short}</h3><span class="pill" style="color:${t.c};background:${t.bg};margin-top:6px">유형 ${typeKey(a)} · ${t.nm}</span></div>
+    <div class="avg"><div class="v" style="color:${t.c}">${a.toFixed(1)}%</div><div class="l">핵심 A평균</div></div></div>
+    <div class="stat"><span>학생 <b>${sc.students}명</b></span><span>1등급 <b>약 ${grade1(sc)}명</b></span><span>대학진학 <b>${g.univ}%</b></span>${adv?`<span>심화 <b>${adv}개</b></span>`:''}</div>
+    <div class="bars">${bars}</div><div class="verdict">${verdict(sc,MODE)}</div>
+    <div class="tap-hint">▸ 눌러서 1·2학기 추이·진로·계열 적합도 보기</div></div>`;}
+function renderCards(){const mx=cardsMax();const order=[...SCHOOLS].sort((a,b)=>coreAvg(b,MODE)-coreAvg(a,MODE));
+  document.getElementById('cards-grid').innerHTML=order.map((sc,i)=>cardHTML(sc,i,false,mx)).join('');}
+
+let sortK='avg',sortDir=-1;
+const HEAD={short:'학교',type:'유형',avg:'핵심 A평균',students:'학생 수',grade1:'1등급≈',other:'기타(재수)',adv:'심화·전문'};
+function rowData(sc){const v=vals(sc,MODE),a=coreAvg(sc,MODE),g=gradPct(sc.grad);
+  return{short:sc.short,type:typeKey(a),avg:+a.toFixed(1),students:sc.students,grade1:grade1(sc),other:g.other,adv:(ADV[sc.short]||[]).length,국:v.국,수:v.수,영:v.영,사:v.사,과:v.과};}
+function renderTable(){const rows=SCHOOLS.map(rowData);
+  rows.sort((a,b)=>{let x=a[sortK],y=b[sortK];if(sortK==='type'){const o={A:0,B:1,C:2,D:3};x=o[x];y=o[y];}if(x==null)x=-1;if(y==null)y=-1;return (x>y?1:x<y?-1:0)*sortDir;});
+  const mx={},mn={};SUBJ.forEach(([k])=>{const arr=SCHOOLS.map(s=>vals(s,MODE)[k]);mx[k]=Math.max(...arr);mn[k]=Math.min(...arr);});
+  document.querySelector('#cmp tbody').innerHTML=rows.map(r=>{const t=TYPE[r.type];
+    const cell=k=>{let c=r[k]===mx[k]?'sub-strong':r[k]===mn[k]?'sub-weak':'';return `<td class="num ${c}">${r[k]}%</td>`;};
+    return `<tr onclick="goSchool('${r.short}')"><td class="name"><span class="link-name">${r.short}</span></td>
+      <td><span class="pill" style="color:${t.c};background:${t.bg}">${t.nm}</span></td>
+      <td class="num">${r.avg}%</td><td class="num">${r.students}명</td><td class="num">${r.grade1}명</td>
+      <td class="num">${r.other}%</td><td class="num">${r.adv?r.adv+'개':'—'}</td>
+      ${SUBJ.map(([k])=>cell(k)).join('')}</tr>`;}).join('');
+  document.querySelectorAll('#cmp thead th').forEach(th=>{const k=th.dataset.k;let base=HEAD[k]||subjLabel(k,MODE);if(k===sortK)base+=sortDir<0?' ▼':' ▲';th.textContent=base;});}
+document.querySelectorAll('#cmp thead th').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.k;if(k===sortK)sortDir*=-1;else{sortK=k;sortDir=(k==='short'||k==='type')?1:-1;}renderTable();}));
+function renderHeat(){document.querySelector('#heat thead tr').innerHTML='<th class="name">학교</th>'+SUBJ.map(([k])=>`<th>${subjShort(k,MODE)}</th>`).join('');
+  document.querySelector('#heat tbody').innerHTML=SCHOOLS.map(sc=>{const v=vals(sc,MODE);
+    return `<tr><td class="name" onclick="goSchool('${sc.short}')">${sc.short}</td>${SUBJ.map(([k])=>{const val=v[k];return `<td style="background:${heatColor(val)};color:${heatText(val)}">${val}%</td>`;}).join('')}</tr>`;}).join('');
+  document.getElementById('heat-caption').textContent=`현재 ${MODELBL[MODE]} 과목 · ${SUBJ.map(([k])=>subjLabel(k,MODE)).join(' · ')}`;}
+function renderGrad(){const order=[...SCHOOLS].sort((a,b)=>gradPct(b.grad).univ-gradPct(a.grad).univ);
+  document.getElementById('grad-host').innerHTML=order.map(sc=>{const g=gradPct(sc.grad);
+    return `<div class="grad-row" onclick="goSchool('${sc.short}')"><div class="grad-name"><span class="link-name">${sc.short}</span></div>
+      <div class="grad-main">${gradBar(g)}<div class="grad-nums">대학 <b>${g.univ}%</b> · 전문대 <b>${g.college}%</b> · <span class="o">기타(재수) <b>${g.other}%</b></span> · 졸업 ${sc.grad.total}명</div></div></div>`;}).join('');}
+
+/* ===== 맞춤 찾기 (드롭다운, 결과는 선택 시에만) ===== */
+function computeMatch(){const subj=document.getElementById('f-subj').value,pref=document.getElementById('f-pref').value;
+  const reco=document.getElementById('match-reco'),result=document.getElementById('match-result'),after=document.getElementById('match-after');
+  if(!subj&&!pref){reco.className='match-reco';reco.innerHTML='강점 과목과 학습 성향을 선택하면, 우리 아이에게 맞는 학교를 추천해 드립니다.';
+    result.innerHTML='';after.classList.remove('on');return;}
+  let pool=[...SCHOOLS],lines=[];
+  if(pref){const types=pref==='AB'?['A','B']:[pref];pool=pool.filter(s=>types.includes(typeKey(coreAvg(s,MODE))));
+    const m={AB:'경쟁에 강한',C:'안정·성실한',D:'심화·도전형'};lines.push(`${m[pref]} 학생에게 맞는 <b>유형 ${types.join('·')}</b> 환경`);}
+  if(subj){const lab=SUBJ.find(x=>x[0]===subj)[1];pool.sort((a,b)=>vals(a,MODE)[subj]-vals(b,MODE)[subj]);
+    lines.push(`<b>${lab}</b>가 강점이면 그 시험이 <b>어려운(A비율 낮은)</b> 학교에서 실력 증명에 유리`);}
+  const picks=pool.slice(0,subj?4:Math.min(pool.length,6));
+  if(picks.length){reco.className='match-reco hot';
+    reco.innerHTML=`<div class="reco-title">우리 아이에게 추천하는 학교 <span class="reco-sem">(${MODELBL[MODE]} 성적 기준)</span></div><div>${picks.map(s=>`<span class="chip-sm" onclick="goSchool('${s.short}')">${s.short}</span>`).join('')}</div><div class="why">근거 · ${lines.join(' · ')}.</div>`;
+    const mx=cardsMax();result.innerHTML=`<div class="result-label">추천 학교 상세</div><div class="cards">${picks.map((sc,i)=>cardHTML(sc,i,true,mx)).join('')}</div>`;
+    after.classList.add('on');}
+  else{reco.className='match-reco hot';reco.innerHTML='선택하신 조건에 맞는 학교가 없습니다. 조건을 조정해 보세요.';result.innerHTML='';after.classList.remove('on');}}
+document.getElementById('f-subj').onchange=computeMatch;
+document.getElementById('f-pref').onchange=computeMatch;
+
+/* ===== 학교별 상세 ===== */
+let curSchool=SCHOOLS[0].short;
+function renderPicker(){document.getElementById('school-picker').innerHTML=SCHOOLS.map(sc=>{const on=sc.short===curSchool;
+  return `<button class="${on?'on':''}" onclick="setSchool('${sc.short}')">${sc.short}</button>`;}).join('');}
+function renderDetail(){const sc=byShort(curSchool),a=coreAvg(sc,MODE),tk=typeKey(a),t=TYPE[tk],g=gradPct(sc.grad);
+  const mxx=Math.max(...SUBJ.flatMap(([k])=>[sc.s1[k],sc.s2[k]]));
+  const prog=SUBJ.map(([k,lab,base])=>{const bar=(nm,val,sem)=>`<div class="prog-sem ${sem===MODE?'cur':''}"><span class="ps-l">${nm}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(val/mxx*100)}%"></div></div><span class="ps-v">${val}%</span></div>`;
+    return `<div class="prog"><div class="prog-area">${lab}</div><div class="prog-bars">${bar(base+'1',sc.s1[k],'s1')}${bar(base+'2',sc.s2[k],'s2')}</div></div>`;}).join('');
+  const fitRows=TRACKS.map(tr=>{const gg=trackGrade(sc.short,tr);const adv=ADV[sc.short]||[];const rel=adv.filter(c=>tr.rel.includes(c));const shown=gg.t==='star'?adv:rel;
+    const tags=shown.length?`<div class="advlist">${shown.map(c=>`<span class="advtag ${tr.rel.includes(c)?'rel':''}">${c}</span>`).join('')}</div>`:'<div class="fr">핵심·권장 충족 · 심화 교과 개설 없음</div>';
+    return `<div class="fit-row" onclick="goTrack('${tr.key}')"><span class="ic">${tr.icon}</span><div class="ftxt"><div class="fn">${tr.name}</div>${tags}</div><span class="fit-badge b-${gg.t}">${gg.label}</span></div>`;}).join('');
+  const idx=SCHOOLS.findIndex(s=>s.short===curSchool);const prev=SCHOOLS[(idx-1+SCHOOLS.length)%SCHOOLS.length].short,next=SCHOOLS[(idx+1)%SCHOOLS.length].short;
+  document.getElementById('detail-host').innerHTML=`<div class="detail reveal" style="border-top-color:${t.c}">
+    <div class="dhead"><div><h2>${sc.name}</h2><span class="pill" style="color:${t.c};background:${t.bg}">유형 ${tk} · ${t.nm}</span><div class="note" style="margin-top:10px">${sc.note}</div></div>
+      <div class="big"><div class="v" style="color:${t.c}">${a.toFixed(1)}%</div><div class="l">핵심 A평균 · ${MODELBL[MODE]}</div></div></div>
+    <div class="dbody">
+      <div class="dcol"><h4>내신 환경 · 1·2학기 추이</h4><div class="kv"><span>학생 <b>${sc.students}명</b></span><span>1등급 <b>약 ${grade1(sc)}명</b></span></div>${prog}
+        <div class="verdict" style="margin-top:14px">${verdict(sc,MODE)}</div></div>
+      <div class="dcol"><h4>계열별 교육과정 준비도</h4>${fitRows}
+        <p style="font-size:11.5px;color:var(--muted);margin-top:12px">계열 줄을 누르면 대학별 가이드라인·11개교 비교로 이동합니다.</p></div>
+    </div>
+    <div class="dgrad"><h4>졸업생 진로 현황 · 졸업 ${sc.grad.total}명</h4>${gradBar(g,true)}
+      <div class="grad-legend" style="margin-top:12px"><span><i style="background:var(--gU)"></i>대학(4년제) ${sc.grad.univ}명 (${g.univ}%)</span><span><i style="background:var(--gC)"></i>전문대학 ${sc.grad.college}명 (${g.college}%)</span><span><i style="background:var(--gO)"></i>기타·재수 ${sc.grad.other}명 (${g.other}%)</span></div></div>
+    <div class="dnav"><button class="nv" onclick="setSchool('${prev}')">‹ ${prev}</button>
+      <a class="cta cta-outline" style="padding:9px 16px;font-size:13px" href="https://m.booking.naver.com/booking/6/bizes/510701/items/3944024?area=pll&amp;lang=ko&amp;map-search=1&amp;service-target=map-pc&amp;theme=place" target="_blank" rel="noopener">이 학교 진학 상담</a>
+      <button class="nv" onclick="setSchool('${next}')">${next} ›</button></div>
+  </div>`;}
+function setSchool(s){curSchool=s;renderPicker();renderDetail();window.scrollTo({top:0,behavior:'smooth'});}
+
+/* ===== 계열별 분석 ===== */
+let curTrack='med',curUni='서울대';
+function renderTrackPicker(){document.getElementById('track-picker').innerHTML=TRACKS.map(tr=>{const on=tr.key===curTrack;
+  return `<button class="${on?'on':''}" onclick="setTrack('${tr.key}')">${tr.icon} ${tr.name}</button>`;}).join('');}
+function renderTrackView(){const tr=TRACKS.find(t=>t.key===curTrack);
+  const core=Object.entries(tr.core).map(([k,v])=>`<div class="core-grp"><div class="ct">${k}</div><div class="cc">${v}</div></div>`).join('');
+  const tabs=UNIS.map(u=>`<button class="${u===curUni?'on':''}" onclick="setUni('${u}')">${u}</button>`).join('');
+  const order=[...SCHOOLS].sort((a,b)=>{const r={star:0,adv:1,base:2};return r[trackGrade(a.short,tr).t]-r[trackGrade(b.short,tr).t]||coreAvg(b,MODE)-coreAvg(a,MODE);});
+  const rows=order.map(sc=>{const gg=trackGrade(sc.short,tr);const adv=ADV[sc.short]||[];const rel=adv.filter(c=>tr.rel.includes(c));const shown=gg.t==='star'?adv:rel;
+    const tags=shown.length?shown.map(c=>`<span class="advtag ${tr.rel.includes(c)?'rel':''}">${c}</span>`).join(' '):'<span style="color:var(--muted)">개설 없음</span>';
+    return `<tr onclick="goSchool('${sc.short}')"><td><span class="link-name">${sc.short}</span></td><td class="ok">✓ 충족</td><td>${tags}</td><td><span class="fit-badge b-${gg.t}">${gg.label}</span></td></tr>`;}).join('');
+  document.getElementById('track-host').innerHTML=`<div class="reveal"><h3 style="font-size:18px;font-weight:800;margin:6px 0 4px">${tr.icon} ${tr.name} 계열</h3>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 14px">11개교가 공통으로 갖춰야 할 핵심·권장 과목 — 진주 일반고는 모두 충족합니다.</p>
+    <div class="core-box">${core}</div><div class="uni-tabs">${tabs}</div><div class="guide-box">${tr.guides[curUni]}</div>
+    <div class="scroll-hint">← 표를 좌우로 넘겨 보세요 →</div>
+    <div class="fit-wrap" style="margin-top:8px"><table class="fit"><thead><tr><th>학교</th><th>핵심·권장</th><th>심화·전문 교과</th><th>계열 적합도</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <p style="font-size:11.5px;color:var(--muted);margin-top:12px">적합도는 핵심·권장 충족(공통) 위에 학교별 심화·전문 교과를 반영합니다. 학교 줄을 누르면 상세로 이동합니다.</p></div>`;}
+function setTrack(k){curTrack=k;curUni='서울대';renderTrackPicker();renderTrackView();}
+function setUni(u){curUni=u;renderTrackView();}
+
+/* ===== 라우터 / 학기 토글 ===== */
+function showView(v){document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active',el.id==='view-'+v));
+  document.querySelectorAll('.viewnav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));window.scrollTo({top:0,behavior:'smooth'});}
+function goSchool(s){setSchool(s);showView('school');}
+function goTrack(k){setTrack(k);showView('track');}
+document.querySelectorAll('.viewnav button').forEach(b=>b.onclick=()=>showView(b.dataset.view));
+function setMode(m){MODE=m;document.querySelectorAll('[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
+  renderModeTags();renderLegend();renderTable();renderHeat();renderCards();renderPicker();renderDetail();computeMatch();}
+document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+
+/* init */
+renderModeTags();renderLegend();renderTable();renderHeat();renderGrad();renderCards();renderPicker();renderDetail();renderTrackPicker();renderTrackView();computeMatch();
+</script>
+</body>
+</html>
