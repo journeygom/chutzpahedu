@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>후츠파에듀케이션 | 예약 확정 안내</title>
+
+<!--
+==================================================================
+  이 파일은 [조연서 학생 · 예약자 장현아 학부모] 안내용입니다.
+  ※ 진주 윙스타워(본원) 주소 / 예약 확정 건입니다.
+     예약번호 1261153250
+==================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendard-dynamic-subset.css">
+
+<style>
+  :root{
+    --burgundy:#7a1f2b;
+    --burgundy-deep:#5d141d;
+    --burgundy-soft:#8e2e3a;
+    --gold:#c2974a;
+    --gold-deep:#a87e34;
+    --gold-light:#e6cd8c;
+    --cream:#f7f0e6;
+    --paper:#fffdf9;
+    --ink:#2c2522;
+    --muted:#7a6f66;
+    --line:rgba(122,31,43,.12);
+    --line-gold:rgba(194,151,74,.35);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-text-size-adjust:100%;}
+
+  body{
+    font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(120% 60% at 50% 0%, rgba(122,31,43,.10), transparent 60%),
+      linear-gradient(180deg,#efe5d6 0%, #f7f0e6 28%, #f4ecdf 100%);
+    min-height:100vh;
+    padding:22px 14px 40px;
+    background-attachment:fixed;
+  }
+
+  .wrap{max-width:468px;margin:0 auto;}
+
+  .card{
+    background:var(--paper);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 22px 50px -28px rgba(70,18,26,.55),
+               0 2px 0 rgba(255,255,255,.6) inset;
+    border:1px solid rgba(122,31,43,.07);
+  }
+
+  /* ===== 헤더 ===== */
+  .head{
+    position:relative;
+    background:
+      radial-gradient(140% 90% at 50% -10%, var(--burgundy-soft), transparent 55%),
+      linear-gradient(165deg,var(--burgundy) 0%, var(--burgundy-deep) 100%);
+    color:#fff;text-align:center;padding:34px 26px 30px;overflow:hidden;
+  }
+  .head::before,.head::after{
+    content:"";position:absolute;width:160px;height:160px;
+    border:1px solid rgba(230,205,140,.22);border-radius:50%;
+  }
+  .head::before{top:-86px;left:-70px;}
+  .head::after{bottom:-96px;right:-70px;}
+
+  .badge{
+    position:relative;display:inline-flex;align-items:center;gap:6px;
+    font-size:11.5px;font-weight:600;letter-spacing:.14em;color:var(--gold-light);
+    border:1px solid rgba(230,205,140,.4);border-radius:999px;padding:5px 13px;margin-bottom:18px;
+  }
+  .badge svg{width:13px;height:13px;}
+
+  .brand{position:relative;font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:25px;letter-spacing:.02em;color:#fff;}
+  .brand .dot{color:var(--gold-light);}
+  .brand-sub{position:relative;margin-top:6px;font-size:12px;letter-spacing:.22em;color:rgba(255,255,255,.62);}
+  .rule{position:relative;width:46px;height:1.5px;margin:18px auto 16px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+  .head h1{position:relative;font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:19px;color:#fff;}
+  .head h1 b{color:var(--gold-light);}
+
+  /* ===== 본문 ===== */
+  .body{padding:6px 22px 26px;}
+
+  .greet{padding:26px 4px 22px;border-bottom:1px solid var(--line);}
+  .greet p{font-size:15px;color:#41382f;}
+  .greet .lead{font-family:'Nanum Myeongjo',serif;font-size:17.5px;line-height:1.55;color:var(--burgundy);margin-bottom:12px;}
+  .greet .name{font-weight:700;}
+  .greet b{color:var(--burgundy);font-weight:700;}
+
+  .sec{padding:22px 0;border-bottom:1px solid var(--line);}
+  .sec:last-child{border-bottom:0;}
+  .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:15px;}
+  .ico{flex:none;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+    background:linear-gradient(160deg,#fbf3df,#f3e4c2);border:1px solid var(--line-gold);color:var(--gold-deep);}
+  .ico svg{width:20px;height:20px;}
+  .eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.2em;color:var(--gold-deep);text-transform:uppercase;}
+  .sec-head h2{font-size:16.5px;font-weight:700;color:var(--ink);margin-top:1px;}
+
+  /* 예약 정보 */
+  .info{display:flex;flex-direction:column;gap:0;}
+  .row{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:11px 2px;border-top:1px dashed var(--line);align-items:start;}
+  .row:first-child{border-top:0;}
+  .row .k{font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--gold-deep);padding-top:1px;}
+  .row .v{font-size:15px;color:#34302c;font-weight:500;}
+  .row .v.muted{font-size:13.5px;color:var(--muted);font-weight:600;letter-spacing:.02em;}
+  .var{background:linear-gradient(transparent 62%, rgba(194,151,74,.22) 62%);padding:0 1px;font-weight:700;color:var(--burgundy);}
+  .prod-name{font-size:15.5px;font-weight:700;color:var(--burgundy);}
+  .prod-desc{font-size:13.5px;color:var(--muted);line-height:1.65;margin-top:5px;}
+
+  /* 상담 준비 정보 */
+  .prep-box{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:4px 16px;}
+  .prep-row{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:11px 0;border-top:1px dashed var(--line);align-items:start;}
+  .prep-row:first-child{border-top:0;}
+  .prep-row .pk{font-size:12.5px;font-weight:700;color:var(--gold-deep);padding-top:1px;}
+  .prep-row .pv{font-size:14.5px;color:#34302c;font-weight:600;}
+  .prep-note{font-size:13px;color:var(--muted);line-height:1.65;margin-top:12px;padding:0 2px;}
+  .prep-note b{color:var(--burgundy);font-weight:700;}
+
+  /* 주소 */
+  .addr{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:15px 16px;font-size:15px;color:#34302c;line-height:1.6;}
+  .addr .pin{font-weight:700;color:var(--ink);}
+  .addr .floor{display:inline-block;margin-top:7px;font-size:13px;color:var(--burgundy);font-weight:600;background:rgba(122,31,43,.07);border-radius:8px;padding:3px 10px;}
+
+  .btns{display:flex;gap:10px;margin-top:13px;}
+  .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:50px;border-radius:13px;
+    font-size:14.5px;font-weight:700;text-decoration:none;border:1px solid transparent;cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, background .2s ease;-webkit-tap-highlight-color:transparent;}
+  .btn svg{width:18px;height:18px;}
+  .btn:active{transform:translateY(1px) scale(.99);}
+  .btn-fill{background:linear-gradient(160deg,var(--burgundy-soft),var(--burgundy));color:#fff;box-shadow:0 10px 22px -12px rgba(122,31,43,.8);}
+  .btn-ghost{background:#fff;color:var(--burgundy);border-color:var(--line-gold);}
+  .btn-ghost.copied{background:var(--burgundy);color:#fff;border-color:var(--burgundy);}
+
+  /* 주차 */
+  .park{display:flex;flex-direction:column;gap:9px;}
+  .park-item{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:13px 15px;}
+  .park-item .when{font-size:13.5px;color:#41382f;font-weight:600;line-height:1.45;}
+  .park-item .free{flex:none;font-size:14px;font-weight:800;color:var(--burgundy);background:#fff;border:1px solid var(--line-gold);border-radius:999px;padding:5px 13px;white-space:nowrap;}
+  .park-note{font-size:12.5px;color:var(--muted);margin-top:4px;padding-left:2px;}
+
+  /* 지참 서류 */
+  .docs{display:flex;flex-direction:column;gap:9px;}
+  .doc{display:flex;align-items:center;gap:11px;font-size:15px;color:#34302c;font-weight:500;padding:2px 0;}
+  .doc .chk{flex:none;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:linear-gradient(160deg,#fbf3df,#f3e4c2);border:1px solid var(--line-gold);color:var(--gold-deep);}
+  .doc .chk svg{width:14px;height:14px;}
+  .doc small{display:block;font-size:12px;color:var(--muted);font-weight:400;}
+  .notice{margin-top:12px;background:rgba(194,151,74,.1);border:1px solid var(--line-gold);border-radius:12px;padding:12px 14px;font-size:13px;color:#5e4f33;line-height:1.6;}
+  .notice b{color:var(--gold-deep);}
+
+  /* 방문 전 */
+  .tips{list-style:none;display:flex;flex-direction:column;gap:11px;}
+  .tips li{position:relative;padding-left:18px;font-size:14px;color:#41382f;line-height:1.7;}
+  .tips li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  .tips b{color:var(--burgundy);font-weight:700;}
+
+  /* 문의 */
+  .tel-box{text-align:center;}
+  .tel-num{font-family:'Nanum Myeongjo',serif;font-size:23px;font-weight:700;letter-spacing:.02em;color:var(--burgundy);margin-bottom:13px;}
+
+  /* 푸터 */
+  .foot{background:linear-gradient(180deg,#fdfaf3,#f4ecdf);border-top:1px solid var(--line);text-align:center;padding:24px 22px 26px;}
+  .foot .closing{font-family:'Nanum Myeongjo',serif;font-size:15px;color:var(--burgundy);line-height:1.6;margin-bottom:14px;}
+  .foot .sign{font-size:13.5px;font-weight:700;color:var(--ink);}
+  .foot .sub{font-size:11.5px;color:var(--muted);letter-spacing:.04em;margin-top:3px;}
+  .foot .deco{width:30px;height:1.5px;margin:0 auto 16px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards;}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  .card{animation:fadein .8s ease forwards;}
+  @keyframes fadein{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion:reduce){.reveal,.card{animation:none;opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+
+    <!-- ===== 헤더 ===== -->
+    <header class="head">
+      <span class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        예약 확정 안내
+      </span>
+      <div class="brand">후츠파에듀케이션<span class="dot">.</span></div>
+      <div class="brand-sub">CHUTZPAH EDUCATION</div>
+      <div class="rule"></div>
+      <h1><b>조연서</b> 학생의<br>상담 예약이 확정되었습니다</h1>
+    </header>
+
+    <div class="body">
+
+      <!-- ===== 인사말 ===== -->
+      <section class="greet reveal" style="animation-delay:.05s">
+        <p class="lead">안녕하세요, 장현아 학부모님.</p>
+        <p><span class="name">조연서</span> 학생의 입시 여정을 함께하게 되어 진심으로 감사드립니다. 신청해 주신 <b>수시 원서 전략 상담</b>의 예약이 아래와 같이 확정되었습니다. 접수해 주신 정보를 바탕으로 조연서 학생에게 꼭 맞는 상담을 준비하고 있으니, 아래 안내를 확인해 주세요.</p>
+      </section>
+
+      <!-- ===== 예약 정보 ===== -->
+      <section class="sec reveal" style="animation-delay:.1s">
+        <div class="sec-head">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          <div>
+            <p class="eyebrow">Reservation</p>
+            <h2>예약 정보</h2>
+          </div>
+        </div>
+        <div class="info">
+          <div class="row"><span class="k">학생</span><span class="v"><span class="var">조연서</span></span></div>
+          <div class="row"><span class="k">예약자</span><span class="v"><span class="var">장현아</span> 학부모님</span></div>
+          <div class="row"><span class="k">예약 일정</span><span class="v"><span class="var">2026년 6월 12일(금) 오후 9시</span></span></div>
+          <div class="row">
+            <span class="k">신청 상품</span>
+            <span class="v">
+              <span class="prod-name">[고3/N수생] 수시 6장, 합격 시나리오 설계</span>
+              <span class="prod-desc">단 한 번의 상담으로 끝나지 않습니다. 수시 원서 접수 기간(<b>2026년 9월 7일 월 ~ 11일 금</b>)까지, 최종 <b>6장의 원서</b>를 확정하는 순간까지 학생의 합격 가능성을 극대화하는 지원 조합을 함께 결정해 드립니다.</span>
+            </span>
+          </div>
+          <div class="row"><span class="k">예약번호</span><span class="v muted">1261153250</span></div>
+        </div>
+      </section>
+
+      <!-- ===== 상담 준비 정보 ===== -->
+      <section class="sec reveal" style="animation-delay:.15s">
+        <div class="sec-head">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
+          <div>
+            <p class="eyebrow">Student</p>
+            <h2>상담 준비 정보</h2>
+          </div>
+        </div>
+        <div class="prep-box">
+          <div class="prep-row"><span class="pk">학교 · 학년</span><span class="pv">남해해성고등학교 · 고등학교 3학년</span></div>
+          <div class="prep-row"><span class="pk">희망 계열</span><span class="pv">인문사회계열</span></div>
+          <div class="prep-row"><span class="pk">희망 대학·학과</span><span class="pv">항공대 항공물류학과 · 경운대</span></div>
+        </div>
+        <p class="prep-note">접수해 주신 정보를 바탕으로 <b>조연서 학생 맞춤 상담</b>을 준비하고 있습니다. 변경되었거나 추가로 전달하실 내용이 있다면 편하게 알려주세요.</p>
+      </section>
+
+      <!-- ===== 오시는 길 ===== -->
+      <section class="sec reveal" style="animation-delay:.2s">
+        <div class="sec-head">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <div>
+            <p class="eyebrow">Location</p>
+            <h2>오시는 길</h2>
+          </div>
+        </div>
+        <div class="addr">
+          <span class="pin">경상남도 진주시 동부로169번길 12</span><br>
+          A1401호 (충무공동, 윙스타워)
+          <span class="floor">윙스타워 14층 · A1401호</span>
+        </div>
+        <div class="btns">
+          <a class="btn btn-fill" href="https://map.naver.com/p/search/진주시%20동부로169번길%2012%20윙스타워" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/><path d="M9 3v15M15 6v15"/></svg>
+            지도 보기
+          </a>
+          <button class="btn btn-ghost" id="copyBtn" type="button" onclick="copyAddr()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span id="copyLabel">주소 복사</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ===== 주차 안내 ===== -->
+      <section class="sec reveal" style="animation-delay:.25s">
+        <div class="sec-head">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1.5-6.5A2 2 0 0 1 9.4 9h5.2a2 2 0 0 1 1.9 1.5L18 17"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="16.5" cy="17.5" r="1.6"/></svg></span>
+          <div>
+            <p class="eyebrow">Parking</p>
+            <h2>주차 안내</h2>
+          </div>
+        </div>
+        <div class="park">
+          <div class="park-item">
+            <span class="when">평일 ~ 18시</span>
+            <span class="free">1시간 무료</span>
+          </div>
+          <div class="park-item">
+            <span class="when">평일 18시 이후<br>토·일·공휴일</span>
+            <span class="free">3시간 무료</span>
+          </div>
+        </div>
+        <p class="park-note">※ 윙스타워 건물 내 주차장을 이용해 주세요.</p>
+      </section>
+
+      <!-- ===== 지참 서류 ===== -->
+      <section class="sec reveal" style="animation-delay:.3s">
+        <div class="sec-head">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>
+          <div>
+            <p class="eyebrow">Documents</p>
+            <h2>지참 서류</h2>
+          </div>
+        </div>
+        <div class="docs">
+          <div class="doc">
+            <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>학교생활기록부 <small>해당되는 경우 지참</small></span>
+          </div>
+          <div class="doc">
+            <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>최근 모의고사 성적표 <small>해당되는 경우 지참</small></span>
+          </div>
+        </div>
+        <div class="notice">
+          <b>※</b> 위 서류는 <b>해당 사항이 없으면 지참하지 않으셔도 됩니다.</b> 보유하고 계신 자료가 있다면 상담의 정확도를 높이는 데 큰 도움이 됩니다.
+        </div>
+      </section>
+
+      <!-- ===== 방문 전 안내 ===== -->
+      <section class="sec reveal" style="animation-delay:.35s">
+        <div class="sec-head">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div>
+            <p class="eyebrow">Before Visit</p>
+            <h2>방문 전 안내</h2>
+          </div>
+        </div>
+        <ul class="tips">
+          <li>원활한 상담을 위해 약속 시간 <b>5~10분 전</b> 도착을 권장드립니다.</li>
+          <li>부득이하게 <b>일정 변경·취소</b>가 필요하신 경우, 아래 연락처로 미리 말씀해 주세요.</li>
+          <li>편안한 마음으로 방문해 주시면, 조연서 학생에게 꼭 맞는 원서 전략을 함께 찾아드리겠습니다.</li>
+        </ul>
+      </section>
+
+      <!-- ===== 문의 ===== -->
+      <section class="sec reveal" style="animation-delay:.4s">
+        <div class="sec-head">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/></svg></span>
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>문의 사항</h2>
+          </div>
+        </div>
+        <div class="tel-box">
+          <div class="tel-num">010-4449-0829</div>
+          <a class="btn btn-fill" href="tel:010-4449-0829" style="max-width:220px;margin:0 auto;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/></svg>
+            전화 걸기
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ===== 푸터 ===== -->
+    <footer class="foot reveal" style="animation-delay:.45s">
+      <div class="deco"></div>
+      <p class="closing">학생의 진정한 지적 정체성을<br>함께 만들어 갑니다.<br>곧 뵙겠습니다.</p>
+      <p class="sign">후츠파에듀케이션</p>
+      <p class="sub">후츠파입시컨설팅 원격학원</p>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  function copyAddr(){
+    var text = "경상남도 진주시 동부로169번길 12 A1401호 (충무공동, 윙스타워)";
+    var btn = document.getElementById('copyBtn');
+    var label = document.getElementById('copyLabel');
+    function done(){
+      btn.classList.add('copied');
+      label.textContent = '복사됨!';
+      setTimeout(function(){ btn.classList.remove('copied'); label.textContent = '주소 복사'; }, 1800);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
+    } else { fallback(); }
+    function fallback(){
+      var t = document.createElement('textarea');
+      t.value = text; t.style.position='fixed'; t.style.opacity='0';
+      document.body.appendChild(t); t.focus(); t.select();
+      try{ document.execCommand('copy'); done(); }catch(e){ alert('주소: '+text); }
+      document.body.removeChild(t);
+    }
+  }
+</script>
+</body>
+</html>
