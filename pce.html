@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>후츠파에듀케이션 | 예약 확정 안내</title>
+
+<!--
+==================================================================
+  [박채은 학생 · 예약자 박동찬 학부모] 인터랙티브 안내
+  ※ 진주 윙스타워(본원) / 예약 확정 / 예약번호 1294667727
+  ※ 일정 변경 시 아래 CONFIG의 apptISO 값만 수정하면
+     카운트다운·D-day 뱃지가 자동으로 다시 계산됩니다.
+  ※ 색상/로고는 토크콘서트 페이지(v3)와 동일한 아이덴티티 사용
+==================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F7F4EB;
+    --paper-dim:#EAE5D6;
+    --ink:#161512;
+    --green:#0E7B45;
+    --green-deep:#0A5A33;
+    --green-pale:#E4F0E7;
+    --white:#FFFFFF;
+    --muted:#6E6A5E;
+    --serif:'Noto Serif KR','Nanum Myeongjo',serif;
+    --sans:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    --pad:22px;
+    --maxw:600px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-text-size-adjust:100%;}
+
+  body{
+    font-family:var(--sans); color:var(--ink); line-height:1.7;
+    -webkit-font-smoothing:antialiased; background:var(--paper-dim);
+    min-height:100vh; padding-bottom:0; overflow-x:hidden;
+  }
+  .sheet{
+    position:relative; max-width:var(--maxw); margin:0 auto; min-height:100vh;
+    background:var(--paper); padding-bottom:112px;
+    box-shadow:0 0 60px rgba(22,21,18,.10);
+  }
+  .sheet::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 8%, rgba(14,123,69,.04), transparent 60%),
+      radial-gradient(ellipse 50% 30% at 85% 90%, rgba(22,21,18,.03), transparent 60%);
+  }
+
+  /* ── 오프닝 스플래시 ── */
+  #splash{
+    position:fixed; inset:0; z-index:90; background:var(--paper);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+    transition:transform .65s cubic-bezier(.7,0,.2,1);
+  }
+  #splash.off{transform:translateY(-101%);}
+  #splash .logo circle{
+    fill:none; stroke:var(--green); stroke-width:4.5; stroke-linecap:round;
+    stroke-dasharray:120; stroke-dashoffset:120; animation:draw .9s ease forwards;
+  }
+  #splash .logo circle:nth-child(2){animation-delay:.18s;}
+  #splash .word{
+    font-family:var(--serif); font-weight:700; letter-spacing:.42em; text-indent:.42em;
+    font-size:13px; color:var(--ink); opacity:0; animation:fadeUp .5s .55s ease forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+  /* ── 상단 바 ── */
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px var(--pad); border-bottom:1px solid rgba(22,21,18,.12);
+    position:relative; z-index:2;
+  }
+  .brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:13.5px; letter-spacing:-.01em;}
+  .brand svg circle{fill:none; stroke:var(--green); stroke-width:4;}
+  .topdate{font-size:11.5px; font-weight:700; letter-spacing:.14em; color:var(--muted);}
+
+  /* ── 히어로 ── */
+  .hero{position:relative; z-index:2; padding:30px var(--pad) 26px; text-align:center;}
+  .kchip{
+    display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700;
+    letter-spacing:.1em; color:var(--green-deep); background:var(--green-pale);
+    border-radius:999px; padding:5px 13px; margin-bottom:16px;
+  }
+  .kchip svg{width:13px;height:13px;}
+  .hero h1{font-family:var(--serif); font-weight:700; font-size:25px; line-height:1.45; letter-spacing:-.02em;}
+  .uline{position:relative; display:inline-block; font-weight:900;}
+  .uline svg{position:absolute; left:0; right:0; bottom:-4px; width:100%; height:8px;}
+  .uline path{
+    fill:none; stroke:var(--green); stroke-width:5; stroke-linecap:round;
+    stroke-dasharray:200; stroke-dashoffset:200;
+    transition:stroke-dashoffset .9s cubic-bezier(.6,0,.3,1) .5s;
+  }
+  body.ready .uline path{stroke-dashoffset:0;}
+  .hero-sub{margin-top:14px; font-size:14px; color:var(--muted);}
+
+  /* ── 카운트다운 ── */
+  .count{margin-top:24px;}
+  .cd-chip{
+    display:inline-block; font-size:11px; font-weight:900; letter-spacing:.16em;
+    color:var(--white); background:var(--green); border-radius:999px; padding:4px 14px; margin-bottom:13px;
+  }
+  .cd-grid{display:flex; justify-content:center; gap:7px;}
+  .cd-box{min-width:58px; background:var(--white); border:1px solid rgba(22,21,18,.10); border-radius:12px; padding:9px 4px 7px;}
+  .cd-num{font-family:var(--serif); font-size:23px; font-weight:700; color:var(--ink); line-height:1.1;}
+  .cd-lab{font-size:9.5px; letter-spacing:.14em; color:var(--muted); margin-top:3px; font-weight:700;}
+  .cd-note{margin-top:12px; font-size:12.5px; color:var(--muted);}
+
+  /* ── 섹션 공통 ── */
+  .sec{position:relative; z-index:2; padding:26px var(--pad); border-top:1px solid rgba(22,21,18,.12);}
+  .sec-head{display:flex; align-items:center; gap:11px; margin-bottom:16px;}
+  .ico{flex:none; width:36px; height:36px; border-radius:10px; display:grid; place-items:center;
+    background:var(--green-pale); color:var(--green-deep);}
+  .ico svg{width:19px; height:19px;}
+  .eyebrow{font-size:10px; font-weight:900; letter-spacing:.2em; color:var(--green); text-transform:uppercase;}
+  .sec h2{font-family:var(--serif); font-size:18px; font-weight:700; letter-spacing:-.01em; margin-top:1px;}
+
+  .greet p{font-size:15px; color:#3B382F;}
+  .greet .lead{font-family:var(--serif); font-size:17.5px; line-height:1.55; margin-bottom:12px;}
+  .greet b{color:var(--green-deep); font-weight:700;}
+
+  /* ── 예약 정보 ── */
+  .info{display:flex; flex-direction:column;}
+  .row{display:grid; grid-template-columns:78px 1fr; gap:10px; padding:11px 0; border-top:1px dashed rgba(22,21,18,.14); align-items:start;}
+  .row:first-child{border-top:0;}
+  .row .k{font-size:12px; font-weight:900; letter-spacing:.04em; color:var(--muted); padding-top:2px;}
+  .row .v{font-size:15px; color:var(--ink); font-weight:500;}
+  .row .v.dim{font-size:13.5px; color:var(--muted); font-weight:700;}
+  .var{font-weight:900; color:var(--green-deep);}
+  .tag-soon{display:inline-block; margin-left:7px; font-size:11px; font-weight:900; color:var(--white);
+    background:var(--green); border-radius:999px; padding:2px 9px; vertical-align:middle;}
+  .prod-name{font-size:15.5px; font-weight:900; color:var(--green-deep);}
+  .prod-desc{font-size:13.5px; color:var(--muted); line-height:1.65; margin-top:5px;}
+  .prod-desc b{color:var(--ink); font-weight:700;}
+
+  /* ── 준비 정보 ── */
+  .prep-box{background:var(--white); border:1px solid rgba(22,21,18,.10); border-radius:14px; padding:4px 16px;}
+  .prep-row{display:grid; grid-template-columns:92px 1fr; gap:10px; padding:11px 0; border-top:1px dashed rgba(22,21,18,.12); align-items:start;}
+  .prep-row:first-child{border-top:0;}
+  .prep-row .pk{font-size:12px; font-weight:900; color:var(--muted); padding-top:2px;}
+  .prep-row .pv{font-size:14.5px; color:var(--ink); font-weight:700; line-height:1.55;}
+  .prep-note{font-size:13px; color:var(--muted); line-height:1.65; margin-top:12px;}
+  .prep-note b{color:var(--green-deep); font-weight:700;}
+
+  .ask-lead{
+    font-size:13.5px; color:#3B382F; line-height:1.7; background:var(--green-pale);
+    border-radius:12px; padding:13px 15px;
+  }
+  .ask-lead b{font-weight:900; color:var(--green-deep);}
+
+  /* ── 시간 선택 안내 ── */
+  .pick{
+    position:relative; overflow:hidden; border-radius:16px; margin-top:18px;
+    background:var(--green-pale); border:1px solid rgba(14,123,69,.22); padding:17px 17px 16px;
+  }
+  .pick::before{content:""; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--green);}
+  .pick h3{display:flex; align-items:center; gap:9px; font-size:15px; font-weight:900; color:var(--green-deep); margin-bottom:8px;}
+  .pick h3 svg{width:18px; height:18px;}
+  .pick > p{font-size:13.5px; color:#3B382F; line-height:1.7;}
+  .pick > p b{font-weight:900; color:var(--green-deep);}
+  .slots{display:flex; gap:9px; margin-top:13px;}
+  .slot{
+    flex:1; background:var(--white); border:1.5px solid rgba(22,21,18,.10);
+    border-radius:12px; padding:13px 10px; text-align:center;
+  }
+  .slot.cur{border-color:var(--green); background:var(--white);}
+  .slot .st{font-family:var(--serif); font-size:19px; font-weight:700; color:var(--ink); line-height:1.2;}
+  .slot .sl{font-size:11px; font-weight:900; letter-spacing:.06em; margin-top:5px;}
+  .slot.cur .sl{color:var(--green);}
+  .slot:not(.cur) .sl{color:var(--muted);}
+  .slot .se{font-size:11px; color:var(--muted); margin-top:3px;}
+  .pick-btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:7px; width:100%; min-height:48px;
+    margin-top:13px; border-radius:12px; font-size:14.5px; font-weight:700; text-decoration:none;
+    background:var(--green); color:var(--white); transition:transform .15s ease; -webkit-tap-highlight-color:transparent;
+  }
+  .pick-btn svg{width:18px; height:18px;}
+  .pick-btn:active{transform:scale(.98);}
+
+  /* ── 원거리 방문 안내 ── */
+  .far{
+    display:flex; gap:12px; align-items:flex-start; background:var(--white);
+    border:1px solid rgba(22,21,18,.10); border-radius:14px; padding:15px 16px; margin-top:13px;
+  }
+  .far .fi{flex:none; width:30px; height:30px; border-radius:9px; display:grid; place-items:center;
+    background:var(--green-pale); color:var(--green-deep);}
+  .far .fi svg{width:16px; height:16px;}
+  .far h3{font-size:14px; font-weight:900; color:var(--green-deep); margin-bottom:4px;}
+  .far p{font-size:13.5px; color:#3B382F; line-height:1.7;}
+  .far p b{font-weight:900; color:var(--ink);}
+
+  /* ── 필수 안내 배너 ── */
+  .must{
+    display:flex; gap:12px; align-items:flex-start; background:var(--green-pale);
+    border:1px solid rgba(14,123,69,.22); border-radius:14px; padding:15px 16px; margin-bottom:16px;
+  }
+  .must .mi{flex:none; width:30px; height:30px; border-radius:9px; display:grid; place-items:center;
+    background:var(--green); color:var(--white);}
+  .must .mi svg{width:16px; height:16px;}
+  .must h3{font-size:14.5px; font-weight:900; color:var(--green-deep); margin-bottom:4px;}
+  .must p{font-size:13.5px; color:#3B382F; line-height:1.65;}
+  .must p b{font-weight:900; color:var(--green-deep);}
+
+  /* ── 주소 ── */
+  .addr{background:var(--white); border:1px solid rgba(22,21,18,.10); border-radius:14px; padding:15px 16px; font-size:15px; line-height:1.6;}
+  .addr .pin{font-weight:900;}
+  .addr .floor{display:inline-block; margin-top:7px; font-size:13px; color:var(--green-deep); font-weight:700;
+    background:var(--green-pale); border-radius:8px; padding:3px 10px;}
+
+  .btns{display:flex; gap:10px; margin-top:13px;}
+  .btn{
+    flex:1; display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:50px;
+    border-radius:13px; font-size:14.5px; font-weight:700; text-decoration:none; font-family:inherit;
+    border:1px solid transparent; cursor:pointer; transition:transform .15s ease, background .2s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .btn svg{width:18px; height:18px;}
+  .btn:active{transform:scale(.97);}
+  .btn-fill{background:var(--green); color:var(--white);}
+  .btn-ghost{background:var(--white); color:var(--green-deep); border-color:rgba(14,123,69,.3);}
+  .btn-ghost.copied{background:var(--green); color:var(--white); border-color:var(--green);}
+
+  /* ── 주차 ── */
+  .park{display:flex; flex-direction:column; gap:9px;}
+  .park-item{display:flex; align-items:center; justify-content:space-between; gap:12px; background:var(--white);
+    border:1px solid rgba(22,21,18,.10); border-radius:12px; padding:13px 15px; transition:border-color .3s ease, background .3s ease;}
+  .park-item.hit{background:var(--green-pale); border-color:rgba(14,123,69,.3);}
+  .park-item .when{font-size:13.5px; color:var(--ink); font-weight:700; line-height:1.45;}
+  .park-item .free{flex:none; font-size:14px; font-weight:900; color:var(--green-deep); background:var(--paper);
+    border:1px solid rgba(22,21,18,.10); border-radius:999px; padding:5px 13px; white-space:nowrap;}
+  .park-item.hit .free{background:var(--green); color:var(--white); border-color:var(--green);}
+  .park-tag{display:none; font-size:10.5px; font-weight:900; color:var(--green); letter-spacing:.04em; margin-top:3px;}
+  .park-item.hit .park-tag{display:block;}
+  .park-note{font-size:12.5px; color:var(--muted); margin-top:8px;}
+
+  /* ── 체크리스트 ── */
+  .chk-list{display:flex; flex-direction:column; gap:9px;}
+  .chk{
+    display:flex; align-items:flex-start; gap:11px; width:100%; text-align:left; font-family:inherit;
+    background:var(--white); border:1px solid rgba(22,21,18,.10); border-radius:13px; padding:13px 14px;
+    cursor:pointer; -webkit-tap-highlight-color:transparent;
+    transition:background .25s ease, border-color .25s ease, transform .15s ease;
+  }
+  .chk:active{transform:scale(.985);}
+  .chk[aria-pressed="true"]{background:var(--green-pale); border-color:rgba(14,123,69,.3);}
+  .chk .box{flex:none; width:24px; height:24px; border-radius:7px; display:grid; place-items:center; margin-top:1px;
+    background:var(--paper); border:1px solid rgba(22,21,18,.16); color:transparent;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;}
+  .chk[aria-pressed="true"] .box{background:var(--green); border-color:var(--green); color:var(--white);}
+  .chk .box svg{width:14px; height:14px;}
+  .chk .txt{flex:1; min-width:0;}
+  .chk .t1{font-size:14.5px; font-weight:700; line-height:1.4; transition:color .25s ease;}
+  .chk[aria-pressed="true"] .t1{color:var(--green-deep);}
+  .chk .t2{display:block; font-size:12px; color:var(--muted); font-weight:400; margin-top:2px; line-height:1.55;}
+  .chk-bar{margin-top:12px; height:5px; border-radius:99px; background:rgba(22,21,18,.09); overflow:hidden;}
+  .chk-fill{height:100%; width:0; border-radius:99px; background:var(--green); transition:width .45s cubic-bezier(.4,0,.2,1);}
+  .chk-cnt{font-size:12.5px; color:var(--muted); margin-top:8px; text-align:right;}
+  .chk-cnt b{color:var(--green-deep); font-weight:900;}
+
+  /* ── 대안 안내 박스 ── */
+  .alt{
+    position:relative; margin-top:12px; border-radius:14px; overflow:hidden;
+    background:var(--white); border:1px solid rgba(22,21,18,.10); padding:15px 16px 14px;
+  }
+  .alt::before{content:""; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--green);}
+  .alt h3{font-size:14px; font-weight:900; color:var(--green-deep); margin-bottom:7px;}
+  .alt p{font-size:13.5px; color:#3B382F; line-height:1.7;}
+  .alt p b{font-weight:900; color:var(--ink);}
+  .alt .warn{
+    margin-top:10px; font-size:12.5px; color:var(--green-deep); background:var(--green-pale);
+    border-radius:10px; padding:9px 12px; line-height:1.6; font-weight:700;
+  }
+  .steps{list-style:none; display:flex; flex-direction:column; gap:9px; margin-top:11px;}
+  .steps li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:#3B382F; line-height:1.6;}
+  .steps .num{flex:none; width:21px; height:21px; border-radius:50%; display:grid; place-items:center; margin-top:1px;
+    background:var(--green); color:var(--white); font-size:11px; font-weight:900;}
+  .steps b{color:var(--ink); font-weight:900;}
+
+  .send-ways{display:flex; flex-direction:column; gap:7px; margin-top:11px;}
+  .send-way{
+    display:flex; align-items:center; gap:9px; width:100%; text-align:left; font-family:inherit; font-size:13.5px;
+    color:var(--ink); font-weight:700; background:var(--paper); border:1px solid rgba(22,21,18,.12);
+    border-radius:10px; padding:9px 12px; word-break:break-all; cursor:pointer;
+    transition:transform .15s ease; -webkit-tap-highlight-color:transparent;
+  }
+  .send-way:active{transform:scale(.985);}
+  .send-way .wlabel{flex:none; font-size:11px; font-weight:900; color:var(--white); background:var(--green); border-radius:999px; padding:2px 8px;}
+  .send-way .wcopy{margin-left:auto; flex:none; font-size:11px; color:var(--green); font-weight:900;}
+
+  .notice{margin-top:12px; background:var(--green-pale); border-radius:12px; padding:12px 14px;
+    font-size:13px; color:#3B382F; line-height:1.65;}
+  .notice b{color:var(--green-deep); font-weight:900;}
+
+  /* ── FAQ ── */
+  .faq{border-top:1px solid rgba(22,21,18,.12);}
+  .faq summary{
+    list-style:none; cursor:pointer; position:relative; padding:14px 30px 14px 0;
+    font-size:14.5px; font-weight:700; -webkit-tap-highlight-color:transparent;
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{
+    content:"+"; position:absolute; right:2px; top:50%; transform:translateY(-50%);
+    color:var(--green); font-size:22px; font-weight:400; transition:transform .25s ease;
+  }
+  .faq[open] summary::after{transform:translateY(-50%) rotate(45deg);}
+  .faq-body{padding:0 0 15px; font-size:13.5px; color:#4A4740; line-height:1.75; animation:fadeUp .35s ease;}
+  .faq-body b{color:var(--green-deep); font-weight:900;}
+
+  /* ── 방문 전 ── */
+  .tips{list-style:none; display:flex; flex-direction:column; gap:11px;}
+  .tips li{position:relative; padding-left:17px; font-size:14px; color:#3B382F; line-height:1.7;}
+  .tips li::before{content:""; position:absolute; left:2px; top:10px; width:5px; height:5px; border-radius:50%; background:var(--green);}
+  .tips b{color:var(--green-deep); font-weight:900;}
+
+  /* ── 문의 ── */
+  .tel-box{text-align:center;}
+  .tel-num{font-family:var(--serif); font-size:24px; font-weight:700; margin-bottom:13px;}
+
+  /* ── 푸터 ── */
+  .foot{position:relative; z-index:2; text-align:center; padding:28px var(--pad) 30px; border-top:1px solid rgba(22,21,18,.12);}
+  .foot .logo circle{fill:none; stroke:var(--green); stroke-width:4;}
+  .foot .closing{font-family:var(--serif); font-size:15px; line-height:1.7; margin:14px 0 16px; color:#3B382F;}
+  .foot .sign{font-size:13.5px; font-weight:900;}
+  .foot .sub{font-size:11.5px; color:var(--muted); letter-spacing:.04em; margin-top:3px;}
+
+  /* ── 스티키 하단바 ── */
+  .sticky{
+    position:fixed; left:0; right:0; bottom:0; z-index:80;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(247,244,235,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-top:1px solid rgba(22,21,18,.12);
+    transform:translateY(115%); transition:transform .4s cubic-bezier(.5,0,.2,1);
+  }
+  .sticky.show{transform:none;}
+  .sticky-in{max-width:var(--maxw); margin:0 auto; display:flex; align-items:center; gap:10px;}
+  .sticky-txt{flex:1; min-width:0;}
+  .sticky-d{font-size:12.5px; font-weight:900; color:var(--green-deep);}
+  .sticky-s{font-size:11.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .sticky-btn{
+    flex:none; display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:44px;
+    padding:0 16px; border-radius:12px; font-size:14px; font-weight:700; text-decoration:none;
+    font-family:inherit; border:1px solid transparent; transition:transform .15s ease; -webkit-tap-highlight-color:transparent;
+  }
+  .sticky-btn svg{width:16px; height:16px;}
+  .sticky-btn:active{transform:scale(.96);}
+  .sb-map{background:var(--white); color:var(--green-deep); border-color:rgba(14,123,69,.3);}
+  .sb-tel{background:var(--green); color:var(--white);}
+
+  /* ── 토스트 ── */
+  #toast{
+    position:fixed; left:50%; bottom:96px; transform:translate(-50%,16px); z-index:200;
+    background:rgba(22,21,18,.9); color:var(--white); font-size:13px; font-weight:700;
+    padding:10px 18px; border-radius:999px; opacity:0; pointer-events:none; white-space:nowrap;
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  #toast.show{opacity:1; transform:translate(-50%,0);}
+
+  /* ── 스크롤 리빌 ── */
+  .rv{opacity:0; transform:translateY(20px); transition:opacity .7s ease, transform .7s ease;}
+  .rv.on{opacity:1; transform:none;}
+
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1 !important; transform:none !important; transition:none !important;}
+    .uline path{stroke-dashoffset:0 !important; transition:none !important;}
+    #splash{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div id="splash" aria-hidden="true">
+  <svg class="logo" width="72" height="44" viewBox="0 0 66 40">
+    <circle cx="20" cy="20" r="15"></circle>
+    <circle cx="46" cy="20" r="15"></circle>
+  </svg>
+  <div class="word">CHUTZPAH</div>
+</div>
+
+<div class="sheet">
+
+  <!-- 상단 바 -->
+  <header class="topbar">
+    <div class="brand">
+      <svg width="26" height="16" viewBox="0 0 66 40">
+        <circle cx="20" cy="20" r="15"></circle>
+        <circle cx="46" cy="20" r="15"></circle>
+      </svg>
+      후츠파입시컨설팅 원격학원
+    </div>
+    <div class="topdate">2026.08.17 MON · JINJU</div>
+  </header>
+
+  <!-- 히어로 -->
+  <section class="hero">
+    <span class="kchip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      예약 확정 안내
+    </span>
+    <h1><span class="uline">박채은<svg viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M2 5 Q 50 1 98 5"/></svg></span> 학생의<br>상담 예약이 확정되었습니다</h1>
+    <p class="hero-sub">'나의 강점' 발견 컨설팅</p>
+
+    <div class="count">
+      <span class="cd-chip" id="dchip">D-1</span>
+      <div class="cd-grid">
+        <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lab">DAYS</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lab">HOURS</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lab">MIN</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lab">SEC</div></div>
+      </div>
+      <p class="cd-note" id="countNote">상담까지 남은 시간입니다.</p>
+    </div>
+  </section>
+
+  <!-- 인사말 -->
+  <section class="sec greet rv">
+    <p class="lead">안녕하세요, 박동찬 학부모님.</p>
+    <p>박채은 학생의 소중한 첫걸음을 함께하게 되어 진심으로 감사드립니다. 신청해 주신 <b>'나의 강점' 발견 컨설팅</b>의 예약이 확정되었습니다. <b>이과계열은 확실하나 진로가 아직 정해지지 않았다</b>고 말씀해 주셨는데, 바로 그 지점을 함께 풀어 드리겠습니다.</p>
+  </section>
+
+  <!-- 시간 선택 안내 -->
+  <section class="sec rv">
+    <div class="pick">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        오후 2시도 가능합니다
+      </h3>
+      <p>현재 <b>오후 5시</b>로 예약되어 있으나, 같은 날 <b>오후 2시</b>에도 상담이 가능합니다. 전주에서 오시는 길이 머니 <b>편하신 시간</b>으로 알려주시면 그에 맞춰 조정해 드리겠습니다.</p>
+      <div class="slots">
+        <div class="slot">
+          <div class="st">오후 2:00</div>
+          <div class="sl">선택 가능</div>
+          <div class="se">~ 3:30 종료</div>
+        </div>
+        <div class="slot cur">
+          <div class="st">오후 5:00</div>
+          <div class="sl">현재 예약</div>
+          <div class="se">~ 6:30 종료</div>
+        </div>
+      </div>
+      <a class="pick-btn" href="tel:010-4449-0829">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/></svg>
+        편하신 시간 알려주기
+      </a>
+    </div>
+  </section>
+
+  <!-- 예약 정보 -->
+  <section class="sec rv">
+    <div class="sec-head">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+      <div><p class="eyebrow">Reservation</p><h2>예약 정보</h2></div>
+    </div>
+    <div class="info">
+      <div class="row"><span class="k">학생</span><span class="v"><span class="var">박채은</span></span></div>
+      <div class="row"><span class="k">예약자</span><span class="v"><span class="var">박동찬</span> 학부모님</span></div>
+      <div class="row"><span class="k">예약 일정</span><span class="v"><span class="var">2026년 8월 17일(월) 오후 5시</span><br><span style="font-size:12.5px;color:var(--muted);font-weight:700;">※ 오후 2시로 변경 가능</span><span class="tag-soon" id="dayTag">내일</span></span></div>
+      <div class="row"><span class="k">소요 시간</span><span class="v"><b>90분 내외</b></span></div>
+      <div class="row">
+        <span class="k">신청 상품</span>
+        <span class="v">
+          <span class="prod-name">[진로/동기부여] '나의 강점' 발견 컨설팅</span>
+          <span class="prod-desc">후츠파 팀의 전문 진단과 심층 인터뷰를 통해 학생 안에 숨겨진 <b>강점과 흥미</b>를 찾아내, ‘이거다!’ 싶은 구체적인 진로 목표를 설정합니다. 이를 통해 강력한 학습 동기를 부여하고, ‘나만의 스토리’가 담긴 <b>학생부의 첫걸음</b>을 함께합니다.</span>
+        </span>
+      </div>
+      <div class="row"><span class="k">예약번호</span><span class="v dim">1294667727</span></div>
+    </div>
+  </section>
+
+  <!-- 상담 준비 정보 -->
+  <section class="sec rv">
+    <div class="sec-head">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
+      <div><p class="eyebrow">Student</p><h2>상담 준비 정보</h2></div>
+    </div>
+
+    <div class="must">
+      <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>
+      <div>
+        <h3>학생은 반드시 함께 참석해 주세요</h3>
+        <p>이번 상담은 <b>학생과의 심층 인터뷰</b>로 진행됩니다. 학생 본인의 이야기에서 강점과 흥미를 찾아내는 과정이므로 <b>학생 참석은 필수</b>입니다. 학부모님만 오시는 경우 상담 진행이 어렵습니다.</p>
+      </div>
+    </div>
+
+    <div class="prep-box">
+      <div class="prep-row"><span class="pk">학교 · 학년</span><span class="pv">전주호남제일고등학교 · 고등학교 1학년</span></div>
+      <div class="prep-row"><span class="pk">계열</span><span class="pv">이과계열 (확정)</span></div>
+      <div class="prep-row"><span class="pk">세부 진로</span><span class="pv">아직 탐색 중</span></div>
+    </div>
+    <p class="prep-note">계열이 정해져 있다는 것은 <b>이미 절반은 좁혀진 상태</b>라는 뜻입니다. 이번 상담에서는 넓은 이과 안에서 박채은 학생의 강점과 흥미가 어디에 있는지 찾아, <b>구체적인 세부 진로</b>까지 좁혀 드리겠습니다.</p>
+  </section>
+
+  <!-- 사전 준비 (체크리스트) -->
+  <section class="sec rv">
+    <div class="sec-head">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>
+      <div><p class="eyebrow">Checklist</p><h2>사전 준비 사항</h2></div>
+    </div>
+
+    <p class="ask-lead" style="margin-bottom:14px;">이번 상담은 <b>진단과 심층 인터뷰</b>로 진행되어, <b>반드시 지참하실 서류는 없습니다.</b> 아래는 있으면 도움이 되는 선택 사항입니다.</p>
+
+    <div class="chk-list">
+      <button class="chk" type="button" aria-pressed="false">
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span class="txt"><span class="t1">학교생활기록부 <b style="color:var(--muted);font-weight:700">(선택)</b></span><span class="t2">1학기까지의 기록이 있으면 참고용으로 지참 · 없으시면 아래 나이스플러스 계정 제공</span></span>
+      </button>
+      <button class="chk" type="button" aria-pressed="false">
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span class="txt"><span class="t1">평소 관심사 떠올려 보기 <b style="color:var(--muted);font-weight:700">(선택)</b></span><span class="t2">좋아하는 과목, 재미있었던 활동, 궁금한 분야를 미리 생각해 오시면 인터뷰가 한결 수월합니다</span></span>
+      </button>
+    </div>
+    <div class="chk-bar"><div class="chk-fill" id="chkFill"></div></div>
+    <p class="chk-cnt" id="chkCnt">준비 완료 <b>0</b> / 3</p>
+
+    <!-- 학생부 대안 -->
+    <div class="alt">
+      <h3>학교생활기록부 출력이 어려우신 경우</h3>
+      <p>학생부는 <b>필수가 아닌 참고 자료</b>입니다. 다만 함께 보시길 원하시는데 출력이 어려우시면, <b>나이스플러스(NEIS+) 아이디와 비밀번호</b>를 알려주시면 저희가 직접 조회하겠습니다.</p>
+      <div class="warn">※ 계정을 공유하시기 전에 반드시 <b>공유해도 괜찮은 비밀번호로 변경</b>한 뒤 알려주세요. 상담 종료 후에는 다시 변경하시기를 권장드립니다.</div>
+    </div>
+
+    <!-- 전달 방법 -->
+    <div class="alt">
+      <h3>자료·계정 보내실 곳</h3>
+      <p>학생부 등 참고하실 자료가 있다면 아래 두 가지 중 편하신 방법으로 <b>상담 전날까지</b> 보내주세요. 미리 살펴본 뒤 상담을 준비하면 <b>더 구체적인 방향</b>을 잡아드릴 수 있습니다.</p>
+      <div class="send-ways">
+        <button class="send-way" type="button" data-copy="sjw00sjw_7@naver.com" data-msg="이메일 주소를 복사했어요">
+          <span class="wlabel">이메일</span>sjw00sjw_7@naver.com<span class="wcopy">복사</span>
+        </button>
+        <button class="send-way" type="button" data-copy="sjw00sjw" data-msg="카카오톡 ID를 복사했어요">
+          <span class="wlabel">카카오톡</span>sjw00sjw 검색 후 전송<span class="wcopy">복사</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="notice">
+      <b>※</b> 위 항목은 모두 <b>선택</b>입니다. 아무것도 준비하지 않으셔도 상담은 정상 진행되니, 편한 마음으로 학생과 함께 방문해 주세요.
+    </div>
+  </section>
+
+  <!-- 오시는 길 -->
+  <section class="sec rv">
+    <div class="sec-head">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+      <div><p class="eyebrow">Location</p><h2>오시는 길</h2></div>
+    </div>
+    <div class="addr">
+      <span class="pin">경상남도 진주시 동부로169번길 12</span><br>
+      A1401호 (충무공동, 윙스타워)
+      <span class="floor">윙스타워 14층 · A1401호</span>
+    </div>
+    <div class="btns">
+      <a class="btn btn-fill" href="https://map.naver.com/p/search/진주시%20동부로169번길%2012%20윙스타워" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/><path d="M9 3v15M15 6v15"/></svg>
+        지도 보기
+      </a>
+      <button class="btn btn-ghost" id="btnAddr" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span id="addrLabel">주소 복사</span>
+      </button>
+    </div>
+
+    <div class="far">
+      <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1.5-6.5A2 2 0 0 1 9.4 9h5.2a2 2 0 0 1 1.9 1.5L18 17"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="16.5" cy="17.5" r="1.6"/></svg></span>
+      <div>
+        <h3>전주에서 먼 걸음 해주시는 만큼</h3>
+        <p>이동에 시간이 걸리는 점 고려해 <b>여유롭게 출발</b>해 주세요. 혹시 도착이 늦어지실 것 같으면 미리 연락 주시면 <b>기다려 드립니다.</b> 교통 사정으로 일정 조정이 필요하시면 언제든 편하게 말씀해 주세요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 주차 -->
+  <section class="sec rv">
+    <div class="sec-head">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1.5-6.5A2 2 0 0 1 9.4 9h5.2a2 2 0 0 1 1.9 1.5L18 17"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="16.5" cy="17.5" r="1.6"/></svg></span>
+      <div><p class="eyebrow">Parking</p><h2>주차 안내</h2></div>
+    </div>
+    <div class="park">
+      <div class="park-item">
+        <span class="when">평일 ~ 18시</span>
+        <span class="free">1시간 무료</span>
+      </div>
+      <div class="park-item hit">
+        <span class="when">평일 18시 이후<br>토·일·공휴일<span class="park-tag">▸ 8월 17일은 대체공휴일 · 해당됩니다</span></span>
+        <span class="free">3시간 무료</span>
+      </div>
+    </div>
+    <p class="park-note">※ 윙스타워 건물 내 주차장을 이용해 주세요. 상담일인 <b>8월 17일은 광복절 대체공휴일</b>이라 3시간 무료가 적용되어 여유롭게 이용하실 수 있습니다.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec rv">
+    <div class="sec-head">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9a2.8 2.8 0 0 1 5.5.7c0 1.9-2.7 2.3-2.7 4"/><path d="M12 17.5h.01"/></svg></span>
+      <div><p class="eyebrow">FAQ</p><h2>자주 묻는 질문</h2></div>
+    </div>
+
+    <details class="faq">
+      <summary>학생도 꼭 함께 가야 하나요?</summary>
+      <div class="faq-body">네, <b>학생 참석은 필수</b>입니다. 이번 상담은 학생과의 심층 인터뷰를 통해 본인도 몰랐던 강점을 찾아내는 과정이라, 학생 없이는 진행이 어렵습니다.</div>
+    </details>
+
+    <details class="faq">
+      <summary>하고 싶은 게 없는데 괜찮을까요?</summary>
+      <div class="faq-body">전혀 괜찮습니다. <b>오히려 그런 학생을 위한 상담</b>입니다. 막연히 "무엇이 되고 싶니"라고 묻는 대신, 전문 진단과 대화를 통해 학생이 <b>어떤 순간에 몰입하는지</b>를 찾아 구체적인 진로로 연결해 드립니다.</div>
+    </details>
+
+    <details class="faq">
+      <summary>상담은 얼마나 걸리나요?</summary>
+      <div class="faq-body"><b>90분 내외</b>로 진행됩니다. 진단과 인터뷰에 충분한 시간이 필요하므로 일정에 여유를 두고 와주세요.</div>
+    </details>
+
+    <details class="faq">
+      <summary>고1인데 지금 시작해도 되나요?</summary>
+      <div class="faq-body"><b>지금이 가장 좋은 시기</b>입니다. 1학년에 방향을 잡으면 남은 2년의 과목 선택, 동아리, 세특 활동을 <b>하나의 스토리</b>로 쌓아갈 수 있습니다.</div>
+    </details>
+
+    <details class="faq">
+      <summary>학생부가 없어도 상담이 되나요?</summary>
+      <div class="faq-body">네, 됩니다. 학생부는 <b>참고 자료일 뿐</b> 필수가 아닙니다. 있으시면 도움이 되고, 출력이 어려우시면 나이스플러스 계정을 알려주셔도 됩니다.</div>
+    </details>
+
+    <details class="faq">
+      <summary>일정을 변경하고 싶습니다.</summary>
+      <div class="faq-body">아래 <b>010-4449-0829</b>로 편하게 연락 주세요. 가능한 시간대를 함께 확인해 조정해 드리겠습니다.</div>
+    </details>
+  </section>
+
+  <!-- 방문 전 안내 -->
+  <section class="sec rv">
+    <div class="sec-head">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <div><p class="eyebrow">Before Visit</p><h2>방문 전 안내</h2></div>
+    </div>
+    <ul class="tips">
+      <li><b>학생과 함께</b> 방문해 주세요. 인터뷰 중심 상담이라 학생 참석은 필수입니다.</li>
+      <li>상담은 <b>90분 내외</b>로 진행되니 일정에 여유를 두고 와주세요.</li>
+      <li>원활한 상담을 위해 약속 시간 <b>5~10분 전</b> 도착을 권장드립니다.</li>
+      <li>부득이하게 <b>일정 변경·취소</b>가 필요하신 경우, 아래 연락처로 미리 말씀해 주세요.</li>
+    </ul>
+  </section>
+
+  <!-- 문의 -->
+  <section class="sec rv">
+    <div class="sec-head">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/></svg></span>
+      <div><p class="eyebrow">Contact</p><h2>문의 사항</h2></div>
+    </div>
+    <div class="tel-box">
+      <div class="tel-num">010-4449-0829</div>
+      <a class="btn btn-fill" href="tel:010-4449-0829" style="max-width:220px;margin:0 auto;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/></svg>
+        전화 걸기
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot rv">
+    <svg class="logo" width="46" height="28" viewBox="0 0 66 40">
+      <circle cx="20" cy="20" r="15"></circle>
+      <circle cx="46" cy="20" r="15"></circle>
+    </svg>
+    <p class="closing">학생의 진정한 지적 정체성을<br>함께 만들어 갑니다.<br>곧 뵙겠습니다.</p>
+    <p class="sign">후츠파에듀케이션</p>
+    <p class="sub">후츠파입시컨설팅 원격학원</p>
+  </footer>
+
+</div>
+
+<!-- 스티키 하단바 -->
+<div class="sticky" id="sticky">
+  <div class="sticky-in">
+    <div class="sticky-txt">
+      <div class="sticky-d" id="stickyD">D-1 · 8월 17일(월) 오후 5시</div>
+      <div class="sticky-s">진주 윙스타워 14층 A1401호 · 90분</div>
+    </div>
+    <a class="sticky-btn sb-map" href="https://map.naver.com/p/search/진주시%20동부로169번길%2012%20윙스타워" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      길찾기
+    </a>
+    <a class="sticky-btn sb-tel" href="tel:010-4449-0829">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/></svg>
+      전화
+    </a>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+(function(){
+  var CONFIG = {
+    apptISO:   "2026-08-17T17:00:00+09:00",
+    apptEnd:   "2026-08-17T18:30:00+09:00",
+    apptLabel: "8월 17일(월) 오후 5시",
+    address:   "경상남도 진주시 동부로169번길 12 A1401호 (충무공동, 윙스타워)"
+  };
+  var $ = function(s){ return document.querySelector(s); };
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 오프닝 커튼 */
+  var splash = $('#splash');
+  function openCurtain(){
+    if(!splash) return;
+    splash.classList.add('off');
+    document.body.classList.add('ready');
+    var s = splash; splash = null;
+    setTimeout(function(){ if(s && s.parentNode) s.parentNode.removeChild(s); }, 800);
+  }
+  if(reduce){ document.body.classList.add('ready'); openCurtain(); }
+  else{
+    setTimeout(openCurtain, 1250);
+    if(splash) splash.addEventListener('click', openCurtain);
+  }
+
+  /* 카운트다운 */
+  var start = new Date(CONFIG.apptISO).getTime();
+  var end   = new Date(CONFIG.apptEnd).getTime();
+  var pad = function(n){ return String(n).padStart(2,'0'); };
+  var timer = null;
+
+  function tick(){
+    var now = Date.now(), diff = start - now;
+    if(diff <= 0){
+      if(now < end){
+        $('#dchip').textContent = '상담 진행 중';
+        $('#countNote').textContent = '상담이 진행 중입니다. 편하게 말씀해 주세요.';
+        $('#stickyD').textContent = '상담 진행 중 · ' + CONFIG.apptLabel;
+      }else{
+        $('#dchip').textContent = '상담 완료';
+        $('#countNote').textContent = '상담이 종료되었습니다. 원서 접수까지 계속 함께합니다.';
+        $('#stickyD').textContent = '문의는 전화로 연락 주세요';
+      }
+      var t0 = $('#dayTag'); if(t0) t0.style.display = 'none';
+      $('#cd-d').textContent = $('#cd-h').textContent = $('#cd-m').textContent = $('#cd-s').textContent = '00';
+      return;
+    }
+    var d = Math.floor(diff/86400000),
+        h = Math.floor(diff%86400000/3600000),
+        m = Math.floor(diff%3600000/60000),
+        s = Math.floor(diff%60000/1000);
+    $('#cd-d').textContent = pad(d);
+    $('#cd-h').textContent = pad(h);
+    $('#cd-m').textContent = pad(m);
+    $('#cd-s').textContent = pad(s);
+    $('#dchip').textContent = d > 0 ? ('D-' + d) : 'D-DAY';
+    $('#stickyD').textContent = (d > 0 ? 'D-' + d : 'D-DAY') + ' · ' + CONFIG.apptLabel;
+
+    var tag = $('#dayTag');
+    if(tag){
+      if(d === 1){ tag.textContent = '내일'; tag.style.display=''; }
+      else if(d === 0){ tag.textContent = '오늘'; tag.style.display=''; }
+      else { tag.style.display = 'none'; }
+    }
+    clearTimeout(timer);
+    timer = setTimeout(tick, 1000);
+  }
+  tick();
+
+  /* 스크롤 리빌 */
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+      });
+    },{threshold:.12});
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  }else{
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('on'); });
+  }
+
+  /* 토스트 */
+  var toastTimer = null;
+  function toast(msg){
+    var t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2000);
+  }
+
+  /* 복사 */
+  function copyText(text, msg){
+    function done(){ toast(msg); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){ alert(text); }
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
+    } else { fallback(); }
+  }
+
+  $('#btnAddr').addEventListener('click', function(){
+    var btn = this, lab = $('#addrLabel');
+    copyText(CONFIG.address, '주소를 복사했어요');
+    btn.classList.add('copied'); lab.textContent = '복사됨!';
+    setTimeout(function(){ btn.classList.remove('copied'); lab.textContent = '주소 복사'; }, 1800);
+  });
+
+  document.querySelectorAll('.send-way').forEach(function(b){
+    b.addEventListener('click', function(){
+      copyText(b.getAttribute('data-copy'), b.getAttribute('data-msg'));
+    });
+  });
+
+  /* 체크리스트 */
+  var chks = document.querySelectorAll('.chk');
+  function updateChk(){
+    var done = 0;
+    chks.forEach(function(c){ if(c.getAttribute('aria-pressed') === 'true') done++; });
+    $('#chkFill').style.width = (done / chks.length * 100) + '%';
+    $('#chkCnt').innerHTML = '준비 완료 <b>' + done + '</b> / ' + chks.length;
+  }
+  chks.forEach(function(c){
+    c.addEventListener('click', function(){
+      var on = c.getAttribute('aria-pressed') === 'true';
+      c.setAttribute('aria-pressed', on ? 'false' : 'true');
+      updateChk();
+    });
+  });
+  updateChk();
+
+  /* 스티키 하단바 */
+  var sticky = $('#sticky');
+  function updateSticky(){ sticky.classList.toggle('show', window.scrollY > 260); }
+  window.addEventListener('scroll', updateSticky, {passive:true});
+  updateSticky();
+})();
+</script>
+</body>
+</html>
