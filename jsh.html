@@ -7,8 +7,9 @@
 
 <!--
 ==================================================================
-  [전소현 학생 · 예약자 윤은정 학부모] 인터랙티브 안내
-  ※ 진주 윙스타워(본원) / 예약 확정 / 예약번호 1316007316
+  [정성훈 학생 · 예약자 최윤희 학부모] 인터랙티브 안내
+  ※ 진주 윙스타워(본원) / 예약 확정 / 예약번호 1295441692
+  ※ 일정 변경: 8/22(토) 오후 2시 → 8/23(일) 오후 2시
   ※ 일정 변경 시 아래 CONFIG의 apptISO 값만 수정하면
      카운트다운·D-day 뱃지가 자동으로 다시 계산됩니다.
   ※ 색상/로고는 토크콘서트 페이지(v3)와 동일한 아이덴티티 사용
@@ -148,6 +149,45 @@
   .prep-row .pv{font-size:14.5px; color:var(--ink); font-weight:700; line-height:1.55;}
   .prep-note{font-size:13px; color:var(--muted); line-height:1.65; margin-top:12px;}
   .prep-note b{color:var(--green-deep); font-weight:700;}
+
+  /* ── 일정 변경 안내 ── */
+  .changed{
+    position:relative; overflow:hidden; border-radius:14px; margin-bottom:16px;
+    background:var(--green-pale); border:1px solid rgba(14,123,69,.22); padding:15px 16px;
+  }
+  .changed::before{content:""; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--green);}
+  .changed h3{display:flex; align-items:center; gap:8px; font-size:14.5px; font-weight:900; color:var(--green-deep); margin-bottom:9px;}
+  .changed h3 svg{width:17px; height:17px;}
+  .changed .swap{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .changed .old{font-size:13.5px; color:var(--muted); text-decoration:line-through;}
+  .changed .arw{color:var(--green); font-weight:900;}
+  .changed .new{font-size:15px; font-weight:900; color:var(--green-deep);}
+  .changed p{font-size:13px; color:#3B382F; line-height:1.65; margin-top:9px;}
+
+  /* ── 희망 대학 목록 ── */
+  .univ{display:flex; flex-direction:column; gap:6px; margin-top:11px;}
+  .univ-item{
+    display:flex; align-items:flex-start; gap:9px; font-size:13px; color:#3B382F;
+    background:var(--white); border:1px solid rgba(22,21,18,.10);
+    border-radius:10px; padding:9px 12px; line-height:1.5;
+  }
+  .univ-item .u{flex:none; font-size:10.5px; font-weight:900; color:var(--white);
+    background:var(--green); border-radius:999px; padding:2px 8px; margin-top:1px; white-space:nowrap;}
+  .univ-item .m{flex:1; min-width:0;}
+  .univ-item .m b{font-weight:900; color:var(--ink);}
+  .major-line{
+    display:flex; align-items:center; gap:9px; background:var(--green-pale);
+    border-radius:11px; padding:11px 14px; margin-top:11px;
+  }
+  .major-line .ml{flex:none; font-size:10.5px; font-weight:900; color:var(--white);
+    background:var(--green); border-radius:999px; padding:2px 9px;}
+  .major-line .mt{font-size:14.5px; font-weight:900; color:var(--green-deep);}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:10px;}
+  .chip{
+    font-size:13px; font-weight:700; color:var(--ink); background:var(--white);
+    border:1px solid rgba(22,21,18,.12); border-radius:999px; padding:7px 13px;
+  }
+  .univ-cap{font-size:12px; font-weight:900; color:var(--muted); letter-spacing:.04em; margin-top:14px;}
 
   /* ── 필수 안내 배너 ── */
   .must{
@@ -347,7 +387,7 @@
       </svg>
       후츠파입시컨설팅 원격학원
     </div>
-    <div class="topdate">2026.08.12 WED · JINJU</div>
+    <div class="topdate">2026.08.23 SUN · JINJU</div>
   </header>
 
   <!-- 히어로 -->
@@ -356,11 +396,11 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       예약 확정 안내
     </span>
-    <h1><span class="uline">전소현<svg viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M2 5 Q 50 1 98 5"/></svg></span> 학생의<br>상담 예약이 확정되었습니다</h1>
+    <h1><span class="uline">정성훈<svg viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M2 5 Q 50 1 98 5"/></svg></span> 학생의<br>상담 예약이 확정되었습니다</h1>
     <p class="hero-sub">수시 6장, 합격 시나리오 설계</p>
 
     <div class="count">
-      <span class="cd-chip" id="dchip">D-1</span>
+      <span class="cd-chip" id="dchip">D-3</span>
       <div class="cd-grid">
         <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lab">DAYS</div></div>
         <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lab">HOURS</div></div>
@@ -373,8 +413,8 @@
 
   <!-- 인사말 -->
   <section class="sec greet rv">
-    <p class="lead">안녕하세요, 윤은정 학부모님.</p>
-    <p>전소현 학생의 입시 여정을 함께하게 되어 진심으로 감사드립니다. 신청해 주신 <b>수시 원서 전략 상담</b>의 예약이 아래와 같이 확정되었습니다. 아래 <b>사전 준비 사항</b>을 꼭 확인해 주시면 훨씬 깊이 있는 상담이 가능합니다.</p>
+    <p class="lead">안녕하세요, 최윤희 학부모님.</p>
+    <p>정성훈 학생의 입시 여정을 함께하게 되어 진심으로 감사드립니다. 신청해 주신 <b>수시 원서 전략 상담</b>의 예약이 <b>8월 23일(일) 오후 2시</b>로 변경 확정되었습니다. 아래 <b>사전 준비 사항</b>을 꼭 확인해 주시면 훨씬 깊이 있는 상담이 가능합니다.</p>
   </section>
 
   <!-- 예약 정보 -->
@@ -383,10 +423,24 @@
       <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
       <div><p class="eyebrow">Reservation</p><h2>예약 정보</h2></div>
     </div>
+
+    <div class="changed">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+        일정이 변경되었습니다
+      </h3>
+      <div class="swap">
+        <span class="old">8월 22일(토) 오후 2시</span>
+        <span class="arw">→</span>
+        <span class="new">8월 23일(일) 오후 2시</span>
+      </div>
+      <p>변경된 일정으로 확정되었습니다. 혹시 착오가 있다면 아래 연락처로 알려주세요.</p>
+    </div>
+
     <div class="info">
-      <div class="row"><span class="k">학생</span><span class="v"><span class="var">전소현</span></span></div>
-      <div class="row"><span class="k">예약자</span><span class="v"><span class="var">윤은정</span> 학부모님</span></div>
-      <div class="row"><span class="k">예약 일정</span><span class="v"><span class="var">2026년 8월 12일(수) 오후 3시 30분</span><span class="tag-soon" id="dayTag">내일</span></span></div>
+      <div class="row"><span class="k">학생</span><span class="v"><span class="var">정성훈</span></span></div>
+      <div class="row"><span class="k">예약자</span><span class="v"><span class="var">최윤희</span> 학부모님</span></div>
+      <div class="row"><span class="k">예약 일정</span><span class="v"><span class="var">2026년 8월 23일(일) 오후 2시</span><span class="tag-soon" id="dayTag" style="display:none;">내일</span></span></div>
       <div class="row"><span class="k">소요 시간</span><span class="v"><b>90분 내외</b></span></div>
       <div class="row">
         <span class="k">신청 상품</span>
@@ -395,7 +449,7 @@
           <span class="prod-desc">단 한 번의 상담으로 끝나지 않습니다. 수시 원서 접수 기간(<b>2026년 9월 7일 월 ~ 11일 금</b>)까지, 최종 <b>6장의 원서</b>를 확정하는 순간까지 학생의 합격 가능성을 극대화하는 지원 조합을 함께 결정해 드립니다.</span>
         </span>
       </div>
-      <div class="row"><span class="k">예약번호</span><span class="v dim">1316007316</span></div>
+      <div class="row"><span class="k">예약번호</span><span class="v dim">1295441692</span></div>
     </div>
   </section>
 
@@ -415,11 +469,23 @@
     </div>
 
     <div class="prep-box">
-      <div class="prep-row"><span class="pk">학교 · 학년</span><span class="pv">삼현여자고등학교 · 고등학교 3학년</span></div>
-      <div class="prep-row"><span class="pk">희망 계열</span><span class="pv">교육계열</span></div>
-      <div class="prep-row"><span class="pk">희망 대학·학과</span><span class="pv">서울 소재 대학 · 교육학과</span></div>
+      <div class="prep-row"><span class="pk">학교 · 학년</span><span class="pv">대아고등학교 · 고등학교 3학년</span></div>
+      <div class="prep-row"><span class="pk">희망 계열</span><span class="pv">공학계열 (전기전자 · 반도체 중심)</span></div>
     </div>
-    <p class="prep-note">접수해 주신 정보를 바탕으로 <b>전소현 학생 맞춤 상담</b>을 준비하고 있습니다. 변경되었거나 추가로 전달하실 내용이 있다면 편하게 알려주세요.</p>
+
+    <p class="univ-cap">희망 대학 · 학과</p>
+    <div class="univ">
+      <div class="univ-item"><span class="u">경북대</span><span class="m">자율학부 · IT첨단자율학부 · 전기</span></div>
+      <div class="univ-item"><span class="u">부산대</span><span class="m">전기전자</span></div>
+      <div class="univ-item"><span class="u">부경대</span><span class="m">전자전기</span></div>
+      <div class="univ-item"><span class="u">경상국립대</span><span class="m">항공우주</span></div>
+      <div class="univ-item"><span class="u">충남대 · 충북대</span><span class="m">전기전자 계열</span></div>
+    </div>
+    <div class="major-line" style="margin-top:9px;">
+      <span class="ml">추가 요청</span>
+      <span class="mt" style="font-size:13.5px;">반도체 · 전자전기 계열 학과 추천</span>
+    </div>
+    <p class="prep-note">전기전자·반도체 분야로 방향이 뚜렷하고, 거점국립대를 폭넓게 검토하고 계십니다. 요청하신 <b>반도체 · 전자전기 계열 추천 학과</b>도 함께 정리해, <b>상향 · 적정 · 안정</b>의 균형을 맞춘 6장의 조합을 설계해 드리겠습니다.</p>
   </section>
 
   <!-- 사전 준비 (체크리스트) -->
@@ -468,7 +534,7 @@
     <!-- 전달 방법 -->
     <div class="alt">
       <h3>자료·계정 보내실 곳</h3>
-      <p>아래 두 가지 중 편하신 방법으로 <b>상담 전날까지</b> 보내주시면, 당일에는 자료를 살펴보는 시간이 아니라 <b>곧바로 6장의 지원 전략을 결정하는 시간</b>으로 쓸 수 있습니다.</p>
+      <p>상담까지 <b>사흘</b> 여유가 있습니다. 아래 두 가지 중 편하신 방법으로 <b>상담 전날까지</b> 보내주시면, 당일에는 자료를 살펴보는 시간이 아니라 <b>곧바로 6장의 지원 전략을 결정하는 시간</b>으로 쓸 수 있습니다.</p>
       <div class="send-ways">
         <button class="send-way" type="button" data-copy="sjw00sjw_7@naver.com" data-msg="이메일 주소를 복사했어요">
           <span class="wlabel">이메일</span>sjw00sjw_7@naver.com<span class="wcopy">복사</span>
@@ -514,16 +580,16 @@
       <div><p class="eyebrow">Parking</p><h2>주차 안내</h2></div>
     </div>
     <div class="park">
-      <div class="park-item hit">
-        <span class="when">평일 ~ 18시<span class="park-tag">▸ 이번 상담에 해당됩니다</span></span>
+      <div class="park-item">
+        <span class="when">평일 ~ 18시</span>
         <span class="free">1시간 무료</span>
       </div>
-      <div class="park-item">
-        <span class="when">평일 18시 이후<br>토·일·공휴일</span>
+      <div class="park-item hit">
+        <span class="when">평일 18시 이후<br>토·일·공휴일<span class="park-tag">▸ 이번 상담에 해당됩니다</span></span>
         <span class="free">3시간 무료</span>
       </div>
     </div>
-    <p class="park-note">※ 윙스타워 건물 내 주차장을 이용해 주세요. 상담이 90분 내외로 진행되는 점 참고 부탁드립니다.</p>
+    <p class="park-note">※ 윙스타워 건물 내 주차장을 이용해 주세요. 상담이 90분 내외로 진행되나 <b>3시간 무료 적용 시간대</b>이므로 여유롭게 이용하실 수 있습니다.</p>
   </section>
 
   <!-- FAQ -->
@@ -609,7 +675,7 @@
 <div class="sticky" id="sticky">
   <div class="sticky-in">
     <div class="sticky-txt">
-      <div class="sticky-d" id="stickyD">D-1 · 8월 12일(수) 오후 3시 30분</div>
+      <div class="sticky-d" id="stickyD">D-3 · 8월 23일(일) 오후 2시</div>
       <div class="sticky-s">진주 윙스타워 14층 A1401호 · 90분</div>
     </div>
     <a class="sticky-btn sb-map" href="https://map.naver.com/p/search/진주시%20동부로169번길%2012%20윙스타워" target="_blank" rel="noopener">
@@ -628,9 +694,9 @@
 <script>
 (function(){
   var CONFIG = {
-    apptISO:   "2026-08-12T15:30:00+09:00",
-    apptEnd:   "2026-08-12T17:00:00+09:00",
-    apptLabel: "8월 12일(수) 오후 3시 30분",
+    apptISO:   "2026-08-23T14:00:00+09:00",
+    apptEnd:   "2026-08-23T15:30:00+09:00",
+    apptLabel: "8월 23일(일) 오후 2시",
     address:   "경상남도 진주시 동부로169번길 12 A1401호 (충무공동, 윙스타워)"
   };
   var $ = function(s){ return document.querySelector(s); };
