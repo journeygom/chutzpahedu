@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F7F4EB">
+<title>운영 매뉴얼 | 2026 입시 토크콘서트 · 후츠파입시컨설팅 원격학원</title>
+<meta name="description" content="2026 입시 토크콘서트 스텝 운영 매뉴얼 — 타임라인, 스텝 배치, 준비물 체크리스트, 돌발상황 대응.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════
+   입시 토크콘서트 — 스텝 운영 매뉴얼
+   v3 아이덴티티(아이보리 지면·녹색 잉크·먹색) + 현장용 체크리스트
+════════════════════════════════════════════ */
+:root{
+  --paper:#F7F4EB; --paper-dim:#EAE5D6; --white:#fff;
+  --ink:#161512; --muted:#6E6A5E; --line:rgba(22,21,18,.14);
+  --green:#0E7B45; --green-deep:#0A5A33; --green-pale:#E4F0E7;
+  --route:#E0261E; --route-pale:#FDF1EF; --amber:#B4780C; --amber-pale:#FBF2DF;
+  --serif:'Noto Serif KR','Nanum Myeongjo',serif;
+  --sans:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --pad:22px; --maxw:720px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper-dim);line-height:1.6;word-break:keep-all}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:6px}
+.sheet{max-width:var(--maxw);margin:0 auto;background:var(--paper);min-height:100vh;
+  box-shadow:0 0 0 1px rgba(22,21,18,.08),0 24px 60px rgba(22,21,18,.18)}
+
+/* ── 헤더 ─────────────────────────────── */
+.top{background:var(--ink);color:var(--paper);padding:26px var(--pad) 24px}
+.top-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:900;letter-spacing:.2em;color:#7FDCA6}
+.tag svg circle{fill:none;stroke:#7FDCA6;stroke-width:4}
+.dday{font-size:12px;font-weight:800;letter-spacing:.1em;color:rgba(247,244,235,.6);font-variant-numeric:tabular-nums}
+.top h1{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6.6vw,31px);margin-top:14px;line-height:1.34}
+.top h1 em{font-style:normal;color:#7FDCA6}
+.top .when{margin-top:10px;font-size:13.5px;color:rgba(247,244,235,.7);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);
+  border-radius:12px;overflow:hidden;margin-top:18px}
+.stat{background:#1E1C16;padding:12px 6px;text-align:center}
+.stat b{display:block;font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:11px;font-weight:700;color:rgba(247,244,235,.55);margin-top:5px;letter-spacing:.02em}
+.stat.warn b{color:#FF8A84}
+
+/* ── 진행률 바 ─────────────────────────── */
+.prog{position:sticky;top:0;z-index:29;background:var(--paper);border-bottom:1px solid var(--line);
+  padding:11px var(--pad);display:flex;align-items:center;gap:12px;box-shadow:0 4px 14px rgba(22,21,18,.05)}
+.prog-track{flex:1;height:8px;background:var(--paper-dim);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;width:0;background:var(--green);border-radius:99px;transition:width .35s ease}
+.prog-txt{font-size:12.5px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.prog-txt b{color:var(--green)}
+.prog-reset{font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--line);
+  border-radius:8px;padding:5px 10px;white-space:nowrap}
+
+/* ── 섹션 ─────────────────────────────── */
+.sec{padding:34px var(--pad) 4px;scroll-margin-top:54px}
+.sec-label{font-size:11.5px;font-weight:900;letter-spacing:.22em;color:var(--green);margin-bottom:8px}
+.sec h2{font-family:var(--serif);font-weight:900;font-size:clamp(21px,5.6vw,25px);line-height:1.4}
+.sec .lead{margin-top:9px;font-size:14px;line-height:1.72;color:var(--muted)}
+.sec .lead b{color:var(--ink);font-weight:800}
+
+/* ── 경고 배너 ─────────────────────────── */
+.alert{margin:20px var(--pad) 0;border:2px solid var(--route);background:var(--route-pale);
+  border-radius:16px;padding:16px 18px}
+.alert .h{display:flex;align-items:center;gap:9px;font-weight:900;font-size:15px;color:#9A1A13}
+.alert .h i{font-style:normal;background:var(--route);color:#fff;border-radius:6px;font-size:11px;
+  font-weight:900;letter-spacing:.06em;padding:3px 8px}
+.alert p{margin-top:9px;font-size:14px;line-height:1.7;color:#7d2b26;font-weight:600}
+.alert p b{color:#9A1A13;font-weight:900}
+.alert .calc{margin-top:11px;display:flex;gap:8px;flex-wrap:wrap}
+.alert .calc span{background:#fff;border:1px solid rgba(224,38,30,.3);border-radius:8px;
+  padding:6px 11px;font-size:12.5px;font-weight:800;color:#9A1A13;font-variant-numeric:tabular-nums}
+
+/* ── 타임라인 ─────────────────────────── */
+.tl{margin-top:18px}
+.tl-item{display:grid;grid-template-columns:74px 1fr;gap:26px;position:relative;padding-bottom:18px}
+.tl-item::before{content:"";position:absolute;left:81px;top:22px;bottom:0;width:2px;background:var(--line)}
+.tl-item:last-child{padding-bottom:0}
+.tl-item:last-child::before{display:none}
+.tl-t{font-size:14px;font-weight:900;color:var(--green);text-align:right;padding-top:3px;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.tl-t small{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-top:1px}
+.tl-c{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:13px 15px;position:relative}
+.tl-c::before{content:"";position:absolute;left:-24px;top:16px;width:11px;height:11px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 0 3px var(--paper)}
+.tl-item.key .tl-c{border-color:var(--ink);border-width:2px}
+.tl-item.key .tl-c::before{background:var(--ink)}
+.tl-item.out .tl-c::before{background:var(--muted)}
+.tl-c h3{font-weight:800;font-size:15.5px;line-height:1.45}
+.tl-c p{margin-top:5px;font-size:13.5px;line-height:1.65;color:var(--muted)}
+.tl-c p b{color:var(--ink);font-weight:800}
+.who{display:inline-block;margin-top:8px;background:var(--green-pale);color:var(--green-deep);
+  border-radius:7px;padding:4px 9px;font-size:12px;font-weight:800}
+
+/* ── 스텝 카드 ─────────────────────────── */
+.crew{margin-top:18px;display:flex;flex-direction:column;gap:11px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:15px 17px}
+.card.lead-card{border:2px solid var(--ink)}
+.c-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.c-name{font-family:var(--serif);font-weight:900;font-size:19px}
+.c-role{font-size:11.5px;font-weight:900;letter-spacing:.08em;color:#fff;background:var(--green);
+  border-radius:999px;padding:4px 11px}
+.c-role.b{background:var(--ink)}
+.c-role.c{background:var(--amber)}
+.c-role.d{background:var(--route)}
+.c-where{margin-top:9px;font-size:13px;font-weight:800;color:var(--green-deep)}
+.card ul{margin-top:8px;padding-left:0;list-style:none}
+.card li{font-size:13.5px;line-height:1.68;color:#3d3a32;padding-left:15px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--green)}
+.card li b{color:var(--ink);font-weight:800}
+.card .say{margin-top:10px;background:var(--paper);border-left:3px solid var(--green);
+  border-radius:0 10px 10px 0;padding:9px 12px;font-size:13px;line-height:1.6;color:var(--green-deep);font-weight:700}
+
+/* ── 체크리스트 ────────────────────────── */
+.group{margin-top:20px;scroll-margin-top:54px;background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.g-head{background:var(--paper-dim);padding:11px 16px;display:flex;justify-content:space-between;align-items:center}
+.g-head h3{font-weight:900;font-size:14.5px}
+.g-count{font-size:12px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+.g-body{padding:5px 6px 7px}
+.chk{display:flex;gap:11px;align-items:flex-start;padding:10px 10px;border-radius:11px;cursor:pointer;transition:background .15s}
+.chk:active{background:var(--paper)}
+.chk + .chk{border-top:1px solid rgba(22,21,18,.07)}
+.box{flex:0 0 22px;height:22px;border:2px solid var(--ink);border-radius:7px;display:grid;place-items:center;
+  margin-top:1px;transition:background .15s,border-color .15s}
+.box svg{width:13px;height:13px;opacity:0;transition:opacity .15s}
+.box svg path{stroke:#fff;stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.chk.done .box{background:var(--green);border-color:var(--green)}
+.chk.done .box svg{opacity:1}
+.chk .txt{font-size:14.5px;line-height:1.55;font-weight:600;transition:color .15s,opacity .15s}
+.chk .txt small{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:2px}
+.chk .txt em{font-style:normal;font-weight:800;color:var(--green-deep)}
+.chk.done .txt{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(22,21,18,.3);opacity:.65}
+.chk.done .txt small{text-decoration:none}
+.qty{margin-left:auto;flex:0 0 auto;font-size:12px;font-weight:900;color:var(--green-deep);
+  background:var(--green-pale);border-radius:7px;padding:3px 9px;white-space:nowrap;font-variant-numeric:tabular-nums;margin-top:1px}
+.qty.new{background:var(--amber-pale);color:var(--amber)}
+
+/* ── 대응표 ───────────────────────────── */
+.risk{margin-top:16px;border-top:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink)}
+.r-row{display:flex;gap:14px;padding:14px 2px;align-items:flex-start}
+.r-row + .r-row{border-top:1px solid var(--line)}
+.r-if{flex:0 0 96px;font-size:13px;font-weight:900;color:var(--route);line-height:1.5}
+.r-do{font-size:13.5px;line-height:1.68;color:#3d3a32}
+.r-do b{color:var(--ink);font-weight:800}
+
+/* ── 하단 ─────────────────────────────── */
+.foot-act{display:flex;gap:9px;margin:26px var(--pad) 0}
+.btn{flex:1;text-align:center;border:1.5px solid var(--ink);border-radius:12px;padding:13px 0;
+  font-weight:800;font-size:14px;background:var(--white)}
+.btn.solid{background:var(--green);color:#fff;border-color:var(--green);box-shadow:0 6px 18px rgba(14,123,69,.3)}
+.btn:active{transform:scale(.98)}
+.foot{padding:24px var(--pad) 40px;text-align:center;font-size:12px;color:var(--muted);line-height:1.8}
+.foot b{color:var(--ink)}
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);z-index:80;background:var(--ink);
+  color:var(--paper);font-size:13.5px;font-weight:700;padding:11px 20px;border-radius:99px;opacity:0;
+  pointer-events:none;transition:opacity .3s,transform .3s;white-space:nowrap}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+@media print{
+  body{background:#fff}
+  .sheet{box-shadow:none;max-width:none}
+  .top{position:static}
+  .prog,.prog-reset,.foot-act,#toast{display:none!important}
+  .chk{break-inside:avoid}
+  .card,.tl-item,.group{break-inside:avoid}
+  .box{border-color:#000}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="top">
+    <div class="top-row">
+      <div class="tag">
+        <svg width="24" height="15" viewBox="0 0 66 40"><circle cx="20" cy="20" r="15"/><circle cx="46" cy="20" r="15"/></svg>
+        STAFF ONLY · 운영 매뉴얼
+      </div>
+      <div class="dday" id="dday">D-DAY</div>
+    </div>
+    <h1>2026 입시 토크콘서트<br><em>현장 운영</em> 매뉴얼</h1>
+    <div class="when">8월 22일 (토) · 경상국립대 칠암캠퍼스 산학협력관(28동) 대회의실<br>대관 14:30 – 18:30 · 행사 15:30 시작</div>
+    <div class="stats">
+      <div class="stat"><b>127</b><span>신청 인원</span></div>
+      <div class="stat warn"><b>120</b><span>대회의실 좌석</span></div>
+      <div class="stat"><b>7</b><span>운영 스텝</span></div>
+      <div class="stat"><b>4h</b><span>대관 시간</span></div>
+    </div>
+  </header>
+
+  <div class="prog">
+    <div class="prog-track"><div class="prog-fill" id="pf"></div></div>
+    <div class="prog-txt" id="pt"><b>0</b> / 0</div>
+    <button class="prog-reset" id="reset" type="button">초기화</button>
+  </div>
+
+  <!-- 좌석 경고 -->
+  <div class="alert">
+    <div class="h"><i>최우선</i> 좌석이 7석 모자랍니다</div>
+    <p>신청 <b>127명</b>에 대회의실은 <b>120석</b>. 동행 인원까지 더해지면 부족분은 더 커집니다.
+    사무실 의자 <b>10개</b>와 <b>현장 벤치</b>를 함께 준비해 최소 <b>140석</b>을 확보하세요.</p>
+    <div class="calc">
+      <span>기본 120석</span><span>+ 사무실 의자 10</span><span>+ 벤치 배치</span><span>= 목표 140석</span>
+    </div>
+    <p style="margin-top:11px">벤치는 <b>뒷줄·측면</b>에 두고, 사무실 의자는 <b>맨 뒷줄 보조석</b>으로 씁니다.
+    앞좌석부터 채우면 뒤쪽 여유가 생겨 늦게 오신 분도 앉으실 수 있습니다.</p>
+  </div>
+
+  <!-- 타임라인 -->
+  <section class="sec">
+    <div class="sec-label">TIMELINE</div>
+    <h2>당일 진행 순서</h2>
+    <p class="lead">대관은 <b>14:30에 열리고 18:30에 닫힙니다.</b> 정리·반출까지 이 안에 끝내야 합니다.</p>
+
+    <div class="tl">
+      <div class="tl-item out">
+        <div class="tl-t">13:30<small>사무실</small></div>
+        <div class="tl-c"><h3>물품 적재 후 출발</h3>
+          <p>의자 10개·생수·X배너·포스트잇·데스크 물품을 싼타페에 싣습니다. 출발 전 <b>준비물 체크리스트 전체 확인</b>.</p>
+          <span class="who">신욱희 (차량)</span></div>
+      </div>
+      <div class="tl-item key">
+        <div class="tl-t">14:30<small>대관 시작</small></div>
+        <div class="tl-c"><h3>입실 · 하역 · 좌석 배치</h3>
+          <p>산학협력관 앞은 주차 불가이므로 <b>하역만 잠시</b> 하고 차는 곧바로 주차장으로 뺍니다. 벤치 포함 좌석 수를 실제로 세어 김영경 선생님에게 보고.</p>
+          <span class="who">전원</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-t">14:45</div>
+        <div class="tl-c"><h3>장비 세팅 · 질문 보드 설치 · 리허설</h3>
+          <p>노트북 연결, 화면 투사, 무선 마이크 2대 소리 확인, 발표 덱 전체 넘겨보기. <b>인터넷 연결 여부를 반드시 확인</b>. 현장 화이트보드를 입구 쪽으로 옮겨 <b>질문 보드</b>로 세팅합니다.</p>
+          <span class="who">원장 · 김영경 · 신욱희 · 강슬빈</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-t">15:00<small>접수 개시</small></div>
+        <div class="tl-c"><h3>데스크 오픈 · 포스트잇 배부</h3>
+          <p>접수하면서 <b>포스트잇 1장과 펜</b>을 함께 드리고 “궁금한 걸 적어 보드에 붙여 주세요”라고 안내합니다. X배너 2개(현관·대회의실 입구), 방향 표지 부착 완료.</p>
+          <span class="who">박은우 · 강슬빈</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-t">15:20</div>
+        <div class="tl-c"><h3>앞좌석 채우기 · 발표자 대기</h3>
+          <p>빈 앞줄이 남지 않도록 안내. 성욱·현우 도착 확인 후 마이크 리허설. 사회자는 <b>연사 이름·학교·학과 발음</b>을 최종 확인합니다.</p>
+          <span class="who">김세빈 지인 · 김영경</span></div>
+      </div>
+      <div class="tl-item key">
+        <div class="tl-t">15:30<small>본행사</small></div>
+        <div class="tl-c"><h3>사회자 오프닝 (3분)</h3>
+          <p>인사 → 행사 취지 → 진행 순서 → 휴대폰 무음 → <b>질문 보드 안내</b> → 원장 소개. 정시에 시작합니다.</p>
+          <span class="who">김영경 (사회)</span></div>
+      </div>
+      <div class="tl-item key">
+        <div class="tl-t">15:33</div>
+        <div class="tl-c"><h3>원장 발표 — 낙차가 만드는 합격의 이야기</h3>
+          <p>약 30분. 리모컨으로 직접 넘깁니다. 화면·음향 이상은 신욱희 선생님이 뒤에서 처리.</p>
+          <span class="who">송지원 원장</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-t">16:05</div>
+        <div class="tl-c"><h3>김성욱 발표 (30~40분)</h3>
+          <p>사회자가 소개 후 마이크 전달. 발표 중 늦게 오신 분은 <b>측면 통로로 조용히</b> 안내.</p>
+          <span class="who">김영경 소개 · 김세빈 지인 안내</span></div>
+      </div>
+      <div class="tl-item key">
+        <div class="tl-t">16:45</div>
+        <div class="tl-c"><h3>휴식 5분 · 질문 포스트잇 부착</h3>
+          <p>사회자가 <b>“지금 보드에 붙여 주세요”</b>라고 안내. 강슬빈 선생님이 보드 옆에서 부착을 돕고, 김영경 선생님이 <b>읽기 좋은 순서로 재배열</b>합니다. 생수 추가 배부.</p>
+          <span class="who">강슬빈 · 김영경 · 김세빈</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-t">16:50</div>
+        <div class="tl-c"><h3>석현우 발표 (30~40분)</h3>
+          <span class="who">김영경 소개</span></div>
+      </div>
+      <div class="tl-item key">
+        <div class="tl-t">17:30</div>
+        <div class="tl-c"><h3>현장 Q&amp;A — 보드에서 시작</h3>
+          <p>사회자가 <b>보드의 포스트잇을 떼어 읽으며</b> 물꼬를 트고, 이후 객석 질문을 받습니다. 마이크 러너 2인이 객석으로 뜁니다.</p>
+          <span class="who">김영경 진행 · 강슬빈 · 김세빈 지인</span></div>
+      </div>
+      <div class="tl-item key">
+        <div class="tl-t">18:00<small>종료</small></div>
+        <div class="tl-c"><h3>마무리 안내 · 단체사진 · 퇴장</h3>
+          <p>사회자 마무리 → 원장 인사 → 상담 예약·주차권 미수령 안내 → <b>질문 보드 전체를 사진으로 남기고</b> 연사·스텝 단체사진 → 쓰레기 수거 협조 요청.</p>
+          <span class="who">김영경 · 원장 · 김세빈(촬영)</span></div>
+      </div>
+      <div class="tl-item out">
+        <div class="tl-t">18:30<small>반납</small></div>
+        <div class="tl-c"><h3>원상복구 완료 · 퇴실</h3>
+          <p>의자·벤치·화이트보드 원위치, 포스트잇 전량 회수, 쓰레기 반출, 분실물 확인, 소등·시건. <b>대관 시간을 넘기지 않습니다.</b></p>
+          <span class="who">전원</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 스텝 배치 -->
+  <section class="sec">
+    <div class="sec-label">CREW · 7</div>
+    <h2>스텝 배치</h2>
+    <p class="lead">모든 스텝은 <b>목걸이</b>를 착용합니다. 원장은 발표에 집중하므로, 행사 중 <b>운영 판단은 사회자(김영경)</b>가 맡습니다. 자리를 비울 때는 반드시 옆 스텝에게 알리고 이동하세요.</p>
+
+    <div class="crew">
+      <div class="card lead-card">
+        <div class="c-top"><span class="c-name">송지원</span><span class="c-role b">원장 · 발표자</span></div>
+        <div class="c-where">15:33 단상 · 그 외 시간은 응대</div>
+        <ul>
+          <li>14:45 리허설에서 덱을 <b>처음부터 끝까지</b> 넘겨 확인</li>
+          <li>15:33 기조 발표 (약 30분), 리모컨으로 직접 진행</li>
+          <li>Q&amp;A 답변, 마무리 인사, 종료 후 상담 문의 응대</li>
+        </ul>
+        <div class="say">발표 중에는 현장 운영에서 손을 뗍니다. 돌발 상황 판단은 김영경 선생님이 대신합니다.</div>
+      </div>
+
+      <div class="card lead-card">
+        <div class="c-top"><span class="c-name">김영경</span><span class="c-role b">사회 · 현장 총괄</span></div>
+        <div class="c-where">단상 옆 · 홀 전체</div>
+        <ul>
+          <li>오프닝·연사 소개·휴식 안내·Q&amp;A 진행·마무리</li>
+          <li><b>시간 관리</b> — 발표가 길어지면 손 신호로 5분 전 알림</li>
+          <li>원장이 발표 중일 때 <b>운영 판단을 대신</b>(좌석 투입 등)</li>
+          <li>휴식 시간에 <b>질문 보드를 정리</b>해 Q&amp;A 순서를 잡음</li>
+        </ul>
+        <div class="say">큐시트 뼈대 — ① 인사·행사 취지 ② 오늘 순서 ③ 휴대폰 무음·질문 보드 안내 ④ 원장 소개 ⑤ 연사 2인 소개 ⑥ 휴식·복귀 시각 ⑦ Q&amp;A ⑧ 상담 안내·감사 인사</div>
+      </div>
+
+      <div class="card">
+        <div class="c-top"><span class="c-name">신욱희</span><span class="c-role d">주차 불가 안내 → 장비</span></div>
+        <div class="c-where">산학협력관 진입로 → 15:40 홀 뒤쪽</div>
+        <ul>
+          <li>싼타페로 <b>사무실 의자 10개</b> 및 물품 운반</li>
+          <li>건물 앞으로 들어오는 차량을 <b>주차장으로 회차 유도</b>, ‘주차 불가’ 안내판 세우고 대기 (~15:40)</li>
+          <li>이후 홀 뒤쪽에서 <b>화면·음향 모니터링</b>, 이상 시 즉시 복구</li>
+        </ul>
+        <div class="say">“여기는 주차가 어렵습니다. 정문 쪽 주차장으로 가시면 자리 있습니다. 걸어서 3분이에요.”</div>
+      </div>
+
+      <div class="card">
+        <div class="c-top"><span class="c-name">박은우</span><span class="c-role">현장 데스크</span></div>
+        <div class="c-where">대회의실 입구 데스크 (종료까지 상주)</div>
+        <ul>
+          <li>예약자 <b>성함·동행 인원</b> 확인 후 입장</li>
+          <li><b>4시간 무료 주차권</b> 배부 및 수량 기록</li>
+          <li>워크인 방문자 별도 명단 작성</li>
+          <li>촬영 고지문을 입구 잘 보이는 곳에 게시</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="c-top"><span class="c-name">강슬빈</span><span class="c-role c">데스크 보조 · 질문 보드</span></div>
+        <div class="c-where">데스크 옆 → 질문 보드 앞</div>
+        <ul>
+          <li>접수 줄 정리, 명단 확인 보조 (박은우 지원)</li>
+          <li>접수 시 <b>포스트잇 1장 + 펜</b>을 건네며 작성 안내</li>
+          <li>휴식 시간 보드 앞에서 <b>부착 위치 안내</b>, 겹친 것 정리</li>
+          <li>Q&amp;A 마이크 러너</li>
+        </ul>
+        <div class="say">“궁금한 걸 한 줄만 적어서 저기 보드에 붙여 주세요. Q&amp;A 때 원장님이 읽어 드립니다.”</div>
+      </div>
+
+      <div class="card">
+        <div class="c-top"><span class="c-name">김세빈</span><span class="c-role c">홍보 사진 촬영</span></div>
+        <div class="c-where">데스크 보조(~15:25) → 이후 촬영 전담</div>
+        <ul>
+          <li>15:25까지 접수 줄 정리·명단 확인 보조</li>
+          <li>본행사부터 <b>촬영 전담</b> — 셔터음 무음, 플래시 끄기</li>
+          <li>종료 전 <b>질문 보드 전체 컷</b>과 단체사진 촬영</li>
+          <li>당일 밤까지 원장에게 <b>원본 전달</b></li>
+        </ul>
+        <div class="say">찍을 것 — ① 접수 줄과 X배너 ② 객석 뒤에서 본 만석 전경 ③ 발표하는 원장 ④ 연사 2인 각각 ⑤ 포스트잇이 가득 붙은 질문 보드 ⑥ 연사·스텝 단체사진. 객석은 <b>뒤·측면</b>에서 찍어 얼굴이 크게 잡히지 않게 합니다.</div>
+      </div>
+
+      <div class="card">
+        <div class="c-top"><span class="c-name">김세빈 지인</span><span class="c-role">착석 안내</span></div>
+        <div class="c-where">대회의실 홀 내부</div>
+        <ul>
+          <li><b>앞좌석부터</b> 채우도록 안내, 빈 앞줄 방지</li>
+          <li>좌석이 차면 보조 의자·벤치 투입 (김영경 판단)</li>
+          <li>발표 중 지각 입장객을 측면 통로로 조용히 안내</li>
+          <li>Q&amp;A 마이크 러너</li>
+        </ul>
+        <div class="say">“앞자리가 훨씬 잘 보입니다. 앞쪽으로 안내해 드릴게요.”</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 준비물 체크리스트 -->
+  <section class="sec">
+    <div class="sec-label">CHECKLIST</div>
+    <h2>준비물 체크리스트</h2>
+    <p class="lead">항목을 눌러 체크하세요. <em style="font-style:normal;color:var(--amber);font-weight:800">주황 표시</em>는 이번에 추가로 챙겨야 할 항목입니다.
+    체크 상태는 이 기기에 저장되어 새로고침해도 남습니다.</p>
+
+    <div class="group" data-g="A">
+      <div class="g-head"><h3>① 사무실에서 싣고 갈 것</h3><div class="g-count"></div></div>
+      <div class="g-body">
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">사무실 의자<small>싼타페 적재 — 신욱희 선생님</small></span><span class="qty">10개</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">생수<small>1인 1병 + 예비. 아이스박스나 보냉백 있으면 함께</small></span><span class="qty">160개</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">볼펜<small>접수 시 포스트잇과 함께 배부</small></span><span class="qty">160개</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">포스트잇<small>질문 작성용. 1인 1장 + 여유분 — <b>큰 사이즈(76×76mm 이상)</b>가 멀리서도 읽힙니다</small></span><span class="qty new">200장</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">굵은 네임펜<small>볼펜 글씨는 보드에 붙이면 안 보입니다. 보드 옆에 공용으로 비치</small></span><span class="qty new">20자루</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">X배너<small>현관 1 · 대회의실 입구 1</small></span><span class="qty">2개</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">스텝 목걸이<small>7명 + 예비</small></span><span class="qty">7+</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">쓰레기 비닐<small>일반·재활용 분리. 대학 시설이므로 <b>전량 반출</b></small></span><span class="qty">10장+</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">4시간 무료 주차권<small>차량 100대 기준으로 넉넉히</small></span><span class="qty new">확인</span></label>
+      </div>
+    </div>
+
+    <div class="group" data-g="B">
+      <div class="g-head"><h3>② 접수 데스크</h3><div class="g-count"></div></div>
+      <div class="g-body">
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">예약자 명단 인쇄본<small>가나다순, 동행 인원 칸 포함 · <b>2부</b>(데스크 분산 접수용)</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">워크인(미예약) 방문자 기록 양식<small>성함·연락처·인원. 좌석 여유 있을 때만 안내</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">형광펜·유성펜·집게보드<small>명단 체크와 게시물 부착용</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">질문 보드 상단 제목 출력물<small>“오늘 가장 궁금한 것을 적어 붙여 주세요” — A3 또는 A4 2장</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">보드 구획용 마스킹 테이프<small>원장 / 김성욱 / 석현우 / 무엇이든 — 네 칸으로 나눕니다</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">화이트보드 마커·지우개<small>구획 이름을 보드에 직접 쓸 경우</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">상담 예약 안내물 · 명함<small>종료 후 문의가 몰리는 지점</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">테이블보·데스크용 안내 표지<small>‘접수 / 주차권’ 두 줄로 나누면 줄이 빨리 빠집니다</small></span><span class="qty new">추가</span></label>
+      </div>
+    </div>
+
+    <div class="group" data-g="C">
+      <div class="g-head"><h3>③ 발표 장비</h3><div class="g-count"></div></div>
+      <div class="g-body">
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">노트북 + 충전기<small>발표 덱 실행용</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">HDMI 케이블 + USB-C 젠더<small>현장 단자를 믿지 말고 직접 챙깁니다</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">프레젠터(리모컨) + 여분 건전지<small>없으면 노트북 옆을 떠나지 못합니다</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">무선 마이크 2대 + 여분 건전지<small>발표용 1 · Q&amp;A 객석용 1</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">멀티탭·연장선<small>단상까지 전원이 닿지 않는 경우가 많습니다</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">발표 덱 백업<small>USB + 폰 다운로드본. 인터넷이 끊겨도 글씨체만 바뀌고 진행은 됩니다</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">촬영 장비 · 저장공간 확보<small>카메라 또는 휴대폰, 보조배터리. 촬영 전 저장공간을 비워 둘 것 — 김세빈</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">사회자 큐시트 인쇄본<small>진행 순서·연사 소개 문구·소요 시간. 2부(사회자·원장)</small></span><span class="qty new">추가</span></label>
+      </div>
+    </div>
+
+    <div class="group" data-g="D">
+      <div class="g-head"><h3>④ 현장 게시물 (A4 출력)</h3><div class="g-count"></div></div>
+      <div class="g-body">
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">‘입시 토크콘서트 →’ 방향 표지<small>주차장 출구, 담장 길, 광장, 건물 현관 4곳</small></span><span class="qty new">4장</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">‘산학협력관 앞 주차 불가’ 안내판<small>건물 진입로에 세워 둘 것</small></span><span class="qty new">2장</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">촬영 고지문<small>“행사 사진이 홍보에 사용될 수 있습니다” — 입구 게시가 원칙</small></span><span class="qty new">1장</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">마스킹 테이프·부착용 테이프<small>대학 벽면이 상하지 않는 것으로</small></span><span class="qty new">추가</span></label>
+      </div>
+    </div>
+
+    <div class="group" data-g="E">
+      <div class="g-head"><h3>⑤ 비상·기타</h3><div class="g-count"></div></div>
+      <div class="g-body">
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">상비약·구급함<small>밴드, 소독약, 진통제 정도면 충분</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">보조배터리 · 스텝 연락망<small>단톡방 개설, 대표 연락처는 원장 휴대폰</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">대관 담당자 연락처·열쇠 수령 확인<small>평생교육원 행정실 산학협력관 208호 055-772-3524</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">발표자 교통비·감사 봉투<small>성욱·현우 몫</small></span><span class="qty new">추가</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">냉방·환기 확인<small>8월 오후, 120명이 모이면 실내 온도가 빠르게 오릅니다</small></span><span class="qty new">추가</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 당일 현장 체크 -->
+  <section class="sec">
+    <div class="sec-label">ON SITE</div>
+    <h2>당일 현장 확인</h2>
+
+    <div class="group" data-g="F">
+      <div class="g-head"><h3>14:30 – 15:00 · 세팅</h3><div class="g-count"></div></div>
+      <div class="g-body">
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">실제 좌석 수 세기<small>벤치 포함 몇 석인지 숫자로 확인해 총괄에게 보고</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">보조 의자·벤치 배치 완료<small>뒷줄·측면. 통로는 반드시 비워 둘 것</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">X배너 2개 설치<small>현관 · 대회의실 입구</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">방향 표지·주차 불가 안내판 부착</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">화면 투사·마이크 소리·조명 확인<small>맨 뒷줄에서 글씨가 읽히는지 직접 앉아 볼 것</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">발표 덱 처음부터 끝까지 넘겨보기<small>인터넷 연결 여부도 이때 확인</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">데스크 세팅<small>명단·주차권·포스트잇·볼펜·비닐</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">스텝 목걸이 착용 · 역할 재확인<small>3분 브리핑</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">질문 보드 설치 완료<small>화이트보드를 입구 안쪽 벽으로 이동, 네 칸 구획, 제목 부착, 네임펜 비치</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">주차 불가 안내 14:50 배치<small>신욱희 — 안내판 세우고 진입로 대기</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">사회자 큐시트 · 연사 이름 발음 확인<small>김영경</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">촬영 담당 준비<small>무음·플래시 해제, 저장공간 확인 — 김세빈</small></span></label>
+      </div>
+    </div>
+
+    <div class="group" data-g="G">
+      <div class="g-head"><h3>18:00 – 18:30 · 정리</h3><div class="g-count"></div></div>
+      <div class="g-body">
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">의자·벤치 원위치</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">쓰레기 전량 수거·반출<small>생수병은 따로 모으기</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">게시물·테이프 자국 제거</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">분실물 확인 후 데스크 보관</span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">최종 참석 인원·주차권 배부 수 기록<small>다음 행사 규모 산정의 근거가 됩니다</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">질문 보드 전체 사진 촬영<small>답하지 못한 질문은 나중에 콘텐츠·FAQ로 쓸 수 있습니다</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">포스트잇 전량 회수 · 화이트보드 원위치<small>보드에 자국이 남지 않게 확인</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">단체사진 촬영 완료 · 원본 전달<small>김세빈 → 원장</small></span></label>
+        <label class="chk"><span class="box"><svg viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg></span><span class="txt">소등·시건 후 열쇠 반납</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 돌발상황 -->
+  <section class="sec">
+    <div class="sec-label">IF / THEN</div>
+    <h2>돌발상황 대응</h2>
+    <div class="risk">
+      <div class="r-row"><div class="r-if">좌석이<br>다 찼다</div><div class="r-do">사회자(김영경)에게 즉시 알리고 <b>보조 의자 10개 투입</b>. 그래도 부족하면 뒤편 스탠딩 공간을 안내하고, 통로·비상구는 절대 막지 않습니다.</div></div>
+      <div class="r-row"><div class="r-if">건물 앞에<br>주차하려 한다</div><div class="r-do">막지 말고 <b>대안을 먼저</b> 말합니다. “정문 쪽 주차장에 자리 있고, 도우미가 안내합니다. 걸어서 3분이에요.”</div></div>
+      <div class="r-row"><div class="r-if">15:30에<br>줄이 남았다</div><div class="r-do">정시에 시작하고, 접수는 계속합니다. 늦게 오신 분은 <b>측면 통로로 조용히</b> 들여보냅니다.</div></div>
+      <div class="r-row"><div class="r-if">화면이<br>안 나온다</div><div class="r-do">케이블 → 입력 소스 → 재부팅 순으로 1분 안에 판단. 해결되지 않으면 원장은 <b>발표를 먼저 시작</b>하고 신욱희 선생님이 뒤에서 복구합니다.</div></div>
+      <div class="r-row"><div class="r-if">인터넷이<br>끊겼다</div><div class="r-do">덱은 그대로 실행됩니다. <b>글씨체만 바뀔 뿐</b> 내용과 진행에는 문제가 없으니 그대로 진행하세요.</div></div>
+      <div class="r-row"><div class="r-if">아이 동반<br>가족이 많다</div><div class="r-do">뒷줄·출입구 쪽으로 안내하면 중간에 나가기 편합니다. 미리 그쪽 몇 석을 비워 둡니다.</div></div>
+      <div class="r-row"><div class="r-if">Q&amp;A에<br>질문이 없다</div><div class="r-do">사회자가 <b>보드의 포스트잇을 떼어 읽으며</b> 시작합니다. 한두 개가 나오면 뒤이어 손이 올라옵니다.</div></div>
+      <div class="r-row"><div class="r-if">포스트잇이<br>거의 없다</div><div class="r-do">사회자가 휴식 안내 때 한 번 더 권하고, 강슬빈 선생님이 <b>뒷줄부터 돌며 직접 받아</b> 붙입니다. 적는 사람이 보이면 따라 적습니다.</div></div>
+      <div class="r-row"><div class="r-if">발표가<br>길어진다</div><div class="r-do">사회자가 <b>5분 전 손 신호</b>를 보냅니다. 그래도 넘치면 Q&amp;A를 줄이지 말고 <b>휴식 5분을 생략</b>하세요. 종료 18:00은 지킵니다.</div></div>
+      <div class="r-row"><div class="r-if">촬영을<br>거부하신다</div><div class="r-do">즉시 촬영을 멈추고 사과합니다. 해당 구역은 이후 <b>뒤에서만</b> 찍고, 원하시면 그분이 나온 사진은 삭제합니다.</div></div>
+    </div>
+  </section>
+
+  <div class="foot-act">
+    <button class="btn solid" id="print" type="button">인쇄 / PDF 저장</button>
+    <button class="btn" id="share" type="button">스텝에게 공유</button>
+  </div>
+
+  <footer class="foot">
+    <b>후츠파입시컨설팅 원격학원</b><br>
+    2026 입시 토크콘서트 운영 매뉴얼 · 스텝 배포용<br>
+    현장 문의 0507-1412-0829
+  </footer>
+</div>
+
+<div id="toast" role="status"></div>
+
+<script>
+const KEY='chutzpah_talkconcert_ops_2026';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+/* 항목에 안정적인 id 부여 (그룹코드 + 순번) */
+$$('.group').forEach(g=>{
+  const code=g.dataset.g;
+  [...g.querySelectorAll('.chk')].forEach((c,i)=> c.dataset.id=code+i);
+});
+
+/* 저장·복원 (파일로 열었을 때만 동작, 실패해도 무시) */
+function load(){
+  try{ return JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ return {}; }
+}
+function save(st){
+  try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){}
+}
+let state=load();
+
+function paint(){
+  $$('.chk').forEach(c=> c.classList.toggle('done', !!state[c.dataset.id]));
+  $$('.group').forEach(g=>{
+    const all=[...g.querySelectorAll('.chk')], done=all.filter(c=>c.classList.contains('done')).length;
+    g.querySelector('.g-count').textContent=done+' / '+all.length;
+  });
+  const all=$$('.chk'), done=all.filter(c=>c.classList.contains('done')).length;
+  $('#pf').style.width=(all.length? done/all.length*100:0)+'%';
+  $('#pt').innerHTML='<b>'+done+'</b> / '+all.length;
+}
+
+$$('.chk').forEach(c=>{
+  c.addEventListener('click',e=>{
+    e.preventDefault();
+    const id=c.dataset.id;
+    state[id]=!state[id];
+    if(!state[id]) delete state[id];
+    save(state); paint();
+  });
+});
+
+/* 초기화 */
+$('#reset').addEventListener('click',()=>{
+  if(!confirm('체크한 항목을 모두 지울까요?')) return;
+  state={}; save(state); paint(); toast('체크를 모두 지웠어요');
+});
+
+/* D-day */
+(function(){
+  const ev=Date.UTC(2026,7,22);
+  const k=new Date(Date.now()+9*3600*1000);
+  const today=Date.UTC(k.getUTCFullYear(),k.getUTCMonth(),k.getUTCDate());
+  const d=Math.round((ev-today)/86400000);
+  $('#dday').textContent = d>0 ? ('D-'+d) : (d===0 ? 'D-DAY · 오늘' : '행사 종료');
+})();
+
+/* 토스트 */
+let tt=null;
+function toast(m){
+  const t=$('#toast'); t.textContent=m; t.classList.add('show');
+  clearTimeout(tt); tt=setTimeout(()=>t.classList.remove('show'),2300);
+}
+
+$('#print').addEventListener('click',()=>window.print());
+$('#share').addEventListener('click',()=>{
+  const data={title:'입시 토크콘서트 운영 매뉴얼', text:'8/22 토크콘서트 스텝 운영 매뉴얼입니다. 각자 역할과 준비물을 확인해 주세요.', url:location.href};
+  if(navigator.share){ navigator.share(data).catch(()=>{}); }
+  else if(navigator.clipboard){ navigator.clipboard.writeText(location.href).then(()=>toast('링크를 복사했어요')).catch(()=>toast('주소창의 링크를 복사해 주세요')); }
+  else toast('주소창의 링크를 복사해 주세요');
+});
+
+paint();
+</script>
+</body>
+</html>
