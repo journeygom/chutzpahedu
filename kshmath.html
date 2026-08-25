@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>같은 절단선이 타원과 물결로 보이는 이유</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --ink:#172033;
+      --muted:#61708a;
+      --line:#d8e0ec;
+      --blue:#315efb;
+      --blue2:#6f8cff;
+      --orange:#ff7a45;
+      --green:#0e9f6e;
+      --purple:#7c3aed;
+      --shadow:0 12px 32px rgba(25,39,71,.10);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg,#eef3ff 0,#f7f9fc 34%,#f4f7fb 100%);
+      color:var(--ink);
+      line-height:1.6;
+    }
+    .wrap{max-width:1320px;margin:0 auto;padding:28px 18px 70px}
+    .hero{
+      background:linear-gradient(135deg,#172c68 0%,#315efb 58%,#6d83ff 100%);
+      color:white;
+      border-radius:28px;
+      padding:32px 34px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:340px;height:340px;border-radius:50%;
+      right:-120px;top:-180px;
+      border:56px solid rgba(255,255,255,.10);
+    }
+    .eyebrow{font-size:13px;font-weight:800;letter-spacing:.12em;opacity:.8}
+    h1{font-size:clamp(27px,4vw,46px);line-height:1.17;margin:8px 0 12px;letter-spacing:-.04em}
+    .hero p{margin:0;max-width:850px;font-size:clamp(15px,2vw,18px);opacity:.93}
+    .core{
+      margin-top:18px;
+      display:inline-flex;align-items:center;gap:10px;
+      padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.20);font-weight:700;font-size:14px;
+    }
+    .dot{width:9px;height:9px;border-radius:50%;background:#ffd54a;box-shadow:0 0 0 5px rgba(255,213,74,.18)}
+
+    .controls{
+      margin-top:18px;background:var(--card);border:1px solid #e4eaf4;border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:18px 20px;display:grid;grid-template-columns:1.1fr 1.1fr auto;gap:20px;align-items:end;
+      position:sticky;top:10px;z-index:10;
+    }
+    .control label{display:flex;justify-content:space-between;gap:12px;font-weight:800;font-size:14px;margin-bottom:8px}
+    .value{color:var(--blue);font-variant-numeric:tabular-nums}
+    input[type=range]{width:100%;accent-color:var(--blue);cursor:pointer}
+    .buttons{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+    button{
+      appearance:none;border:1px solid #d8e0ed;background:#fff;color:var(--ink);border-radius:12px;
+      padding:9px 12px;font-weight:800;cursor:pointer;transition:.18s ease;font-family:inherit;
+    }
+    button:hover{transform:translateY(-1px);border-color:#a8b8d5;box-shadow:0 5px 14px rgba(30,45,78,.10)}
+    button.primary{background:var(--blue);color:white;border-color:var(--blue)}
+    button.active{background:#eef2ff;color:var(--blue);border-color:#aab8ff}
+
+    .insight{
+      margin-top:18px;background:#fff;border-left:6px solid var(--orange);border-radius:18px;padding:15px 18px;
+      box-shadow:0 8px 22px rgba(27,39,67,.07);font-size:15px;
+    }
+    .insight strong{color:#bc4216}
+
+    .grid{display:grid;grid-template-columns:1.06fr .94fr .94fr;gap:16px;margin-top:18px}
+    .card{
+      background:var(--card);border:1px solid #e1e7f1;border-radius:var(--radius);box-shadow:0 10px 26px rgba(28,42,73,.08);
+      overflow:hidden;min-width:0;
+    }
+    .card-head{padding:16px 17px 8px;display:flex;align-items:flex-start;gap:11px}
+    .num{flex:0 0 auto;width:31px;height:31px;border-radius:10px;background:#edf1ff;color:var(--blue);display:grid;place-items:center;font-weight:900}
+    .card h2{font-size:18px;line-height:1.35;margin:1px 0 2px;letter-spacing:-.02em}
+    .sub{font-size:13px;color:var(--muted)}
+    .canvas-wrap{padding:0 12px 14px}
+    svg{width:100%;height:auto;display:block;border-radius:15px;background:linear-gradient(180deg,#fbfcff,#f5f8fd)}
+    .caption{padding:0 17px 17px;color:#3e4c66;font-size:14px}
+    .caption b{color:var(--ink)}
+
+    .livebar{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;
+    }
+    .metric{background:#fff;border:1px solid #e1e7f1;border-radius:16px;padding:13px 15px;box-shadow:0 8px 20px rgba(28,42,73,.06)}
+    .metric small{display:block;color:var(--muted);font-weight:700;margin-bottom:3px}
+    .metric strong{font-size:20px;font-variant-numeric:tabular-nums}
+
+    .guide{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:18px}
+    .section{background:#fff;border:1px solid #e1e7f1;border-radius:var(--radius);padding:20px;box-shadow:0 10px 26px rgba(28,42,73,.07)}
+    .section h3{font-size:20px;margin:0 0 12px;letter-spacing:-.02em}
+    .steps{display:grid;gap:10px}
+    .step{display:flex;gap:12px;padding:11px 12px;border-radius:13px;background:#f7f9fd;border:1px solid #e8edf5}
+    .step .tag{width:28px;height:28px;border-radius:9px;background:#fff;border:1px solid #dfe6f1;display:grid;place-items:center;font-weight:900;color:var(--blue);flex:0 0 auto}
+    .step p{margin:0;font-size:14px}
+    .mission{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px dashed #dde4ef}
+    .mission:last-child{border-bottom:0}
+    .check{width:22px;height:22px;border-radius:7px;border:2px solid #cbd5e5;display:grid;place-items:center;flex:0 0 auto;margin-top:1px;color:white;font-size:13px;font-weight:900}
+    .mission.done .check{background:var(--green);border-color:var(--green)}
+    .mission.done .check:after{content:"✓"}
+    .mission.done .mission-text{text-decoration:none;color:#245b49}
+    .mission-text{font-size:14px;color:#46546d}
+
+    details{margin-top:16px;background:#10182b;color:#e8eeff;border-radius:17px;overflow:hidden}
+    summary{cursor:pointer;padding:15px 17px;font-weight:900;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    .math{padding:0 17px 18px;color:#cdd7f3;font-size:14px}
+    .math-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .formula{background:#17223c;border:1px solid #2a385d;border-radius:12px;padding:12px;overflow:auto}
+    code{font-family:"SFMono-Regular",Consolas,monospace;color:#fff;font-size:13px}
+
+    .quiz{margin-top:16px}
+    .q{font-weight:900;margin-bottom:10px}
+    .choices{display:grid;gap:8px}
+    .choice{text-align:left;width:100%}
+    .feedback{min-height:28px;margin-top:9px;font-size:14px;font-weight:800}
+    .feedback.ok{color:var(--green)}
+    .feedback.no{color:#c2410c}
+
+    .footer-note{margin-top:18px;padding:16px 18px;border-radius:16px;background:#eef7ff;border:1px solid #cfe8ff;color:#2c5472;font-size:14px}
+    .footer-note b{color:#173d5b}
+
+    @media (max-width:1040px){
+      .grid{grid-template-columns:1fr 1fr}
+      .card:first-child{grid-column:1/-1}
+      .controls{grid-template-columns:1fr 1fr}.buttons{grid-column:1/-1;justify-content:flex-start}
+    }
+    @media (max-width:720px){
+      .wrap{padding:14px 10px 50px}.hero{padding:24px 20px;border-radius:22px}
+      .controls{position:static;grid-template-columns:1fr;gap:14px}.buttons{grid-column:auto}
+      .grid,.guide,.livebar,.math-grid{grid-template-columns:1fr}.card:first-child{grid-column:auto}
+      h1{font-size:29px}.hero p{font-size:15px}
+    }
+  </style>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=5149"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">기하 · 타원 · 공간의 표현</div>
+    <h1>같은 절단선이 왜<br>타원과 물결로 보일까?</h1>
+    <p>원통을 기울여 자른 선은 <b>절단면에서 보면 타원</b>이고, 원통의 곡면을 잘라 평면으로 펼치면 <b>물결 모양</b>이 됩니다. 아래에서 절단각과 같은 점 P를 움직이며 세 모습을 동시에 비교해 보세요.</p>
+    <div class="core"><span class="dot"></span> 핵심: 타원이 물결로 ‘변한’ 것이 아니라, 같은 공간의 선을 서로 다른 면의 좌표로 나타낸 것입니다.</div>
+  </header>
+
+  <section class="controls" aria-label="조작 패널">
+    <div class="control">
+      <label for="angle">절단면의 기울기 α <span class="value" id="angleVal">35°</span></label>
+      <input id="angle" type="range" min="0" max="60" value="35" step="1" />
+    </div>
+    <div class="control">
+      <label for="point">같은 점 P의 위치 <span class="value" id="pointVal">0°</span></label>
+      <input id="point" type="range" min="0" max="360" value="180" step="1" />
+    </div>
+    <div class="buttons">
+      <button id="play" class="primary">▶ 점 P 이동</button>
+      <button class="preset" data-a="0">0°</button>
+      <button class="preset" data-a="30">30°</button>
+      <button class="preset" data-a="50">50°</button>
+      <button id="guides" class="active">보조선 켜짐</button>
+    </div>
+  </section>
+
+  <div class="insight" id="insight"><strong>지금 관찰:</strong> 절단면을 기울이면 타원의 장축과 펼친 물결의 높이가 함께 커집니다.</div>
+
+  <main class="grid">
+    <article class="card">
+      <div class="card-head">
+        <div class="num">1</div>
+        <div><h2>공간 속 원통과 절단면</h2><div class="sub">절단선은 평면 위에도 있고 원통의 곡면 위에도 있습니다.</div></div>
+      </div>
+      <div class="canvas-wrap"><svg id="svg3d" viewBox="0 0 520 365" role="img" aria-label="기울어진 평면으로 자른 원통"></svg></div>
+      <div class="caption"><b>한 선, 두 소속:</b> 파란 절단선은 기울어진 절단면과 원통의 곡면이 만나는 공통 부분입니다.</div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <div class="num">2</div>
+        <div><h2>절단면을 정면에서 본 모습</h2><div class="sub">기울어진 평면 안에서 보면 닫힌 타원입니다.</div></div>
+      </div>
+      <div class="canvas-wrap"><svg id="svgEllipse" viewBox="0 0 430 365" role="img" aria-label="절단면 위의 타원"></svg></div>
+      <div class="caption">단축은 원통의 반지름과 같고, 절단면을 더 기울일수록 <b>장축만 길어집니다.</b></div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <div class="num">3</div>
+        <div><h2>원통의 곡면을 펼친 모습</h2><div class="sub">곡면을 한 줄로 잘라 펼치면 물결이 됩니다.</div></div>
+      </div>
+      <div class="canvas-wrap"><svg id="svgWave" viewBox="0 0 430 365" role="img" aria-label="원통의 옆면을 펼쳤을 때 나타나는 물결 곡선"></svg></div>
+      <div class="caption">왼쪽과 오른쪽 끝은 떨어져 보이지만, 원통으로 다시 말면 <b>서로 이어지는 같은 절단점</b>입니다.</div>
+    </article>
+  </main>
+
+  <section class="livebar">
+    <div class="metric"><small>타원의 장반경 a</small><strong id="majorMetric">1.22R</strong></div>
+    <div class="metric"><small>타원의 단반경 b</small><strong>1.00R</strong></div>
+    <div class="metric"><small>펼친 물결의 진폭</small><strong id="ampMetric">0.70R</strong></div>
+  </section>
+
+  <section class="guide">
+    <div class="section">
+      <h3>성훈아, 이렇게 조작해 보면 이해가 빨라져</h3>
+      <div class="steps">
+        <div class="step"><div class="tag">1</div><p><b>0°</b>를 눌러 보렴. 수평으로 자르면 절단면에서는 원이고, 펼친 곡면에서는 높이가 변하지 않는 직선이 돼.</p></div>
+        <div class="step"><div class="tag">2</div><p>절단각을 <b>30° → 50°</b>로 키워 보렴. 타원의 장축과 물결의 높이는 함께 커지지만 단축은 그대로야.</p></div>
+        <div class="step"><div class="tag">3</div><p><b>점 P 이동</b>을 눌러 보렴. 같은 점이 원통 위, 타원 위, 물결 위에서 동시에 움직이는 것을 보면 ‘같은 절단선’이라는 뜻이 보여.</p></div>
+      </div>
+      <details>
+        <summary>수학으로 확인하기 ▾</summary>
+        <div class="math">
+          <p>원통의 반지름을 R, 절단면의 기울기를 α, 원통 둘레의 위치를 φ라고 두면 같은 점은 다음처럼 기록할 수 있습니다.</p>
+          <div class="math-grid">
+            <div class="formula"><b>절단면에서</b><br><code>u = R·sec(α)·cos(φ)<br>v = R·sin(φ)</code><br><br>따라서<br><code>u²/(R²sec²α) + v²/R² = 1</code><br>→ 타원</div>
+            <div class="formula"><b>원통 곡면을 펼치면</b><br><code>s = R·φ<br>z = R·tan(α)·cos(s/R)</code><br><br>→ 코사인 물결</div>
+          </div>
+          <p>즉, 공간의 점은 같지만 어떤 면의 좌표로 기록하느냐에 따라 식과 그림이 달라집니다.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="section">
+      <h3>관찰 미션</h3>
+      <div class="mission" id="m0"><div class="check"></div><div class="mission-text">절단각을 0°로 만들어 원과 직선을 확인하기</div></div>
+      <div class="mission" id="m45"><div class="check"></div><div class="mission-text">절단각을 45° 이상으로 올려 장축과 진폭의 증가 확인하기</div></div>
+      <div class="mission" id="mplay"><div class="check"></div><div class="mission-text">점 P를 움직여 세 그림의 점이 서로 대응함을 확인하기</div></div>
+
+      <div class="quiz">
+        <div class="q">확인 질문: 여기서 정확한 표현은 무엇일까?</div>
+        <div class="choices">
+          <button class="choice" data-ok="0">A. 타원이 펼쳐지면서 물결로 변한다.</button>
+          <button class="choice" data-ok="1">B. 같은 절단선을 절단면과 펼친 곡면에서 서로 다르게 표현한다.</button>
+          <button class="choice" data-ok="0">C. 타원과 물결은 우연히 비슷한 위치에 생긴 서로 다른 선이다.</button>
+        </div>
+        <div id="feedback" class="feedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-note"><b>표현을 바로잡으면:</b> ‘서로 다른 두 평면’보다는 <b>① 실제 기울어진 절단면</b>과 <b>② 원통의 곡면을 잘라 펼쳐 만든 평면</b>을 비교한다고 말하는 것이 가장 정확합니다.</div>
+</div>
+
+<script>
+(() => {
+  const NS = 'http://www.w3.org/2000/svg';
+  const angle = document.getElementById('angle');
+  const point = document.getElementById('point');
+  const angleVal = document.getElementById('angleVal');
+  const pointVal = document.getElementById('pointVal');
+  const playBtn = document.getElementById('play');
+  const guidesBtn = document.getElementById('guides');
+  const majorMetric = document.getElementById('majorMetric');
+  const ampMetric = document.getElementById('ampMetric');
+  const insight = document.getElementById('insight');
+  const svg3d = document.getElementById('svg3d');
+  const svgEllipse = document.getElementById('svgEllipse');
+  const svgWave = document.getElementById('svgWave');
+  let playing = false;
+  let raf = null;
+  let showGuides = true;
+  let movedPoint = false;
+
+  const el = (name, attrs={}, parent=null) => {
+    const n = document.createElementNS(NS, name);
+    Object.entries(attrs).forEach(([k,v]) => n.setAttribute(k,v));
+    if(parent) parent.appendChild(n);
+    return n;
+  };
+  const text = (parent, x, y, str, attrs={}) => {
+    const t = el('text', {x,y, ...attrs}, parent); t.textContent = str; return t;
+  };
+  const pathFrom = pts => pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(2)+','+p[1].toFixed(2)).join(' ');
+  const rad = d => d*Math.PI/180;
+
+  function defs(svg){
+    const d=el('defs',{},svg);
+    const marker=el('marker',{id:'arrow'+svg.id,markerWidth:8,markerHeight:8,refX:6,refY:3,orient:'auto',markerUnits:'strokeWidth'},d);
+    el('path',{d:'M0,0 L0,6 L7,3 z',fill:'#7d8ba5'},marker);
+    const glow=el('filter',{id:'glow'+svg.id,x:'-50%',y:'-50%',width:'200%',height:'200%'},d);
+    el('feGaussianBlur',{stdDeviation:'3',result:'blur'},glow);
+    const merge=el('feMerge',{},glow); el('feMergeNode',{in:'blur'},merge); el('feMergeNode',{in:'SourceGraphic'},merge);
+  }
+
+  function draw3D(aDeg, phi){
+    svg3d.innerHTML=''; defs(svg3d);
+    const R=1, m=Math.tan(rad(aDeg));
+    const H=Math.max(1.65, Math.abs(m)+.6);
+    const yaw=rad(34), pitch=rad(17), scale=87, cx=260, cy=188;
+    const proj=(x,y,z)=>{
+      const X=x*Math.cos(yaw)-y*Math.sin(yaw);
+      const D=x*Math.sin(yaw)+y*Math.cos(yaw);
+      const Y=z*Math.cos(pitch)-D*Math.sin(pitch);
+      return [cx+scale*X, cy-scale*Y];
+    };
+
+    // background axis / floor cue
+    el('ellipse',{cx:260,cy:316,rx:155,ry:25,fill:'#e9eef8'},svg3d);
+
+    // plane rectangle
+    const planeCorners=[[-1.55,-1.45], [1.55,-1.45], [1.55,1.45], [-1.55,1.45]].map(([x,y])=>proj(x,y,m*x));
+    el('path',{d:pathFrom([...planeCorners,planeCorners[0]]),fill:'rgba(255,122,69,.18)',stroke:'#ff8758','stroke-width':1.5,'stroke-dasharray':'5 4'},svg3d);
+
+    // cylinder vertical generators behind
+    const backPhis=[120,150,180,210,240].map(rad);
+    backPhis.forEach(t=>{
+      const p1=proj(R*Math.cos(t),R*Math.sin(t),-H), p2=proj(R*Math.cos(t),R*Math.sin(t),H);
+      el('path',{d:pathFrom([p1,p2]),stroke:'#cbd5e5','stroke-width':1},svg3d);
+    });
+
+    // top/bottom circles
+    for(const z of [-H,H]){
+      const pts=[]; for(let i=0;i<=120;i++){const t=2*Math.PI*i/120;pts.push(proj(R*Math.cos(t),R*Math.sin(t),z));}
+      el('path',{d:pathFrom(pts),fill:z>0?'rgba(91,119,255,.06)':'none',stroke:'#8290a9','stroke-width':1.5},svg3d);
+    }
+    // front generators
+    const frontPhis=[-60,-30,0,30,60].map(rad);
+    frontPhis.forEach(t=>{
+      const p1=proj(R*Math.cos(t),R*Math.sin(t),-H), p2=proj(R*Math.cos(t),R*Math.sin(t),H);
+      el('path',{d:pathFrom([p1,p2]),stroke:'#aeb9ca','stroke-width':1.1},svg3d);
+    });
+
+    // cut curve (back then front for depth cue)
+    const cutPts=[]; for(let i=0;i<=220;i++){const t=-Math.PI+2*Math.PI*i/220;cutPts.push(proj(R*Math.cos(t),R*Math.sin(t),m*R*Math.cos(t)));}
+    el('path',{d:pathFrom(cutPts),fill:'none',stroke:'#315efb','stroke-width':5,'stroke-linecap':'round','filter':'url(#glowsvg3d)'},svg3d);
+    el('path',{d:pathFrom(cutPts),fill:'none',stroke:'#ffffff','stroke-opacity':.55,'stroke-width':1.2},svg3d);
+
+    // moving point
+    const pp=proj(R*Math.cos(phi),R*Math.sin(phi),m*R*Math.cos(phi));
+    el('circle',{cx:pp[0],cy:pp[1],r:8,fill:'#ff7a45',stroke:'#fff','stroke-width':3,filter:'url(#glowsvg3d)'},svg3d);
+    text(svg3d,pp[0]+11,pp[1]-9,'P',{fill:'#c54816','font-size':16,'font-weight':900});
+
+    // angle hint
+    const base=proj(-1.35,-1.35,-m*1.35), up=proj(-.55,-1.35,-m*.55);
+    if(showGuides){
+      el('line',{x1:78,y1:304,x2:153,y2:304,stroke:'#7d8ba5','stroke-width':1.5},svg3d);
+      const rise=60*Math.tan(rad(Math.min(aDeg,45)))*.45;
+      el('line',{x1:78,y1:304,x2:153,y2:304-rise,stroke:'#ff7a45','stroke-width':2.2},svg3d);
+      text(svg3d,105,292-rise*.35,'α',{fill:'#c54816','font-size':17,'font-weight':900});
+    }
+    text(svg3d,25,31,'원통의 곡면',{fill:'#61708a','font-size':13,'font-weight':800});
+    text(svg3d,348,54,'기울어진 절단면',{fill:'#c54816','font-size':13,'font-weight':800});
+    text(svg3d,329,330,'파란 선 = 두 면의 교선',{fill:'#315efb','font-size':13,'font-weight':900});
+  }
+
+  function drawEllipse(aDeg, phi){
+    svgEllipse.innerHTML=''; defs(svgEllipse);
+    const sec=1/Math.cos(rad(aDeg));
+    const maxSec=2.0;
+    const sx=145/maxSec, sy=120, cx=215, cy=183;
+    // grid
+    if(showGuides){
+      for(let x=55;x<=375;x+=40) el('line',{x1:x,y1:44,x2:x,y2:322,stroke:'#e6ebf3','stroke-width':1},svgEllipse);
+      for(let y=63;y<=303;y+=40) el('line',{x1:35,y1:y,x2:395,y2:y,stroke:'#e6ebf3','stroke-width':1},svgEllipse);
+      el('line',{x1:35,y1:cy,x2:395,y2:cy,stroke:'#9aa8be','stroke-width':1.5,'marker-end':'url(#arrowsvgEllipse)'},svgEllipse);
+      el('line',{x1:cx,y1:322,x2:cx,y2:42,stroke:'#9aa8be','stroke-width':1.5,'marker-end':'url(#arrowsvgEllipse)'},svgEllipse);
+    }
+    const rx=sec*sx, ry=sy;
+    el('ellipse',{cx,cy,rx,ry,fill:'rgba(49,94,251,.08)',stroke:'#315efb','stroke-width':5,filter:'url(#glowsvgEllipse)'},svgEllipse);
+    // axes
+    if(showGuides){
+      el('line',{x1:cx-rx,y1:cy,x2:cx+rx,y2:cy,stroke:'#315efb','stroke-width':1.5,'stroke-dasharray':'6 5'},svgEllipse);
+      el('line',{x1:cx,y1:cy-ry,x2:cx,y2:cy+ry,stroke:'#315efb','stroke-width':1.5,'stroke-dasharray':'6 5'},svgEllipse);
+      text(svgEllipse,cx+rx*.45,cy-8,'a = R·sec α',{fill:'#315efb','font-size':13,'font-weight':900});
+      text(svgEllipse,cx+7,cy-ry*.52,'b = R',{fill:'#315efb','font-size':13,'font-weight':900});
+    }
+    // foci
+    const c=Math.sqrt(Math.max(0,sec*sec-1))*sx;
+    if(aDeg>1 && showGuides){
+      [-1,1].forEach(s=>el('circle',{cx:cx+s*c,cy,r:4.5,fill:'#7c3aed'},svgEllipse));
+      text(svgEllipse,cx-c-5,cy+22,'F₁',{fill:'#7c3aed','font-size':12,'font-weight':900});
+      text(svgEllipse,cx+c-5,cy+22,'F₂',{fill:'#7c3aed','font-size':12,'font-weight':900});
+    }
+    const px=cx+rx*Math.cos(phi), py=cy-ry*Math.sin(phi);
+    if(showGuides){
+      el('line',{x1:px,y1:py,x2:px,y2:cy,stroke:'#ff9c76','stroke-width':1.5,'stroke-dasharray':'4 4'},svgEllipse);
+      el('line',{x1:px,y1:py,x2:cx,y2:py,stroke:'#ff9c76','stroke-width':1.5,'stroke-dasharray':'4 4'},svgEllipse);
+    }
+    el('circle',{cx:px,cy:py,r:8,fill:'#ff7a45',stroke:'#fff','stroke-width':3,filter:'url(#glowsvgEllipse)'},svgEllipse);
+    text(svgEllipse,px+10,py-10,'P',{fill:'#c54816','font-size':16,'font-weight':900});
+    text(svgEllipse,25,30,aDeg===0?'α=0°이면 원':'절단면 안에서는 타원',{fill:'#172033','font-size':14,'font-weight':900});
+  }
+
+  function drawWave(aDeg, phi){
+    svgWave.innerHTML=''; defs(svgWave);
+    const amp=Math.tan(rad(aDeg));
+    const maxAmp=Math.tan(rad(60));
+    const left=48,right=400,top=54,bottom=316,cx0=left,mid=(top+bottom)/2;
+    const xMap=t=>left+(t+Math.PI)/(2*Math.PI)*(right-left);
+    const yScale=103/maxAmp;
+    const yMap=z=>mid-z*yScale;
+    // unfolded rectangle
+    el('rect',{x:left,y:top,width:right-left,height:bottom-top,rx:5,fill:'rgba(14,159,110,.045)',stroke:'#9eb7ad','stroke-width':1.4},svgWave);
+    if(showGuides){
+      for(let i=0;i<=8;i++){
+        const x=left+(right-left)*i/8;
+        el('line',{x1:x,y1:top,x2:x,y2:bottom,stroke:'#e0ece7','stroke-width':1},svgWave);
+      }
+      for(let i=-2;i<=2;i++){
+        const y=mid+i*46;
+        el('line',{x1:left,y1:y,x2:right,y2:y,stroke:'#e0ece7','stroke-width':1},svgWave);
+      }
+      el('line',{x1:left,y1:mid,x2:right,y2:mid,stroke:'#91a49d','stroke-width':1.4,'stroke-dasharray':'5 4'},svgWave);
+    }
+    const pts=[];for(let i=0;i<=240;i++){const t=-Math.PI+2*Math.PI*i/240;pts.push([xMap(t),yMap(amp*Math.cos(t))]);}
+    el('path',{d:pathFrom(pts),fill:'none',stroke:'#0e9f6e','stroke-width':5,'stroke-linecap':'round',filter:'url(#glowsvgWave)'},svgWave);
+    el('path',{d:pathFrom(pts),fill:'none',stroke:'#fff','stroke-opacity':.5,'stroke-width':1.2},svgWave);
+    // seam labels
+    el('line',{x1:left,y1:top,x2:left,y2:bottom,stroke:'#7c3aed','stroke-width':2.5,'stroke-dasharray':'5 4'},svgWave);
+    el('line',{x1:right,y1:top,x2:right,y2:bottom,stroke:'#7c3aed','stroke-width':2.5,'stroke-dasharray':'5 4'},svgWave);
+    text(svgWave,left-15,339,'절개선',{fill:'#7c3aed','font-size':12,'font-weight':900});
+    text(svgWave,right-29,339,'같은 절개선',{fill:'#7c3aed','font-size':12,'font-weight':900});
+    // moving point
+    let p=phi; while(p>Math.PI)p-=2*Math.PI; while(p<-Math.PI)p+=2*Math.PI;
+    const px=xMap(p),py=yMap(amp*Math.cos(p));
+    if(showGuides){el('line',{x1:px,y1:top,x2:px,y2:bottom,stroke:'#ff9c76','stroke-width':1.5,'stroke-dasharray':'4 4'},svgWave);}
+    el('circle',{cx:px,cy:py,r:8,fill:'#ff7a45',stroke:'#fff','stroke-width':3,filter:'url(#glowsvgWave)'},svgWave);
+    text(svgWave,px+10,py-10,'P',{fill:'#c54816','font-size':16,'font-weight':900});
+    text(svgWave,24,30,aDeg===0?'높이 변화가 없어 직선':'펼치면 코사인 모양의 물결',{fill:'#172033','font-size':14,'font-weight':900});
+    if(showGuides && aDeg>0){
+      const y0=yMap(0), ya=yMap(amp);
+      el('line',{x1:375,y1:y0,x2:375,y2:ya,stroke:'#0e9f6e','stroke-width':2},svgWave);
+      el('line',{x1:368,y1:y0,x2:382,y2:y0,stroke:'#0e9f6e','stroke-width':2},svgWave);
+      el('line',{x1:368,y1:ya,x2:382,y2:ya,stroke:'#0e9f6e','stroke-width':2},svgWave);
+      text(svgWave,282,(y0+ya)/2-4,'진폭 = R·tan α',{fill:'#0e7d58','font-size':12,'font-weight':900});
+    }
+  }
+
+  function update(){
+    const a=+angle.value;
+    const raw=+point.value;
+    const phi=-Math.PI+2*Math.PI*raw/360;
+    angleVal.textContent=a+'°';
+    pointVal.textContent=raw+'°';
+    const sec=1/Math.cos(rad(a)), amp=Math.tan(rad(a));
+    majorMetric.textContent=sec.toFixed(2)+'R';
+    ampMetric.textContent=amp.toFixed(2)+'R';
+    draw3D(a,phi); drawEllipse(a,phi); drawWave(a,phi);
+    if(a===0){
+      insight.innerHTML='<strong>지금 관찰:</strong> 수평으로 자르면 절단면은 원이고, 펼친 곡면에서는 모든 점의 높이가 같아 직선이 됩니다.';
+      document.getElementById('m0').classList.add('done');
+    } else if(a>=45){
+      insight.innerHTML='<strong>지금 관찰:</strong> 절단각이 커질수록 타원의 장축과 펼친 물결의 진폭이 함께 커집니다. 단축은 계속 R로 같습니다.';
+      document.getElementById('m45').classList.add('done');
+    } else {
+      insight.innerHTML='<strong>지금 관찰:</strong> 절단면을 기울이면 타원의 장축과 펼친 물결의 높이가 함께 커집니다.';
+    }
+  }
+
+  angle.addEventListener('input',update);
+  point.addEventListener('input',()=>{movedPoint=true;document.getElementById('mplay').classList.add('done');update();});
+  document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>{angle.value=b.dataset.a;update();}));
+  guidesBtn.addEventListener('click',()=>{
+    showGuides=!showGuides;
+    guidesBtn.textContent=showGuides?'보조선 켜짐':'보조선 꺼짐';
+    guidesBtn.classList.toggle('active',showGuides);
+    update();
+  });
+  playBtn.addEventListener('click',()=>{
+    playing=!playing;
+    playBtn.textContent=playing?'⏸ 잠시 멈춤':'▶ 점 P 이동';
+    if(playing){
+      document.getElementById('mplay').classList.add('done');
+      const tick=()=>{
+        if(!playing)return;
+        point.value=(+point.value+1)%361;
+        update();
+        raf=requestAnimationFrame(tick);
+      };
+      tick();
+    } else if(raf){ cancelAnimationFrame(raf); }
+  });
+
+  document.querySelectorAll('.choice').forEach(btn=>btn.addEventListener('click',()=>{
+    const f=document.getElementById('feedback');
+    if(btn.dataset.ok==='1'){
+      f.className='feedback ok';
+      f.textContent='정확해! 실제 절단면과 펼친 곡면이라는 서로 다른 표현에서 같은 점들을 보고 있는 거야.';
+    } else {
+      f.className='feedback no';
+      f.textContent='조금 달라. 선 자체가 바뀐 것이 아니라 같은 공간의 선을 다른 면의 좌표로 기록한 거야.';
+    }
+  }));
+
+  update();
+})();
+</script>
+</body>
+</html>
