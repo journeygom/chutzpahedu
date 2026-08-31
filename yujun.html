@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>유준이 열 살 생일 파티에 초대할게!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#17102E;
+    --night-2:#2B1B57;
+    --cream:#FFF0D9;
+    --ink:#241847;
+    --pink:#FF3D71;
+    --mint:#17C3B2;
+    --sun:#FFC93C;
+    --flame:#FFB03A;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html,body{height:100%}
+
+  body{
+    font-family:'Gowun Dodum',system-ui,-apple-system,sans-serif;
+    background:var(--night);
+    color:var(--cream);
+    transition:background 1400ms ease, color 1400ms ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px 20px 40px;
+    overflow-x:hidden;
+  }
+  body.lit{background:var(--cream);color:var(--ink)}
+
+  canvas#confetti{
+    position:fixed;inset:0;width:100%;height:100%;
+    pointer-events:none;z-index:50;
+  }
+
+  main{width:100%;max-width:560px}
+
+  /* ---------- 촛불 화면 ---------- */
+  .stage{text-align:center}
+
+  .whisper{
+    font-size:1rem;
+    letter-spacing:.06em;
+    color:#B9A9E8;
+    margin-bottom:6px;
+  }
+
+  .stage h1{
+    font-family:'Gaegu',cursive;
+    font-weight:700;
+    font-size:clamp(2rem,8vw,2.9rem);
+    line-height:1.25;
+    color:var(--cream);
+    margin-bottom:30px;
+    text-shadow:0 0 34px rgba(255,176,58,.35);
+  }
+
+  .cake-wrap{
+    display:inline-block;
+    position:relative;
+    padding:0 10px;
+  }
+
+  .glow{
+    position:absolute;
+    left:50%;top:32%;
+    width:340px;height:340px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(255,176,58,.30) 0%,rgba(255,176,58,0) 62%);
+    pointer-events:none;
+    transition:opacity 700ms ease;
+    z-index:0;
+  }
+
+  .candles{
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    gap:clamp(4px,2.2vw,11px);
+    position:relative;
+    z-index:2;
+  }
+
+  .candle{
+    background:none;border:0;padding:6px 3px 0;
+    cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;
+    border-radius:10px;
+  }
+  .candle:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+
+  .flame{
+    width:12px;height:19px;
+    margin-bottom:4px;
+    border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;
+    background:radial-gradient(ellipse at 50% 72%,#FFF3C4 0%,var(--flame) 48%,#FF6B2C 100%);
+    box-shadow:0 0 14px 4px rgba(255,150,40,.55);
+    transform-origin:50% 100%;
+    animation:flicker 900ms ease-in-out infinite alternate;
+    transition:opacity 220ms ease, transform 260ms ease;
+  }
+  @keyframes flicker{
+    from{transform:scale(1) rotate(-3deg)}
+    to{transform:scale(1.14,1.06) rotate(3deg)}
+  }
+
+  .stick{
+    width:11px;height:clamp(34px,9vw,46px);
+    border-radius:4px 4px 2px 2px;
+    background:repeating-linear-gradient(135deg,#FF5A8A 0 6px,#FFF0D9 6px 12px);
+    box-shadow:inset -3px 0 0 rgba(0,0,0,.14);
+  }
+  .candle:nth-child(even) .stick{
+    background:repeating-linear-gradient(135deg,#39C6F5 0 6px,#FFF0D9 6px 12px);
+  }
+  .candle:nth-child(3n) .stick{
+    background:repeating-linear-gradient(135deg,#7BD44B 0 6px,#FFF0D9 6px 12px);
+  }
+
+  .candle:hover .flame{transform:scale(1.25)}
+  .candle.out .flame{opacity:0;transform:translateY(-16px) scale(.3)}
+  .candle.out .stick{filter:saturate(.55) brightness(.8)}
+
+  .smoke{
+    position:absolute;
+    width:8px;height:8px;border-radius:50%;
+    background:rgba(220,215,235,.5);
+    pointer-events:none;
+    animation:puff 900ms ease-out forwards;
+    z-index:3;
+  }
+  @keyframes puff{
+    to{transform:translateY(-52px) scale(2.6);opacity:0}
+  }
+
+  .cake{
+    position:relative;
+    width:clamp(230px,74vw,320px);
+    margin:0 auto;
+    z-index:1;
+  }
+  .icing{
+    height:26px;
+    background:#FFF6EA;
+    border-radius:14px 14px 4px 4px;
+    position:relative;
+  }
+  .icing::after{
+    content:"";position:absolute;left:0;right:0;top:20px;height:16px;
+    background:
+      radial-gradient(circle at 12px 0,#FFF6EA 11px,transparent 12px),
+      radial-gradient(circle at 44px 0,#FFF6EA 11px,transparent 12px),
+      radial-gradient(circle at 76px 0,#FFF6EA 11px,transparent 12px),
+      radial-gradient(circle at 108px 0,#FFF6EA 11px,transparent 12px),
+      radial-gradient(circle at 140px 0,#FFF6EA 11px,transparent 12px),
+      radial-gradient(circle at 172px 0,#FFF6EA 11px,transparent 12px),
+      radial-gradient(circle at 204px 0,#FFF6EA 11px,transparent 12px),
+      radial-gradient(circle at 236px 0,#FFF6EA 11px,transparent 12px),
+      radial-gradient(circle at 268px 0,#FFF6EA 11px,transparent 12px),
+      radial-gradient(circle at 300px 0,#FFF6EA 11px,transparent 12px);
+  }
+  .sponge{
+    height:clamp(58px,16vw,76px);
+    background:linear-gradient(#C98A5B,#A96A3E);
+    border-radius:0 0 12px 12px;
+    box-shadow:inset 0 8px 0 rgba(255,255,255,.12);
+  }
+  .plate{
+    height:12px;
+    width:114%;
+    margin:0 auto;
+    transform:translateX(-6%);
+    background:linear-gradient(#E8E1F5,#B6ADD0);
+    border-radius:0 0 24px 24px;
+  }
+
+  .counter{
+    margin-top:26px;
+    font-size:1.05rem;
+    color:#CFC2F2;
+    min-height:1.6em;
+  }
+  .counter strong{font-family:'Gaegu',cursive;font-size:1.5rem;color:var(--sun)}
+
+  .skip{
+    margin-top:18px;
+    background:none;border:0;
+    color:#8C7CBE;
+    font-family:inherit;font-size:.86rem;
+    text-decoration:underline;
+    text-underline-offset:4px;
+    cursor:pointer;
+    padding:8px;
+  }
+  .skip:hover{color:#CFC2F2}
+  .skip:focus-visible{outline:2px solid var(--mint);outline-offset:2px;border-radius:6px}
+
+  /* ---------- 초대장 화면 ---------- */
+  #scene-invite[hidden]{display:none}
+
+  .card{
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:22px;
+    box-shadow:10px 10px 0 var(--ink);
+    padding:clamp(26px,6vw,40px) clamp(20px,5.5vw,34px) clamp(26px,6vw,36px);
+    animation:rise 720ms cubic-bezier(.2,.9,.3,1.1) both;
+  }
+  @keyframes rise{
+    from{opacity:0;transform:translateY(34px) rotate(-1.5deg)}
+    to{opacity:1;transform:none}
+  }
+
+  .ribbon{
+    display:inline-block;
+    background:var(--pink);
+    color:#fff;
+    font-size:.95rem;
+    padding:5px 16px;
+    border-radius:999px;
+    transform:rotate(-2deg);
+    margin-bottom:16px;
+  }
+
+  .card h2{
+    font-family:'Gaegu',cursive;
+    font-weight:700;
+    font-size:clamp(1.9rem,7.6vw,2.7rem);
+    line-height:1.24;
+    color:var(--ink);
+    letter-spacing:-.01em;
+    white-space:pre-line;
+  }
+
+  .lead{
+    margin-top:12px;
+    font-size:1rem;
+    line-height:1.85;
+    color:#5B4E82;
+    max-width:34ch;
+  }
+
+  .facts{
+    margin:26px 0 4px;
+    border-top:2px dashed #D9CFF0;
+  }
+  .fact{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:14px;
+    align-items:start;
+    padding:16px 2px;
+    border-bottom:2px dashed #D9CFF0;
+  }
+  .fact dt{
+    font-family:'Gaegu',cursive;
+    font-size:1.3rem;
+    color:var(--pink);
+    line-height:1.5;
+  }
+  .fact:nth-of-type(2) dt{color:var(--mint)}
+  .fact dd{font-size:1.06rem;line-height:1.6;color:var(--ink)}
+  .fact .sub{
+    display:block;
+    margin-top:5px;
+    font-size:.92rem;
+    color:#6E6094;
+  }
+
+  .countdown{
+    margin-top:24px;
+    background:#FFF6E4;
+    border:2px solid var(--ink);
+    border-radius:16px;
+    padding:16px 18px;
+    display:flex;
+    align-items:baseline;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .countdown .dday{
+    font-family:'Gaegu',cursive;
+    font-size:2.1rem;
+    color:var(--ink);
+    line-height:1;
+  }
+  .countdown .clock{font-size:.96rem;color:#6E6094}
+
+  .actions{
+    margin-top:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .btn{
+    flex:1 1 158px;
+    font-family:inherit;
+    font-size:1rem;
+    padding:14px 16px;
+    border-radius:14px;
+    border:2px solid var(--ink);
+    cursor:pointer;
+    text-align:center;
+    text-decoration:none;
+    color:var(--ink);
+    background:#fff;
+    transition:transform 140ms ease, box-shadow 140ms ease;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .btn:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+  .btn-main{background:var(--sun)}
+  .btn-mint{background:#B9F0E8}
+
+  .rsvp{
+    margin-top:26px;
+    font-size:.98rem;
+    line-height:1.8;
+    color:#5B4E82;
+  }
+  .rsvp b{color:var(--ink)}
+
+  .replay{
+    display:block;
+    margin:22px auto 0;
+    background:none;border:0;
+    color:#8B7DB8;
+    font-family:inherit;font-size:.88rem;
+    text-decoration:underline;
+    text-underline-offset:4px;
+    cursor:pointer;padding:8px;
+  }
+  .replay:focus-visible{outline:2px solid var(--mint);outline-offset:2px;border-radius:6px}
+
+  .sr{
+    position:absolute;width:1px;height:1px;
+    overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<main>
+  <!-- 1. 촛불 끄기 -->
+  <section class="stage" id="scene-candles">
+    <p class="whisper">유준이가 보낸 초대장</p>
+    <h1>내 생일 촛불<br>10개 다 꺼줘!</h1>
+
+    <div class="cake-wrap">
+      <div class="glow" id="glow"></div>
+      <div class="candles" id="candles"></div>
+      <div class="cake">
+        <div class="icing"></div>
+        <div class="sponge"></div>
+        <div class="plate"></div>
+      </div>
+    </div>
+
+    <p class="counter" id="counter" role="status" aria-live="polite"></p>
+    <button class="skip" id="skip">촛불 말고 초대장 바로 볼래</button>
+  </section>
+
+  <!-- 2. 초대장 -->
+  <section id="scene-invite" hidden>
+    <article class="card">
+      <span class="ribbon">유준이가 보내는 초대장</span>
+      <h2 id="title"></h2>
+      <p class="lead" id="lead"></p>
+
+      <dl class="facts">
+        <div class="fact">
+          <dt>언제</dt>
+          <dd>
+            2026년 9월 13일 일요일 오후 1시
+            <span class="sub">밥 먹고 케이크 자르고 놀 거야. 3시쯤 끝나!</span>
+          </dd>
+        </div>
+        <div class="fact">
+          <dt>어디</dt>
+          <dd>
+            고메스퀘어 3층
+            <span class="sub">경남 진주시 에나로127번길 30</span>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="countdown">
+        <span class="dday" id="dday">D-</span>
+        <span class="clock" id="clock"></span>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-main" id="mapBtn" href="#" target="_blank" rel="noopener">여기 어딘지 보기</a>
+        <button class="btn btn-mint" id="icsBtn">달력에 저장하기</button>
+        <button class="btn" id="copyBtn">초대장 복사하기</button>
+      </div>
+
+      <p class="rsvp" id="rsvp"></p>
+    </article>
+
+    <button class="replay" id="replay">촛불 다시 켜기</button>
+  </section>
+</main>
+
+<script>
+/* =========================================================
+   여기만 바꾸면 됩니다
+   ========================================================= */
+const CONFIG = {
+  childName : "유준",
+  age       : 10,
+  contact   : "카톡으로 알려줘!",        // ← 연락 방법을 바꾸고 싶으면 여기
+  startISO  : "2026-09-13T13:00:00+09:00",
+  hours     : 3,
+  place     : "고메스퀘어 3층",
+  address   : "경남 진주시 에나로127번길 30"
+};
+/* ========================================================= */
+
+const N = CONFIG.childName;
+
+document.getElementById("title").textContent =
+  `나 ${N}이야!\n내 열 살 생일에 초대할게`;
+
+document.getElementById("lead").textContent =
+  `나 드디어 두 자리 나이가 됐어. 이번엔 진짜 친한 친구들만 부르는 거야. 같이 밥 먹고, 케이크 자르고, 실컷 놀자. 꼭 와줘!`;
+
+document.getElementById("rsvp").innerHTML =
+  `올 수 있으면 미리 말해줘. 자리 맡아둘게! <b>${CONFIG.contact}</b>`;
+
+document.getElementById("mapBtn").href =
+  "https://map.naver.com/p/search/" + encodeURIComponent(CONFIG.address);
+
+/* ---------- 촛불 ---------- */
+const candlesEl = document.getElementById("candles");
+const counterEl = document.getElementById("counter");
+const glowEl    = document.getElementById("glow");
+const TOTAL     = 10;
+let left        = TOTAL;
+
+function buildCandles(){
+  candlesEl.innerHTML = "";
+  left = TOTAL;
+  for(let i=1;i<=TOTAL;i++){
+    const b = document.createElement("button");
+    b.className = "candle";
+    b.type = "button";
+    b.setAttribute("aria-label", i + "번째 촛불 끄기");
+    b.innerHTML = '<span class="flame"></span><span class="stick"></span>';
+    b.addEventListener("click", () => blow(b));
+    candlesEl.appendChild(b);
+  }
+  glowEl.style.opacity = 1;
+  updateCounter();
+}
+
+function updateCounter(){
+  counterEl.innerHTML = left > 0
+    ? `남은 촛불 <strong>${left}</strong>개`
+    : "";
+}
+
+function blow(btn){
+  if(btn.classList.contains("out")) return;
+  btn.classList.add("out");
+  btn.disabled = true;
+
+  const r = btn.getBoundingClientRect();
+  const s = document.createElement("span");
+  s.className = "smoke";
+  s.style.left = (r.left + r.width/2 - 4) + "px";
+  s.style.top  = (r.top + 4) + "px";
+  s.style.position = "fixed";
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 950);
+
+  left--;
+  glowEl.style.opacity = left / TOTAL;
+  updateCounter();
+
+  if(left === 0) setTimeout(openInvite, 480);
+}
+
+/* ---------- 초대장 열기 ---------- */
+const sceneCandles = document.getElementById("scene-candles");
+const sceneInvite  = document.getElementById("scene-invite");
+
+function openInvite(){
+  document.body.classList.add("lit");
+  sceneCandles.hidden = true;
+  sceneInvite.hidden = false;
+  fireConfetti();
+  tick();
+  document.getElementById("mapBtn").focus({preventScroll:true});
+}
+
+document.getElementById("skip").addEventListener("click", openInvite);
+
+document.getElementById("replay").addEventListener("click", () => {
+  document.body.classList.remove("lit");
+  sceneInvite.hidden = true;
+  sceneCandles.hidden = false;
+  buildCandles();
+  document.querySelector(".candle").focus({preventScroll:true});
+});
+
+/* ---------- 카운트다운 ---------- */
+const target = new Date(CONFIG.startISO);
+const ddayEl = document.getElementById("dday");
+const clockEl = document.getElementById("clock");
+
+function tick(){
+  const now = new Date();
+  const diff = target - now;
+
+  if(diff <= 0){
+    const end = new Date(target.getTime() + CONFIG.hours*3600*1000);
+    ddayEl.textContent = now < end ? "D-DAY" : "고마워!";
+    clockEl.textContent = now < end ? "지금 파티 중이야" : "와줘서 진짜 고마웠어";
+    return;
+  }
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor(diff/3600000) % 24;
+  const m = Math.floor(diff/60000) % 60;
+  const s = Math.floor(diff/1000) % 60;
+
+  ddayEl.textContent = "D-" + d;
+  clockEl.textContent = `${h}시간 ${m}분 ${s}초 남았어!`;
+}
+setInterval(tick, 1000);
+tick();
+
+/* ---------- 달력 저장 ---------- */
+function toICS(date){
+  return date.toISOString().replace(/[-:]/g,"").split(".")[0] + "Z";
+}
+document.getElementById("icsBtn").addEventListener("click", (e) => {
+  const end = new Date(target.getTime() + CONFIG.hours*3600*1000);
+  const ics = [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//birthday//KO",
+    "BEGIN:VEVENT",
+    "UID:" + Date.now() + "@birthday",
+    "DTSTAMP:" + toICS(new Date()),
+    "DTSTART:" + toICS(target),
+    "DTEND:" + toICS(end),
+    "SUMMARY:" + N + "의 " + CONFIG.age + "번째 생일 파티",
+    "LOCATION:" + CONFIG.place + " (" + CONFIG.address + ")",
+    "DESCRIPTION:같이 밥 먹고 케이크 자르고 노는 생일 파티!",
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n");
+
+  const url = URL.createObjectURL(new Blob([ics], {type:"text/calendar;charset=utf-8"}));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "birthday-party.ics";
+  a.click();
+  URL.revokeObjectURL(url);
+  flash(e.currentTarget, "달력에 저장했어!");
+});
+
+/* ---------- 복사 ---------- */
+document.getElementById("copyBtn").addEventListener("click", async (e) => {
+  const text =
+`나 ${N}이야! 내 ${CONFIG.age}살 생일 파티에 초대할게
+2026년 9월 13일 일요일 오후 1시
+${CONFIG.place} (${CONFIG.address})
+꼭 와줘!`;
+  try{
+    await navigator.clipboard.writeText(text);
+    flash(e.currentTarget, "복사했어!");
+  }catch(err){
+    flash(e.currentTarget, "복사가 안 돼. 직접 골라줘");
+  }
+});
+
+function flash(btn, msg){
+  const old = btn.textContent;
+  btn.textContent = msg;
+  setTimeout(() => { btn.textContent = old; }, 1800);
+}
+
+/* ---------- 색종이 ---------- */
+const cv = document.getElementById("confetti");
+const ctx = cv.getContext("2d");
+let bits = [];
+const COLORS = ["#FF3D71","#FFC93C","#17C3B2","#7B61FF","#39C6F5","#7BD44B"];
+
+function sizeCanvas(){
+  cv.width = innerWidth;
+  cv.height = innerHeight;
+}
+sizeCanvas();
+addEventListener("resize", sizeCanvas);
+
+function fireConfetti(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  for(let i=0;i<170;i++){
+    bits.push({
+      x: innerWidth/2 + (Math.random()-.5)*260,
+      y: innerHeight*0.42,
+      vx: (Math.random()-.5)*11,
+      vy: Math.random()*-13 - 4,
+      w: 6 + Math.random()*7,
+      h: 9 + Math.random()*9,
+      rot: Math.random()*Math.PI,
+      vr: (Math.random()-.5)*0.28,
+      c: COLORS[(Math.random()*COLORS.length)|0]
+    });
+  }
+  requestAnimationFrame(draw);
+}
+
+function draw(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  bits = bits.filter(p => p.y < cv.height + 60);
+  bits.forEach(p => {
+    p.vy += 0.34;
+    p.x += p.vx;
+    p.y += p.vy;
+    p.rot += p.vr;
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.fillStyle = p.c;
+    ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+    ctx.restore();
+  });
+  if(bits.length) requestAnimationFrame(draw);
+  else ctx.clearRect(0,0,cv.width,cv.height);
+}
+
+buildCandles();
+</script>
+</body>
+</html>
