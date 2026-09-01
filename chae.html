@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>김채이 1학년·2학년 1학기 주제 탐색 및 방향설계 모임 준비</title>
+<style>
+:root{
+  --bg:#eef2ef;--paper:#fffdf8;--ink:#172421;--muted:#64716b;
+  --navy:#173c45;--teal:#2d7163;--mint:#e8f3ee;--gold:#a97a2c;
+  --warm:#fff4de;--rose:#a6544b;--rosebg:#f9eae6;--line:#d8dfda;
+  --blue:#426d9b;--purple:#72578b;--shadow:0 14px 38px rgba(21,57,65,.09);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.68;word-break:keep-all}
+button,input,textarea{font:inherit}
+a{color:inherit}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#102f37 0%,#174d55 58%,#2f7767 100%);color:white;padding:64px 22px 52px}
+.hero:after{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-170px;top:-280px;box-shadow:0 0 0 74px rgba(255,255,255,.025),0 0 0 148px rgba(255,255,255,.014)}
+.wrap{max-width:1180px;margin:auto;position:relative}
+.eyebrow{font-size:11px;letter-spacing:.18em;font-weight:900;color:#a9e2d5}
+.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.15;letter-spacing:-.055em;margin:13px 0 17px}
+.hero p{max-width:900px;color:#dbe9e6;font-size:17px;margin:0}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.hero-tag{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);padding:7px 11px;border-radius:999px;font-size:12px;font-weight:800;color:#e9f4f1}
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,253,248,.97);border-bottom:1px solid var(--line);box-shadow:0 5px 18px rgba(21,57,65,.05);overflow:auto;white-space:nowrap}
+.nav .wrap{display:flex;gap:4px;padding:9px 14px}.nav a{text-decoration:none;color:var(--navy);font-size:12px;font-weight:850;padding:6px 9px;border-radius:8px}.nav a:hover{background:var(--mint)}
+main{padding:34px 18px 90px}
+.section{background:var(--paper);border:1px solid var(--line);border-radius:19px;box-shadow:var(--shadow);padding:26px;margin-bottom:28px;scroll-margin-top:68px}
+.section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}.section-head h2{margin:0;color:var(--navy);font-size:27px;letter-spacing:-.03em}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13.5px;max-width:780px}.section-no{display:inline-block;font-size:10px;letter-spacing:.12em;font-weight:950;color:var(--teal);margin-bottom:3px}
+.notice{border-left:5px solid var(--gold);background:var(--warm);padding:15px 17px;border-radius:0 12px 12px 0;color:#5e5542;font-size:14px}.notice b{color:#735019}
+.quick-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:15px}.route{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px}.route-card{background:var(--mint);border-radius:12px;padding:13px}.route-card b{display:block;color:var(--teal);font-size:12px;margin-bottom:4px}.route-card span{font-size:12px;color:#51625c}
+.timer-box{border:1px solid var(--line);background:linear-gradient(145deg,#fffdf8,#f2f7f4);border-radius:15px;padding:20px}.timer-box h3{margin:0;color:var(--navy);font-size:17px}.timer{font-variant-numeric:tabular-nums;font-weight:950;font-size:47px;line-height:1.1;color:var(--navy);margin:12px 0}.btn-row{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:9px;padding:9px 12px;font-weight:850;cursor:pointer}.btn.primary{background:var(--navy);color:white}.btn.soft{background:var(--mint);color:var(--teal)}.btn.warn{background:var(--rosebg);color:var(--rose)}
+.dashboard{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}.progress-title{font-size:12px;color:var(--muted);font-weight:800}.progress-score{font-size:39px;font-weight:950;color:var(--navy);letter-spacing:-.04em}.bar{height:12px;background:#e3e9e5;border-radius:999px;overflow:hidden;margin-top:10px}.bar>i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--teal),#79a970);transition:.25s}.dash-note{margin-top:9px;font-size:12.5px;color:var(--muted)}
+.brand-quote{background:linear-gradient(135deg,#f0f7f3,#fffaf0);border:1px solid #d6e5dd;border-radius:16px;padding:22px;margin-bottom:16px}.brand-quote small{display:block;color:var(--teal);font-weight:900;letter-spacing:.08em}.brand-quote strong{display:block;font-size:24px;line-height:1.48;color:var(--navy);margin-top:5px;letter-spacing:-.025em}
+.signature-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.signature{border:1px solid var(--line);border-radius:13px;padding:14px;background:#fff}.signature .icon{display:grid;place-items:center;width:31px;height:31px;border-radius:9px;background:var(--mint);color:var(--teal);font-weight:950;margin-bottom:8px}.signature b{display:block;color:var(--navy);font-size:13px}.signature p{font-size:12px;color:var(--muted);margin:4px 0 0}
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.card{border:1px solid var(--line);background:#fff;border-radius:15px;padding:18px}.card h3{margin:0 0 10px;color:var(--navy);font-size:18px}.card p{font-size:13.5px;color:var(--muted);margin:0}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}.stat{background:var(--mint);border-radius:11px;padding:12px}.stat strong{display:block;font-size:23px;color:var(--navy)}.stat span{font-size:11.5px;color:var(--muted)}
+.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:660px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:12.5px;vertical-align:top}thead th{background:var(--navy);color:white;font-size:11px}tbody th{color:var(--navy)}tr:last-child td,tr:last-child th{border-bottom:0}.rank1{font-weight:900;color:var(--teal)}.rank2{font-weight:900;color:var(--gold)}
+.timeline{display:grid;gap:10px}.time-item{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:start;border-left:3px solid var(--teal);padding:3px 0 10px 15px}.time-item time{font-size:11.5px;font-weight:900;color:var(--teal)}.time-item b{display:block;color:var(--navy);font-size:14px}.time-item p{margin:3px 0 0;color:var(--muted);font-size:12.5px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}.search{flex:1;min-width:220px;border:1px solid #ccd6d0;border-radius:10px;padding:10px 12px;background:white;outline:none}.search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(45,113,99,.11)}.filter{border:1px solid var(--line);background:white;color:var(--navy);border-radius:9px;padding:8px 10px;font-weight:850;cursor:pointer}.filter.active{background:var(--navy);color:white;border-color:var(--navy)}
+.subject-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.subject-card{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}.subject-card[hidden]{display:none}.subject-card summary{list-style:none;cursor:pointer;padding:17px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:start}.subject-card summary::-webkit-details-marker{display:none}.subject-card summary:after{content:"＋";font-weight:950;color:var(--muted)}.subject-card[open] summary:after{content:"－"}.subject-chip{font-size:10px;font-weight:950;color:white;border-radius:8px;padding:5px 7px;background:var(--teal);white-space:nowrap}.subject-card[data-year="y2"] .subject-chip{background:var(--blue)}.subject-title b{display:block;color:var(--navy);font-size:16px}.subject-title span{display:block;color:var(--muted);font-size:12px;margin-top:2px}.subject-body{border-top:1px solid var(--line);padding:16px 18px 18px;background:#fcfdfc}.core{font-size:13.5px;font-weight:900;color:var(--navy);background:var(--mint);border-radius:10px;padding:11px 12px;margin-bottom:11px}.subject-card[data-year="y2"] .core{background:#edf3f9}.flow{display:grid;gap:7px}.flow-item{display:grid;grid-template-columns:23px 1fr;gap:8px;align-items:start}.flow-item i{font-style:normal;display:grid;place-items:center;width:23px;height:23px;border-radius:7px;background:#edf2ef;color:var(--teal);font-size:10px;font-weight:950}.flow-item span{font-size:12.5px;color:#4f5e58}.takeaway{margin-top:12px;border-left:4px solid var(--gold);padding:9px 11px;background:#fff8e8;border-radius:0 9px 9px 0;font-size:12.5px;color:#665c47}.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:11px}.tag{font-size:10px;font-weight:800;color:var(--teal);background:#edf5f1;border:1px solid #d7e7df;border-radius:999px;padding:4px 7px}.subject-card[data-year="y2"] .tag{color:var(--blue);background:#eff4fa;border-color:#dbe5ef}.memory{display:flex;align-items:flex-start;gap:9px;margin-top:12px;padding-top:11px;border-top:1px dashed #ccd6d0;cursor:pointer}.memory input{width:18px;height:18px;accent-color:var(--teal);flex:0 0 18px;margin-top:2px}.memory span{font-size:12.5px;font-weight:800;color:var(--navy)}
+.scene-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.scene{border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px}.scene small{display:block;font-weight:950;color:var(--teal);letter-spacing:.05em}.scene h3{font-size:16px;color:var(--navy);margin:5px 0 6px}.scene p{font-size:12.5px;color:var(--muted);margin:0}.scene .say{margin-top:10px;background:var(--warm);border-radius:9px;padding:9px;font-size:12px;color:#6a5b3f}
+.connection{overflow:auto}.connection table{min-width:850px}.connection td strong{color:var(--navy)}
+.hypothesis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.hypothesis{position:relative;border:1px solid var(--line);border-radius:15px;background:#fff;padding:18px;cursor:pointer}.hypothesis input{position:absolute;right:14px;top:14px;width:19px;height:19px;accent-color:var(--teal)}.hypothesis small{font-weight:950;color:var(--teal)}.hypothesis h3{margin:5px 24px 7px 0;color:var(--navy);font-size:18px}.hypothesis p{margin:0;color:var(--muted);font-size:12.5px}.hypothesis ul{padding-left:18px;margin:10px 0 0;color:#4f5d58;font-size:12px}.hypothesis:has(input:checked){border:2px solid var(--teal);background:#f1f8f4;box-shadow:0 9px 24px rgba(45,113,99,.1)}
+.priority{margin-top:14px;background:var(--mint);border-radius:12px;padding:14px 16px;font-size:13px;color:#41564e}.priority strong{color:var(--navy)}
+.next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.next-card{border:1px solid var(--line);border-radius:13px;padding:15px;background:#fff}.next-card b{display:block;color:var(--navy);font-size:14px}.next-card p{margin:5px 0 0;font-size:12px;color:var(--muted)}.next-card em{display:block;font-style:normal;font-size:10px;font-weight:900;color:var(--gold);margin-bottom:5px}
+.quiz{display:grid;grid-template-columns:1fr auto;gap:15px;align-items:center;background:linear-gradient(135deg,#153a43,#285f5a);color:white;border-radius:16px;padding:22px}.quiz small{color:#a8ded3;font-weight:900;letter-spacing:.08em}.quiz h3{font-size:21px;line-height:1.5;margin:5px 0;color:white}.quiz-answer{margin-top:10px;padding:11px 13px;border-radius:10px;background:rgba(255,255,255,.1);color:#e6f1ee;font-size:13px;display:none}.quiz-answer.show{display:block}.quiz-actions{display:flex;gap:7px;flex-direction:column}.quiz .btn{min-width:105px}
+.memo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.memo-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:15px}.memo-card label{display:block;font-size:13px;font-weight:900;color:var(--navy);margin-bottom:7px}.memo-card small{display:block;color:var(--muted);font-size:11.5px;margin-bottom:7px}.memo-card textarea{width:100%;min-height:105px;resize:vertical;border:1px solid #cfd8d3;border-radius:9px;padding:10px;background:#fbfdfc;outline:none}.memo-card textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(45,113,99,.1)}
+.script-box{margin-top:13px;border:1px solid #d7e5dd;border-radius:15px;background:#f1f8f4;padding:18px}.script-box h3{margin:0 0 7px;color:var(--navy);font-size:18px}.script-box textarea{width:100%;min-height:150px;border:1px solid #c7d9cf;border-radius:10px;padding:13px;background:white;resize:vertical;line-height:1.75}.script-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.final-check{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;padding:11px;background:#fff;cursor:pointer}.final-check input{width:19px;height:19px;accent-color:var(--teal);flex:0 0 19px;margin-top:2px}.final-check span{font-size:12.5px;color:#42534d}.final-check b{color:var(--navy)}
+.source-note{font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:20px}.source-note strong{color:var(--navy)}
+.floating{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;z-index:50}.floating button{border:0;border-radius:999px;background:var(--navy);color:white;padding:11px 14px;font-weight:850;box-shadow:0 10px 28px rgba(17,51,58,.22);cursor:pointer}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#173c45;color:white;padding:9px 14px;border-radius:9px;font-size:12px;opacity:0;transition:.22s;z-index:100}.toast.show{opacity:1;transform:translate(-50%,0)}
+body.compact .subject-card:not([open]){display:block}body.compact .deep{display:none}
+@media(max-width:980px){.quick-grid,.split{grid-template-columns:1fr}.route{grid-template-columns:repeat(3,1fr)}.signature-grid{grid-template-columns:repeat(3,1fr)}.subject-grid{grid-template-columns:1fr}.scene-grid,.hypothesis-grid,.next-grid{grid-template-columns:1fr 1fr}.memo-grid{grid-template-columns:1fr}}
+@media(max-width:650px){main{padding:24px 10px 75px}.hero{padding:48px 14px 40px}.section{padding:20px 14px;border-radius:15px}.route,.signature-grid,.stat-grid,.scene-grid,.hypothesis-grid,.next-grid,.check-grid{grid-template-columns:1fr}.dashboard{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.time-item{grid-template-columns:85px 1fr}.quiz{grid-template-columns:1fr}.quiz-actions{flex-direction:row}.floating{display:none}.subject-card summary{grid-template-columns:auto 1fr auto}.hero h1{font-size:35px}.brand-quote strong{font-size:20px}}
+@media print{body{background:white;font-size:11px}.nav,.floating,.toolbar,.timer-box,.quiz-actions,.script-actions,.btn-row{display:none!important}.hero{background:white;color:black;border-bottom:2px solid #222;padding:24px 0}.hero p{color:#444}.hero-tag{color:#333;border-color:#aaa;background:white}.section{box-shadow:none;break-inside:avoid;padding:16px;margin-bottom:13px}.subject-card{break-inside:avoid}.subject-body{display:block!important}.subject-card>summary:after{display:none}.memo-card textarea,.script-box textarea{border:1px solid #aaa}.wrap{max-width:none}.floating{display:none}}
+</style>
+<script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=11099"></script>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">CHUTZPAH EDUCATION · MEETING PREP</div>
+    <h1>김채이 1학년·2학년 1학기<br>주제 탐색 및 방향설계 모임 준비</h1>
+    <p>오늘 5교시에는 활동명을 많이 외우는 것보다, <b>내가 무엇을 이상하게 봤고 어떤 기준으로 생각을 바꾸었는지</b>를 말할 수 있어야 합니다. 아래 순서대로 확인하고 마지막 60초 말하기까지 준비하세요.</p>
+    <div class="hero-tags"><span class="hero-tag">1학년 제공 학생부 사진 기반</span><span class="hero-tag">2학년 1학기 10개 교과 최종본 기반</span><span class="hero-tag">메모 자동 저장</span><span class="hero-tag">인쇄·TXT 저장 가능</span></div>
+  </div>
+</header>
+<nav class="nav"><div class="wrap">
+  <a href="#start">사용법</a><a href="#identity">한 문장 정리</a><a href="#y1overview">1학년</a><a href="#subjects">교과 20개</a><a href="#bridge">학년 연결</a><a href="#direction">방향 후보</a><a href="#memo">회의 메모</a><a href="#final">최종 점검</a>
+</div></nav>
+<main><div class="wrap">
+<section class="section" id="start">
+  <div class="section-head"><div><span class="section-no">00 · START</span><h2>오늘 5교시 전 준비 순서</h2><p>답안을 그대로 암기하지 말고, 카드 제목을 본 뒤 자기 말로 먼저 설명해 보세요.</p></div></div>
+  <div class="quick-grid">
+    <div>
+      <div class="notice"><b>가장 중요한 원칙</b><br>기억이 흐릿한 활동은 그럴듯하게 채우지 말고 “이 부분은 자료를 다시 확인해야 함”이라고 메모하세요. 오늘 모임은 완성된 말을 보여주는 자리가 아니라, 실제 경험에서 다음 방향을 찾는 자리입니다.</div>
+      <div class="route">
+        <div class="route-card"><b>1 · 3분</b><span>채이의 공통 판단 방식 5개 읽기</span></div>
+        <div class="route-card"><b>2 · 7분</b><span>1학년 대표 장면과 성취 확인</span></div>
+        <div class="route-card"><b>3 · 10분</b><span>2학년 10교과를 20초씩 말하기</span></div>
+        <div class="route-card"><b>4 · 5분</b><span>방향 후보 하나 선택하고 이유 적기</span></div>
+        <div class="route-card"><b>5 · 2분</b><span>60초 소개를 소리 내어 말하기</span></div>
+      </div>
+    </div>
+    <div class="timer-box">
+      <h3>구두 설명 타이머</h3><div class="timer" id="timer">01:00</div>
+      <div class="btn-row"><button class="btn primary" onclick="startTimer(30)">30초</button><button class="btn primary" onclick="startTimer(60)">60초</button><button class="btn soft" onclick="startTimer(90)">90초</button><button class="btn warn" onclick="resetTimer()">초기화</button></div>
+      <p class="dash-note">30초: 과목 한 개 / 60초: 전체 흐름 / 90초: 근거와 다음 방향까지</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="identity">
+  <div class="section-head"><div><span class="section-no">01 · IDENTITY</span><h2>지금 자료에서 읽히는 채이의 공통점</h2><p>전공명을 먼저 붙이기보다 여러 과목에서 반복된 실제 판단 방식을 먼저 기억하세요.</p></div>
+    <div class="dashboard"><div><div class="progress-title">교과 숙지 진행률</div><div class="bar"><i id="subjectBar"></i></div><div class="dash-note" id="subjectProgressText">0 / 20개 과목 숙지</div></div><div class="progress-score"><span id="subjectPercent">0</span>%</div></div>
+  </div>
+  <div class="brand-quote"><small>현재 자료를 한 문장으로 묶으면</small><strong>같아 보이는 현상을 그대로 받아들이지 않고, 기준·조건·표현이 달라질 때 무엇이 갈라지는지 확인한 뒤 표·모형·비교·설명으로 다시 구성하는 학생</strong></div>
+  <div class="signature-grid">
+    <div class="signature"><div class="icon">1</div><b>먼저 구분한다</b><p>수단과 ‘오직 수단’, 개수와 배열, 행동 주도성과 목적 설정처럼 비슷해 보이는 개념을 나눔.</p></div>
+    <div class="signature"><div class="icon">2</div><b>값보다 조건을 본다</b><p>신뢰구간, 표본 수, 모델 가정, 측정 조건을 확인해 숫자를 어디까지 믿을지 판단함.</p></div>
+    <div class="signature"><div class="icon">3</div><b>반례로 설명을 고친다</b><p>전체 등비수열 가설, 100% 성공률, 예측이 어긋난 값처럼 불리한 자료를 버리지 않음.</p></div>
+    <div class="signature"><div class="icon">4</div><b>표현이 남기는 정보를 묻는다</b><p>수열·그림·영어 표현·가나 문자·미술 공간처럼 같은 내용을 다른 방식으로 옮길 때 생기는 차이를 봄.</p></div>
+    <div class="signature"><div class="icon">5</div><b>설명은 자립을 목표로 한다</b><p>답을 대신 주기보다 친구가 막힌 지점을 찾고 스스로 수행하도록 설명과 도움 방식을 조정함.</p></div>
+  </div>
+</section>
+
+<section class="section" id="y1overview">
+  <div class="section-head"><div><span class="section-no">02 · YEAR 1</span><h2>1학년 기록을 먼저 한눈에 보기</h2><p>제공된 학생부 사진 2~7/8쪽에서 확인되는 성적·교과·창체 내용을 요약했습니다.</p></div></div>
+  <div class="split">
+    <div class="card">
+      <h3>학업 성취 요약</h3>
+      <div class="stat-grid"><div class="stat"><strong>27</strong><span>제공 표의 이수학점 합계</span></div><div class="stat"><strong>전부 A</strong><span>제공 표에 기재된 7개 성적</span></div><div class="stat"><strong>1등급 6</strong><span>국·수·영·한국사·사회·공통수학2</span></div><div class="stat"><strong>2등급 1</strong><span>통합과학1</span></div></div>
+      <div class="table-wrap"><table><thead><tr><th>과목</th><th>원점수 / 평균</th><th>성취도</th><th>석차등급</th></tr></thead><tbody>
+        <tr><th>공통국어1</th><td>93 / 70.4</td><td>A</td><td class="rank1">1</td></tr>
+        <tr><th>공통수학1</th><td>89 / 66.8</td><td>A</td><td class="rank1">1</td></tr>
+        <tr><th>공통영어1</th><td>96 / 65.5</td><td>A</td><td class="rank1">1</td></tr>
+        <tr><th>한국사1</th><td>93 / 70.3</td><td>A</td><td class="rank1">1</td></tr>
+        <tr><th>통합사회1</th><td>98 / 75.4</td><td>A</td><td class="rank1">1</td></tr>
+        <tr><th>통합과학1</th><td>87 / 66.7</td><td>A</td><td class="rank2">2</td></tr>
+        <tr><th>공통수학2</th><td>93 / 64.1</td><td>A</td><td class="rank1">1</td></tr>
+      </tbody></table></div>
+      <p class="source-note"><strong>읽는 법:</strong> 단순히 “성적이 좋았다”가 아니라, 수학·언어·사회까지 넓은 성취를 유지하면서 탐구 기록에서도 수학적 구조화와 설명 행동이 반복되었다는 점이 중요합니다. 현재 제공 자료에는 2학년 1학기 성적표가 없으므로 그 부분은 추정하지 않았습니다.</p>
+    </div>
+    <div class="card">
+      <h3>창체·진로 핵심 흐름</h3>
+      <div class="timeline">
+        <div class="time-item"><time>2025.03~12</time><div><b>토요독서·교과 멘토링</b><p>수학·법 관련 독서에 꾸준히 참여하고, 개념 이해가 부족한 친구에게 설명과 문제풀이를 지속 지원함.</p></div></div>
+        <div class="time-item"><time>동아리</time><div><b>“감이 잡히는 순간”을 수학·신경과학으로 표현</b><p>배구 점프 서브의 반복 실패→연속 성공 경험을 신경가소성, 수초화, S자 곡선과 변곡 구간으로 해석함.</p></div></div>
+        <div class="time-item"><time>2025.06</time><div><b>괴델·러셀·명제의 논리 구조</b><p>불완전성 정리와 자기참조를 고교 수학의 정의·전제·결론 구조와 비교함.</p></div></div>
+        <div class="time-item"><time>2025.07</time><div><b>지역 쇠퇴를 통계와 구조로 설명</b><p>인구 구조, 공공재 축소, 인간 소외의 흐름을 도식화하고 사회적 경제·참여형 거버넌스를 대안으로 제시함.</p></div></div>
+        <div class="time-item"><time>2025.10~12</time><div><b>지역홍보·스마트 생활 설계</b><p>게임형 진주 홍보, 공유숙박 노출 전략, 센서 기반 가로등·냉각·횡단보도·창문 구조를 효율성과 적용 가능성으로 분석함.</p></div></div>
+        <div class="time-item"><time>2025.12</time><div><b>요양원 디지털 리터러시 봉사</b><p>어르신의 이해 수준에 맞춰 설명 속도와 방식을 조절하며 반복 안내와 확인을 수행함.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-grid" style="margin-top:14px">
+    <div class="scene"><small>대표 장면 1</small><h3>표준 발음 데이터의 한계</h3><p>아버지의 발음을 ASR이 잘 인식하지 못한 경험에서 세대·지역 발음 차이와 기술적 배제 문제까지 확장함.</p><div class="say">말할 핵심: “언어 규칙을 현실 기술과 사회 구조로 연결했습니다.”</div></div>
+    <div class="scene"><small>대표 장면 2</small><h3>34명이 왜 필요한가</h3><p>탄수화물 구강 헹굼 실험 결과만 강조하지 않고 검정력 0.8을 기준으로 필요한 표본 수 34명을 계산해 한계를 함께 적음.</p><div class="say">말할 핵심: “결과보다 그 결과를 믿을 조건을 확인했습니다.”</div></div>
+    <div class="scene"><small>대표 장면 3</small><h3>3cm에서 19cm, 1분 단축</h3><p>PAPS와 오래달리기에서 원인을 분석하고 호흡·스트레칭·페이스 전략을 세워 기록을 실제로 개선함.</p><div class="say">말할 핵심: “목표를 수치로 정하고 방법을 바꾸며 실행했습니다.”</div></div>
+  </div>
+</section>
+
+<section class="section" id="subjects">
+  <div class="section-head"><div><span class="section-no">03 · SUBJECT MEMORY</span><h2>1학년 10과목 + 2학년 1학기 10과목</h2><p>과목명을 눌러 핵심 질문→행동→변화를 확인하세요. 체크는 “원문 없이 20초로 설명할 수 있을 때”만 합니다.</p></div></div>
+  <div class="toolbar"><input class="search" id="subjectSearch" placeholder="예: 표본, 언어, 멘토링, 주기율표 검색"><button class="filter active" data-filter="all">전체</button><button class="filter" data-filter="y1">1학년</button><button class="filter" data-filter="y2">2학년 1학기</button><button class="filter" id="toggleDetails">모두 펼치기</button></div>
+  <div class="subject-grid" id="subjectGrid"></div>
+</section>
+
+<section class="section" id="bridge">
+  <div class="section-head"><div><span class="section-no">04 · CROSS-YEAR STORY</span><h2>학년이 달라도 같은 채이로 읽히는 연결</h2><p>오늘 모임에서는 “활동이 많다”보다, 서로 다른 활동 사이에 어떤 판단 방식이 이어졌는지를 설명하면 됩니다.</p></div></div>
+  <div class="connection table-wrap"><table><thead><tr><th>반복되는 축</th><th>1학년의 증거</th><th>2학년 1학기의 증거</th><th>다음 단계에서 보여줄 것</th></tr></thead><tbody>
+    <tr><th>표현은 정보를 선택한다</th><td>ASR이 표준 발음 중심 데이터 때문에 세대·지역 차이를 놓침</td><td>규칙 90의 수열은 개수는 담지만 배열은 담지 못함; 영어·일본어에서도 표현 체계의 차이를 분석</td><td><strong>같은 개념을 식·그림·말로 설명할 때 어떤 오개념이 달라지는지 확인</strong></td></tr>
+    <tr><th>숫자보다 성립 조건</th><td>N회독 모델의 효율 감소 시점, 구강 헹굼 실험의 표본 수·검정력</td><td>신뢰수준의 절차적 의미, 100% 성공률에서 근사식이 깨지는 반례, 피셔 모형의 가정</td><td><strong>모형을 쓰기 전 가정·자료량·적용 범위를 학생이 직접 점검하는 활동</strong></td></tr>
+    <tr><th>설명은 대신하기가 아니다</th><td>교과 멘토링, 쉬운 언어로 청중에게 다시 설명, 요양원 눈높이 안내</td><td>틀린 풀이의 시작점을 찾게 한 수학 멘토링, 친구가 스스로 요가 동작을 완성하도록 기다린 도움</td><td><strong>설명 전후 친구의 풀이·이해가 어떻게 달라졌는지 증거로 남기기</strong></td></tr>
+    <tr><th>비유와 연결의 경계</th><td>점프 서브의 누적 변화를 상전이·S자 곡선과 연결, 역사 개념을 수치·곡선으로 표현</td><td>성비 균형과 화학 평형의 닮은 점과 다른 원리를 구분, 문학을 미술 공간으로 번역</td><td><strong>연결이 유용한 지점과 오해를 만드는 지점을 함께 설명</strong></td></tr>
+    <tr><th>평가와 기준의 공정성</th><td>문화자본·교육 불평등, 자료 접근성, 기술이 특정 집단을 배제하는 문제</td><td>성적이 인간적 가치 전체를 판정하는 문제, 결과점수와 사고과정을 함께 보는 평가 대안</td><td><strong>수학·과학 수업에서 결과뿐 아니라 과정과 수정 이유를 평가하는 작은 루브릭 설계</strong></td></tr>
+  </tbody></table></div>
+  <div class="quiz" style="margin-top:16px"><div><small>RANDOM CHECK</small><h3 id="quizQuestion">버튼을 눌러 오늘 모임에서 나올 만한 질문을 확인하세요.</h3><div class="quiz-answer" id="quizAnswer"></div></div><div class="quiz-actions"><button class="btn primary" onclick="nextQuiz()">새 질문</button><button class="btn soft" onclick="showQuizAnswer()">답 보기</button></div></div>
+</section>
+
+<section class="section" id="direction">
+  <div class="section-head"><div><span class="section-no">05 · DIRECTION HYPOTHESES</span><h2>오늘 모임에서 검토할 방향 후보</h2><p>아래는 확정 진로가 아니라 현재 기록이 자연스럽게 지지하는 세 가지 가설입니다. 하나를 골라 이유를 말해 보세요.</p></div></div>
+  <div class="hypothesis-grid">
+    <label class="hypothesis"><input type="radio" name="direction" value="수학교육"><small>가설 A · 현재 주축</small><h3>표현과 오개념을 다루는 수학교육</h3><p>공식을 적용하는 데서 끝나지 않고, 같은 관계를 표·식·그림·말로 바꿀 때 무엇이 남고 사라지는지 살피는 방향입니다.</p><ul><li>N회독 이차함수 모델</li><li>규칙 90 수열과 공간 배열</li><li>신뢰구간·근사 조건</li><li>오류 지점을 찾게 하는 멘토링</li></ul></label>
+    <label class="hypothesis"><input type="radio" name="direction" value="과학교육"><small>가설 B · 강한 보조축</small><h3>모형의 가정과 경계를 가르치는 과학교육</h3><p>과학 개념을 많이 아는 것보다, 실험·비유·모형을 어디까지 믿을 수 있는지 조건과 한계를 설명하는 방향입니다.</p><ul><li>구강 헹굼 실험과 표본 수</li><li>피셔의 성비 모형</li><li>주기율표 예측과 실제값</li><li>신경가소성·학습곡선 연결</li></ul></label>
+    <label class="hypothesis"><input type="radio" name="direction" value="교육평가"><small>가설 C · 인간적 확장축</small><h3>공정한 설명과 평가를 설계하는 교육</h3><p>학습자를 점수나 정답으로만 보지 않고, 출발점·오류·수정과정을 확인해 스스로 성장하도록 돕는 방향입니다.</p><ul><li>능력주의·평가의 윤리</li><li>친구의 자립을 돕는 체육</li><li>쉬운 언어로 다시 설명한 영어</li><li>눈높이를 조절한 디지털 봉사</li></ul></label>
+  </div>
+  <div class="priority"><strong>현재 자료만 놓고 본 우선순위:</strong> 1학년 희망 분야가 수학교육계열로 기재되어 있고, 수학·통계·모형·멘토링 증거가 반복되므로 <b>가설 A가 가장 직접적</b>입니다. 다만 채이의 차별점은 수학 지식만이 아니라 <b>과학적 검증(B)과 인간 중심 평가(C)를 함께 가져가는 것</b>에 있습니다.</div>
+  <div class="next-grid">
+    <div class="next-card"><em>다음 활동 후보 1</em><b>같은 확률 문제를 식·그림·시뮬레이션으로 설명하면 어디에서 덜 틀릴까?</b><p>친구의 첫 풀이와 설명 후 풀이를 비교해 ‘표현 방식과 오개념’의 관계를 확인하는 작은 수학교육 탐구.</p></div>
+    <div class="next-card"><em>다음 활동 후보 2</em><b>비유는 언제 이해를 돕고 언제 오개념을 만들까?</b><p>성비 균형–화학 평형처럼 닮은 구조와 다른 원리를 구분하고, 설명 전후 이해를 확인하는 수학·과학교육 탐구.</p></div>
+    <div class="next-card"><em>다음 활동 후보 3</em><b>답을 알려주는 멘토링과 오류 지점을 찾게 하는 멘토링은 무엇이 다를까?</b><p>정답률만 보지 않고 친구가 스스로 다음 문제를 푸는지 확인해 ‘도움의 기준’을 증거로 남기는 교육 탐구.</p></div>
+  </div>
+</section>
+
+<section class="section" id="memo">
+  <div class="section-head"><div><span class="section-no">06 · MEETING MEMO</span><h2>오늘 실제로 가져갈 메모</h2><p>각 칸을 짧게라도 채우면 모임에서 수동적으로 듣기보다 자기 방향을 제안할 수 있습니다.</p></div></div>
+  <div class="memo-grid">
+    <div class="memo-card"><label for="memo1">1. 내가 가장 ‘나답다’고 느끼는 활동 3개</label><small>잘 써진 문장이 아니라 실제로 기억이 선명하고 내가 선택한 장면을 고르기</small><textarea id="memo1" placeholder="예: 규칙 90에서 3세대와 5세대를 비교한 장면 / ..."></textarea></div>
+    <div class="memo-card"><label for="memo2">2. 처음 생각이나 방법을 바꾼 장면</label><small>틀린 가설, 예상 밖 결과, 친구 반응, 제작 문제 등 무엇 때문에 바뀌었는지</small><textarea id="memo2" placeholder="처음에는 …라고 생각했지만 … 때문에 …로 수정함"></textarea></div>
+    <div class="memo-card"><label for="memo3">3. 다음 학기에도 이어가고 싶은 질문</label><small>주제명보다 ‘계속 붙들고 싶은 문제’를 적기</small><textarea id="memo3" placeholder="예: 같은 내용을 다르게 표현하면 이해와 오류가 어떻게 달라지는가?"></textarea></div>
+    <div class="memo-card"><label for="memo4">4. 더 반복하고 싶지 않은 방식</label><small>관심 분야 조사·개념 나열·그럴듯한 확장 중 줄여야 할 것을 솔직히 적기</small><textarea id="memo4" placeholder="예: 자료를 많이 찾았지만 내가 선택하거나 검증한 장면이 없는 탐구"></textarea></div>
+    <div class="memo-card"><label for="memo5">5. 선생님께 꼭 물을 질문</label><small>오늘 모임에서 결정에 필요한 질문 1~2개</small><textarea id="memo5" placeholder="예: 수학교육을 주축으로 두되 과학교육의 모형 검증을 보조축으로 가져가도 자연스러운가?"></textarea></div>
+    <div class="memo-card"><label for="memo6">6. 실제 증거가 있는 자료</label><small>보고서·표·그림·수정본·발표자료·멘토 기록 중 바로 찾을 수 있는 것</small><textarea id="memo6" placeholder="파일명이나 보관 위치를 적기"></textarea></div>
+  </div>
+  <div class="script-box"><h3>60초 전체 소개 초안</h3><textarea id="script">저는 1학년 때부터 수학이나 과학 개념을 조사하는 데서 그치기보다, 같은 현상이 어떤 조건과 표현에서 다르게 보이는지를 자주 질문했습니다. 자동음성인식이 세대와 지역 발음 차이를 놓치는 문제, 반복 학습의 효율을 이차함수로 나타낸 활동, 탄수화물 구강 헹굼 실험에서 표본 수를 다시 계산한 활동이 그 예입니다. 2학년 1학기에는 규칙 90에서 개수와 배열을 구분하고, 신뢰수준을 개별 구간의 확률이 아니라 반복 절차의 성질로 고쳐 이해했으며, 성비 모형과 화학 평형의 비유가 어디까지 성립하는지도 따져 보았습니다. 또 멘토링과 체육 활동에서는 답이나 동작을 대신해 주기보다 친구가 막힌 지점을 찾아 스스로 해내도록 돕는 쪽으로 설명 방식을 바꾸었습니다. 그래서 앞으로는 수학교육을 중심으로, 표현 방식과 오개념·모형의 한계·공정한 피드백을 실제 학습자 자료로 확인하는 탐구를 해보고 싶습니다.</textarea><div class="script-actions"><button class="btn primary" onclick="copyScript()">60초 초안 복사</button><button class="btn soft" onclick="downloadNotes()">전체 메모 TXT 저장</button><button class="btn soft" onclick="window.print()">인쇄·PDF 저장</button><button class="btn warn" onclick="resetAll()">작성 내용 초기화</button></div></div>
+</section>
+
+<section class="section" id="final">
+  <div class="section-head"><div><span class="section-no">07 · FINAL GATE</span><h2>교실 들어가기 전 마지막 점검</h2><p>아래 8개가 모두 체크되면 오늘 모임에서 유의미한 대화를 나눌 준비가 된 것입니다.</p></div><div class="dashboard"><div><div class="progress-title">최종 준비도</div><div class="bar"><i id="finalBar"></i></div><div class="dash-note" id="finalProgressText">0 / 8 완료</div></div><div class="progress-score"><span id="finalPercent">0</span>%</div></div></div>
+  <div class="check-grid">
+    <label class="final-check"><input type="checkbox" class="final-prep" id="f1"><span><b>1학년 대표 장면 3개</b>를 활동명 없이도 설명할 수 있다.</span></label>
+    <label class="final-check"><input type="checkbox" class="final-prep" id="f2"><span><b>2학년 10개 교과</b>의 중심 질문을 각각 한 문장으로 말할 수 있다.</span></label>
+    <label class="final-check"><input type="checkbox" class="final-prep" id="f3"><span>내 기록에서 반복되는 판단 방식이 <b>구분·조건·반례·표현·설명</b>임을 이해했다.</span></label>
+    <label class="final-check"><input type="checkbox" class="final-prep" id="f4"><span>가장 나다운 활동 3개와, 기억이 흐릿해 <b>확인이 필요한 활동</b>을 구분했다.</span></label>
+    <label class="final-check"><input type="checkbox" class="final-prep" id="f5"><span>수학교육·과학교육·교육평가 중 <b>현재 주축 가설 하나</b>를 고르고 이유를 적었다.</span></label>
+    <label class="final-check"><input type="checkbox" class="final-prep" id="f6"><span>다음 활동에서는 조사량보다 <b>학습자 변화·오류·수정 증거</b>를 남겨야 함을 이해했다.</span></label>
+    <label class="final-check"><input type="checkbox" class="final-prep" id="f7"><span>선생님께 물을 질문을 최소 한 개 작성했다.</span></label>
+    <label class="final-check"><input type="checkbox" class="final-prep" id="f8"><span>60초 소개 초안을 소리 내어 한 번 이상 말해 보았다.</span></label>
+  </div>
+  <div class="notice" style="margin-top:15px"><b>오늘의 목표</b><br>“제가 이런 진로라서 이런 소재를 했습니다”보다 “저는 여러 활동에서 이런 방식으로 질문하고 판단했습니다. 다음에는 이 역량을 실제 학습자 변화로 증명해 보고 싶습니다”라고 말하는 것이 훨씬 좋습니다.</div>
+  <p class="source-note"><strong>자료 범위:</strong> 사용자 제공 1학년 학교생활기록부 사진 2~7/8쪽, 「김채이 2학년 1학기 10개 교과 세특 교과별 교사 문체·역량평가 배치 분산본」, 기존 「김채이 10개교과 세특 자기이해 역량점검」을 바탕으로 재구성했습니다. 제공 자료에 없는 활동·성적·결과는 추가하지 않았으며, ‘방향 후보’와 ‘다음 활동 후보’는 오늘 논의를 위한 제안입니다.</p>
+</section>
+</div></main>
+<div class="floating"><button onclick="downloadNotes()">메모 저장</button><button onclick="window.scrollTo({top:0,behavior:'smooth'})">맨 위로</button></div>
+<div class="toast" id="toast">저장되었습니다.</div>
+<script>
+const Y1=[
+ {s:'국어',q:'왜 자동음성인식은 아버지의 발음을 잘 알아듣지 못했을까?',flow:['「나는 반딧불」의 비음화·유음화 적용 조건과 순서를 분석함','기기 오류가 아니라 표준 발음 중심 학습 데이터가 세대·지역 차이를 충분히 반영하지 못한다는 점을 확인함','기술이 특정 화자 집단을 배제할 수 있다는 문제를 문화자본·교육 불평등 토론으로 확장함'],take:'언어 규칙을 기술 문제와 사회 구조로 넓힌 기록',tags:['음운 변동','ASR','문화자본','기술적 배제']},
+ {s:'수학',q:'반복 학습은 언제부터 효율이 줄어드는가?',flow:['N회독 학습과 성취도의 가상 데이터를 이차함수로 모델링함','구간별 평균변화율을 계산해 약 25시간 이후 효율 감소를 해석함','같은 단원을 4회 연속 학습한 뒤 새 단원으로 이동하는 전략을 제안함'],take:'일상 고민을 수학적 관계로 바꾸고 최적점을 해석한 기록',tags:['이차함수','평균변화율','최적화','학습 전략']},
+ {s:'영어',q:'잘 설명한다는 것은 어려운 말을 많이 쓰는 것일까?',flow:['청중의 공감을 유도하는 질문으로 발표 도입을 재구성함','화려한 어휘보다 쉬운 언어가 소통에 더 효과적일 수 있음을 확인함','학업 스트레스에 관한 영시를 여러 차례 고치며 은유와 반복 구조로 감정을 전달함'],take:'청중의 이해를 기준으로 언어 선택과 표현을 조정한 기록',tags:['쉬운 영어','청중 고려','영시','퇴고']},
+ {s:'한국사',q:'역사 제도의 불합리성과 왕권 변화를 수치로 표현할 수 있을까?',flow:['결부법의 비옥도별 1결 면적을 현대 단위로 환산해 문제를 수치로 제시함','대한제국의 삼각측량법 오차를 역으로 추정하고 자료 접근성의 한계를 경험함','태조~중종 왕권 강도를 Y축으로 두고 11명 군주의 흐름을 곡선으로 시각화함'],take:'추상적 역사 개념을 수치·도표로 구조화한 기록',tags:['결부법','삼각측량','왕권 곡선','자료 접근성']},
+ {s:'통합사회',q:'러브버그 대량 출몰은 한 가지 원인으로 설명할 수 있을까?',flow:['시스템적 사고를 분석틀로 선택함','기온 상승·도시화·천적 부재 등 여러 변수가 상호작용한 결과로 해석함','언론 보도보다 정부기관 원자료를 교차 검증하고 자료 한계를 보고서에 명시함'],take:'사회 현상을 단일 원인이 아닌 상호작용 구조로 본 기록',tags:['시스템 사고','러브버그','교차 검증','자료 한계']},
+ {s:'통합과학',q:'스포츠 관람이 몸과 마음에 미치는 변화는 어떤 과학으로 설명할 수 있을까?',flow:['중심 원리·돌연변이·후성유전학을 질병 사례와 함께 설명함','야구 관람의 교감신경 활성·심박수·스트레스 반응을 분석함','인지 부조화·유스트레스·부분 강화 효과를 팬덤 현상에 적용하고 복식호흡 실험을 제안함'],take:'생리학과 심리학을 연결해 일상 현상을 설명한 기록',tags:['중심 원리','후성유전','자율신경','팬덤 심리']},
+ {s:'과학탐구실험',q:'선수가 물을 뱉는 탄수화물 구강 헹굼은 실제 수행을 높일까?',flow:['6% 말토덱스트린·인공감미료·물 조건을 비교한 1분 버피테스트를 수행함','말토덱스트린 조건의 평균 향상과 단맛만 준 조건의 미미한 효과를 구분함','검정력 0.8 기준 필요한 표본 수 34명을 계산해 결과의 한계를 함께 기록함'],take:'결과와 함께 표본·검정력·윤리 조건을 확인한 기록',tags:['대조군','20.2%','검정력 0.8','표본 34명']},
+ {s:'체육',q:'운동 기록이 낮을 때 무엇을 바꾸면 실제 수행이 달라질까?',flow:['유연성 저하 원인을 어깨 긴장과 호흡 문제로 분석함','스트레칭과 호흡 조절로 기록을 3cm에서 19cm로 개선함','오래달리기도 페이스·호흡 훈련으로 1분 이상 단축하고 팀 경기에서는 정보 전달과 공간 창출로 기여함'],take:'수치 목표를 세우고 원인–전략–실행으로 기록을 바꾼 장면',tags:['3→19cm','1분 단축','PAPS','팀워크']},
+ {s:'음악',q:'감상은 느낌만 말하는 것일까, 근거를 들어 설명할 수 있을까?',flow:['시대별 서양음악을 듣고 포트폴리오로 구성함','선율의 변화와 느낌의 차이를 구체적으로 기록함','역사·문화적 배경을 근거로 자신의 총평을 명확히 표현함'],take:'감정을 막연히 쓰지 않고 음악 요소와 시대 맥락으로 설명한 기록',tags:['선율','감상 근거','음악사','포트폴리오']},
+ {s:'미술',q:'보이지 않는 역동성과 힘을 공간·명암·곡선으로 어떻게 보여줄까?',flow:['운동선수 작품을 선정해 종목별 움직임이 드러나는 전시와 팸플릿을 구성함','축구 바나나킥·야구 커브·탁구 스핀을 마그누스 효과로 해석함','공기의 흐름과 회전 방향을 파동·곡선으로 시각화하고 직접 그림·영상을 제작함'],take:'과학 개념을 시각 언어로 번역하고 교육적 전달까지 설계한 기록',tags:['역동성','마그누스 효과','시각화','리버럴 아츠']}
+];
+const Y2=[
+ {s:'현대사회와 윤리',q:'성적 평가가 인간의 가치 전체를 판단하는 기준이 될 수 있을까?',flow:['칸트의 인간성 정식에서 ‘오직’에 주목해 수단 활용과 오직 수단으로 취급함을 구분함','보편화 가능성으로 성적이 인격과 가능성까지 판정하는 준칙의 문제를 논증함','칸트의 빈틈을 공자·맹자의 성장 맥락으로 보완하고 결과점수와 사고과정을 함께 보는 평가를 제안함'],take:'한 관점의 설명력과 한계를 나누고 다른 관점으로 보완한 기록',tags:['인간성 정식','보편화','능력주의','성장 맥락']},
+ {s:'대수',q:'규칙 90의 복잡한 무늬를 수열 하나로 어디까지 표현할 수 있을까?',flow:['전체가 등비수열이라는 가설이 실제 값과 어긋남을 확인함','n=2^k-1인 세대의 부분수열에서 a_n=2^k 규칙을 찾아 1·3·7·15세대로 검증함','1의 개수는 같지만 배열이 다른 3세대와 5세대를 비교해 수열이 공간 정보를 놓친다는 한계를 밝힘'],take:'틀린 가설을 지우지 않고 부분 규칙과 표현의 한계로 바꾼 기록',tags:['규칙 90','부분수열','지수·로그','개수와 배열']},
+ {s:'미술',q:'「날개」의 박제–각성–비상을 입체 공간으로 어떻게 번역할까?',flow:['어두운 방–정오 시계–날아오르는 새를 낮음에서 높음으로 이어지는 3단 부조로 설계함','방의 얕은 깊이와 새의 돌출 정도를 달리해 정서적 거리를 표현함','시계층이 고정되지 않자 의미를 줄이지 않고 우드락 받침으로 구조를 바꿈'],take:'문학적 상징을 높이·깊이·재료·시선 흐름의 미술 언어로 바꾼 기록',tags:['부조','정오 시계','3단 구성','구조 변경']},
+ {s:'체육',q:'친구를 돕는다는 것은 동작을 대신 완성해 주는 것일까?',flow:['요가 동작을 손의 위치와 힘의 방향으로 나누어 시범 보임','반복 설명에도 막히자 같은 말을 되풀이하지 않고 손 위치와 순서를 다시 조정함','친구가 스스로 수행할 시간을 주고 자신의 평가가 끝난 뒤에도 독립 수행을 확인함'],take:'도움의 기준을 ‘완성’에서 ‘자립’으로 옮긴 기록',tags:['요가','설명 조정','기다림','자립']},
+ {s:'확률과 통계',q:'성공률이라는 한 숫자를 얼마나 믿을 수 있을까?',flow:['20회 중 15회와 50회 중 30회를 비교해 표본 수가 적은 쪽의 구간이 더 넓음을 해석함','95%를 개별 구간의 확률로 이해했다가 반복 표집 시뮬레이션으로 절차의 성질임을 고쳐 이해함','성공률 100%에서 정규근사형 구간 폭이 0이 되는 반례로 공식의 경계 조건을 표시함'],take:'값–불확실성–근사 조건을 함께 확인한 통계 기록',tags:['표본평균','신뢰구간','95%','근사 조건']},
+ {s:'영어',q:'영어에 존댓말이 없다면 존대 기능은 어디에 있을까?',flow:['thou·thee·ye·you의 수와 격, 정중한 복수형 you의 역사적 확장을 조사함','퀘이커가 평등을 중시하면서 thou를 사용한 사례를 반례로 해석함','Give me your pen과 Could I borrow your pen을 비교해 조동사·간접 요청이 관계와 요구 강도를 조절함을 설명함'],take:'언어의 역사·반례·실제 문장을 통해 주장을 조정한 기록',tags:['thou/you','퀘이커','간접 요청','통시·공시']},
+ {s:'생명과학',q:'동물의 성비가 1:1에 가까운 이유를 염색체 확률만으로 설명할 수 있을까?',flow:['수컷 20·암컷 80과 50:50 조건에서 개체당 기대 자손 수를 계산함','희소한 성의 번식 이점을 빈도의존선택으로 설명함','생산비용·생존율·짝짓기 구조를 가정으로 구분하고 피셔 원리가 부모 투자 균형을 다룬다는 점으로 결론을 조정함'],take:'단순 모형을 만든 뒤 가정과 실제 조건을 다시 넣어 수정한 기록',tags:['피셔 원리','20:80','빈도의존선택','모형 가정']},
+ {s:'문학',q:'능동적으로 행동하는 것과 스스로 목적을 정하는 것은 같은가?',flow:['처음에는 검녀를 주체적 인물로 보았으나 행동 주도성과 목적 설정을 구분함','복수는 소저의 뜻에서 시작하지만 떠나는 결말에서는 검녀 자신의 판단이 작동함을 근거로 해석을 수정함','숫자가 삶을, 기계가 돌봄을 대신할 수 있는지까지 세 작품의 공통 질문으로 연결함'],take:'작품 내부의 작은 단서로 첫 평가를 고치고 창작 형식으로 확장한 기록',tags:['검녀','목적 설정','산수의 세계','양생전']},
+ {s:'화학',q:'주기율표는 왜 암기표가 아니라 미지의 대상을 예측하는 지도일까?',flow:['주기·족을 전자껍질·원자가전자와 연결해 성질의 규칙을 설명함','멘델레예프의 에카규소 예측과 실제 저마늄 값을 표로 대조하고 차이 난 항목도 포함함','다이아몬드·흑연·강철 사례로 구조와 배열이 성질을 만든다는 공통 기준을 제시함'],take:'구조와 주기성에서 예측을 만들고 어긋남까지 해석한 기록',tags:['주기율표','에카규소','저마늄','구조–성질']},
+ {s:'일본어',q:'영어의 light와 right가 일본어에서 같은 형태가 될 때 어떻게 구별할 수 있을까?',flow:['개음절 선호·모라 리듬·자음군 제약·L/R 대립 부재로 원인을 분석함','기존 체계의 변화를 줄이기 위해 라행은 유지하고 L 소리만 별도 표기하는 안을 선택함','훈민정음 제자 원리를 참고해 혀끝 동작을 형상화하고 구별성·적용 가능성·학습 용이성을 기준으로 새 가나를 설계함'],take:'언어 체계의 제약을 분석한 뒤 실제 규칙과 문자를 설계한 기록',tags:['모라','개음절','L/R','새 가나']}
+];
+const quizData=[
+ ['1학년 국어에서 ASR 문제를 단순 기기 오류로 보지 않은 이유는?','표준 발음 중심 학습 데이터가 세대·지역 발음 차이를 충분히 반영하지 못할 수 있고, 그 결과 특정 화자 집단이 사실상 배제될 수 있다고 보았기 때문입니다.'],
+ ['탄수화물 구강 헹굼 탐구에서 34명이라는 수치는 왜 중요했나?','관찰한 차이를 믿을 수 있으려면 어느 정도 표본이 필요한지 검정력 0.8을 기준으로 계산한 값입니다. 결과만 강조하지 않고 한계를 함께 본 증거입니다.'],
+ ['규칙 90에서 3세대와 5세대를 비교한 이유는?','두 세대의 1의 개수는 같지만 배열은 달라서, 수열이 양은 보존해도 공간적 배치는 담지 못한다는 한계를 보여주기 때문입니다.'],
+ ['95% 신뢰수준은 “이 구간에 참값이 있을 확률 95%”와 무엇이 다른가?','같은 절차로 표본을 반복해 구간을 만들면 장기적으로 약 95%의 구간이 고정된 참값을 포함한다는 뜻입니다. 이미 계산된 한 구간에 확률을 붙이는 말이 아닙니다.'],
+ ['피셔의 원리를 단순히 개체 수 1:1 원리라고 말하면 왜 부족한가?','핵심은 두 성에 대한 부모의 투자 비용 균형이며, 생산비용·생존율·짝짓기 구조가 다르면 개체 수 성비가 1:1에서 벗어날 수 있기 때문입니다.'],
+ ['체육에서 “기다림도 도움”이라고 본 이유는?','동작을 대신 완성하면 친구의 독립 수행 여부를 확인할 수 없습니다. 손의 위치와 힘의 방향만 조정해 주고 스스로 반복할 시간을 주어야 자립을 돕는 설명이 됩니다.'],
+ ['주기율표 발표에서 예측이 어긋난 값도 포함한 이유는?','주기율표를 완성된 정답표가 아니라 주변 규칙으로 미지의 성질을 추론하는 모형으로 보았기 때문에, 가까운 값뿐 아니라 차이와 모형의 한계도 설명해야 했습니다.'],
+ ['채이의 1학년과 2학년을 가장 잘 잇는 한 문장은?','같아 보이는 개념을 구분하고, 값보다 조건을 확인하며, 반례가 나오면 설명을 고친 뒤 다른 표현이나 사람에게 다시 전달하는 학생이라는 문장입니다.'],
+ ['수학교육 방향이 현재 가장 자연스러운 이유는?','1학년 희망 분야가 수학교육계열로 기재되어 있고, 수학 모델링·통계·표현의 한계·오류 진단형 멘토링이 여러 기록에서 반복되기 때문입니다.'],
+ ['다음 활동에서 가장 새롭게 보완해야 할 증거는?','탐구 내용을 더 많이 조사하는 것보다, 설명 전후 친구의 풀이·오개념·독립 수행이 실제로 어떻게 달라졌는지 남기는 학습자 변화 증거입니다.']
+];
+let timerHandle=null,timerRemain=60,quizIndex=-1,allOpen=false;
+function renderSubjects(){
+ const grid=document.getElementById('subjectGrid');
+ const all=[...Y1.map((x,i)=>({...x,year:'y1',label:'1학년',id:'y1-'+i})),...Y2.map((x,i)=>({...x,year:'y2',label:'2학년 1학기',id:'y2-'+i}))];
+ grid.innerHTML=all.map(x=>`<details class="subject-card" data-year="${x.year}" data-search="${[x.s,x.q,x.flow.join(' '),x.tags.join(' ')].join(' ').replace(/"/g,'&quot;')}"><summary><span class="subject-chip">${x.label}</span><span class="subject-title"><b>${x.s}</b><span>${x.q}</span></span></summary><div class="subject-body"><div class="core">중심 질문 · ${x.q}</div><div class="flow">${x.flow.map((f,i)=>`<div class="flow-item"><i>${i+1}</i><span>${f}</span></div>`).join('')}</div><div class="takeaway"><b>이 과목에서 기억할 채이:</b> ${x.take}</div><div class="tags">${x.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div><label class="memory"><input type="checkbox" class="memory-check" id="mem-${x.id}"><span>원문을 보지 않고 이 과목을 20초로 설명할 수 있다.</span></label></div></details>`).join('');
+}
+function startTimer(sec){clearInterval(timerHandle);timerRemain=sec;drawTimer();timerHandle=setInterval(()=>{timerRemain--;drawTimer();if(timerRemain<=0){clearInterval(timerHandle);showToast('시간이 끝났습니다. 핵심이 한 문장으로 남았는지 확인하세요.')}},1000)}
+function resetTimer(){clearInterval(timerHandle);timerRemain=60;drawTimer()}
+function drawTimer(){const m=String(Math.floor(timerRemain/60)).padStart(2,'0'),s=String(timerRemain%60).padStart(2,'0');document.getElementById('timer').textContent=m+':'+s}
+function updateProgress(){
+ const mem=[...document.querySelectorAll('.memory-check')],done=mem.filter(x=>x.checked).length;const mp=Math.round(done/Math.max(mem.length,1)*100);document.getElementById('subjectPercent').textContent=mp;document.getElementById('subjectBar').style.width=mp+'%';document.getElementById('subjectProgressText').textContent=`${done} / ${mem.length}개 과목 숙지`;
+ const fs=[...document.querySelectorAll('.final-prep')],fd=fs.filter(x=>x.checked).length;const fp=Math.round(fd/Math.max(fs.length,1)*100);document.getElementById('finalPercent').textContent=fp;document.getElementById('finalBar').style.width=fp+'%';document.getElementById('finalProgressText').textContent=`${fd} / ${fs.length} 완료`;
+}
+function collectState(){const st={};document.querySelectorAll('input,textarea').forEach(el=>{const k=el.id||el.name;if(!k)return;if(el.type==='checkbox')st[k]=el.checked;else if(el.type==='radio'){if(el.checked)st[el.name]=el.value}else st[k]=el.value});return st}
+function saveState(){try{localStorage.setItem('chaei_meeting_prep_v1',JSON.stringify(collectState()))}catch(e){}updateProgress()}
+function restoreState(){let st={};try{st=JSON.parse(localStorage.getItem('chaei_meeting_prep_v1')||'{}')}catch(e){}document.querySelectorAll('input,textarea').forEach(el=>{const k=el.id||el.name;if(el.type==='checkbox'&&k in st)el.checked=!!st[k];else if(el.type==='radio'&&el.name in st&&el.value===st[el.name])el.checked=true;else if(el.type!=='checkbox'&&el.type!=='radio'&&k in st)el.value=st[k]});updateProgress()}
+function applyFilter(){const term=document.getElementById('subjectSearch').value.trim().toLowerCase();const active=document.querySelector('.filter[data-filter].active')?.dataset.filter||'all';document.querySelectorAll('.subject-card').forEach(c=>{const yearOk=active==='all'||c.dataset.year===active;const searchOk=!term||c.dataset.search.toLowerCase().includes(term);c.hidden=!(yearOk&&searchOk)})}
+function nextQuiz(){let n;do{n=Math.floor(Math.random()*quizData.length)}while(n===quizIndex&&quizData.length>1);quizIndex=n;document.getElementById('quizQuestion').textContent=quizData[n][0];const a=document.getElementById('quizAnswer');a.textContent=quizData[n][1];a.classList.remove('show')}
+function showQuizAnswer(){if(quizIndex<0)nextQuiz();document.getElementById('quizAnswer').classList.add('show')}
+function copyScript(){const t=document.getElementById('script');t.focus();t.select();let copied=false;try{copied=document.execCommand('copy')}catch(e){}if(!copied&&navigator.clipboard){navigator.clipboard.writeText(t.value).catch(()=>{})}showToast('60초 초안을 복사했습니다.')}
+function downloadNotes(){const dir=document.querySelector('input[name="direction"]:checked')?.value||'미선택';const lines=['김채이 주제 탐색 및 방향설계 모임 준비 메모','',`교과 숙지: ${document.querySelectorAll('.memory-check:checked').length}/20`,`선택한 방향 가설: ${dir}`,'',`1. 나다운 활동\n${document.getElementById('memo1').value}`,'',`2. 생각을 바꾼 장면\n${document.getElementById('memo2').value}`,'',`3. 이어갈 질문\n${document.getElementById('memo3').value}`,'',`4. 반복하지 않을 방식\n${document.getElementById('memo4').value}`,'',`5. 선생님께 물을 질문\n${document.getElementById('memo5').value}`,'',`6. 실제 증거 자료\n${document.getElementById('memo6').value}`,'',`60초 소개\n${document.getElementById('script').value}`];const b=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='김채이_주제탐색_방향설계_모임메모.txt';a.click();URL.revokeObjectURL(a.href);showToast('메모 파일을 저장했습니다.')}
+function resetAll(){if(!confirm('체크와 메모를 모두 초기화할까요?'))return;try{localStorage.removeItem('chaei_meeting_prep_v1')}catch(e){};document.querySelectorAll('input').forEach(x=>{if(x.type==='checkbox'||x.type==='radio')x.checked=false;else x.value=''});document.querySelectorAll('textarea').forEach(x=>x.value='');document.getElementById('script').value='저는 1학년 때부터 수학이나 과학 개념을 조사하는 데서 그치기보다, 같은 현상이 어떤 조건과 표현에서 다르게 보이는지를 자주 질문했습니다. 자동음성인식이 세대와 지역 발음 차이를 놓치는 문제, 반복 학습의 효율을 이차함수로 나타낸 활동, 탄수화물 구강 헹굼 실험에서 표본 수를 다시 계산한 활동이 그 예입니다. 2학년 1학기에는 규칙 90에서 개수와 배열을 구분하고, 신뢰수준을 개별 구간의 확률이 아니라 반복 절차의 성질로 고쳐 이해했으며, 성비 모형과 화학 평형의 비유가 어디까지 성립하는지도 따져 보았습니다. 또 멘토링과 체육 활동에서는 답이나 동작을 대신해 주기보다 친구가 막힌 지점을 찾아 스스로 해내도록 돕는 쪽으로 설명 방식을 바꾸었습니다. 그래서 앞으로는 수학교육을 중심으로, 표현 방식과 오개념·모형의 한계·공정한 피드백을 실제 학습자 자료로 확인하는 탐구를 해보고 싶습니다.';updateProgress();showToast('초기화했습니다.')}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400)}
+renderSubjects();restoreState();drawTimer();
+document.addEventListener('change',e=>{if(e.target.matches('input,textarea'))saveState()});let inputTimer;document.addEventListener('input',e=>{if(e.target.matches('textarea')){clearTimeout(inputTimer);inputTimer=setTimeout(saveState,350)}});
+document.getElementById('subjectSearch').addEventListener('input',applyFilter);
+document.querySelectorAll('.filter[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');applyFilter()}));
+document.getElementById('toggleDetails').addEventListener('click',e=>{allOpen=!allOpen;document.querySelectorAll('.subject-card:not([hidden])').forEach(d=>d.open=allOpen);e.target.textContent=allOpen?'모두 접기':'모두 펼치기'});
+</script>
+</body>
+</html>
