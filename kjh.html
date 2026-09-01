@@ -7,8 +7,10 @@
 
 <!--
 ==================================================================
-  [김지한 학생 · 예약자 최혜린 학부모] 인터랙티브 안내
-  ※ 진주 윙스타워(본원) / 예약 확정 / 예약번호 1304974833
+  [김지현 학생 · 예약자 박정화 학부모] 인터랙티브 안내
+  ※ 진주 윙스타워(본원) / 예약 확정 / 예약번호 1338061942
+  ※ 일정 변경 조율 중: 9/5(토) 오후 7시 → 9/2(수) 오후 5시 또는 7시
+  ※ 시간 확정 시 CONFIG의 apptISO / apptEnd / apptLabel 수정 필요
   ※ 일정 변경 시 아래 CONFIG의 apptISO 값만 수정하면
      카운트다운·D-day 뱃지가 자동으로 다시 계산됩니다.
   ※ 색상/로고는 토크콘서트 페이지(v3)와 동일한 아이덴티티 사용
@@ -149,45 +151,141 @@
   .prep-note{font-size:13px; color:var(--muted); line-height:1.65; margin-top:12px;}
   .prep-note b{color:var(--green-deep); font-weight:700;}
 
-  /* ── 성적 요약 ── */
-  .grade{display:flex; gap:9px; margin-bottom:12px;}
-  .grade-box{
-    flex:1; background:var(--white); border:1px solid rgba(22,21,18,.10);
-    border-radius:12px; padding:12px 10px; text-align:center;
+  /* ── 일정 변경 안내 ── */
+  .changed{
+    position:relative; overflow:hidden; border-radius:14px; margin-bottom:16px;
+    background:var(--green-pale); border:1px solid rgba(14,123,69,.22); padding:15px 16px;
   }
-  .grade-lab{font-size:11px; font-weight:900; letter-spacing:.06em; color:var(--muted);}
-  .grade-num{font-family:var(--serif); font-size:21px; font-weight:700; color:var(--green-deep); margin-top:3px; line-height:1.15;}
-  .grade-sub{font-size:10.5px; color:var(--muted); margin-top:2px;}
+  .changed::before{content:""; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--green);}
+  .changed h3{display:flex; align-items:center; gap:8px; font-size:14.5px; font-weight:900; color:var(--green-deep); margin-bottom:9px;}
+  .changed h3 svg{width:17px; height:17px;}
+  .changed .swap{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .changed .old{font-size:13.5px; color:var(--muted); text-decoration:line-through;}
+  .changed .arw{color:var(--green); font-weight:900;}
+  .changed .new{font-size:15px; font-weight:900; color:var(--green-deep);}
+  .changed p{font-size:13px; color:#3B382F; line-height:1.65; margin-top:9px;}
 
   /* ── 상담 요청 카드 ── */
-  .ask-lead{
-    font-size:13.5px; color:#3B382F; line-height:1.7; background:var(--green-pale);
-    border-radius:12px; padding:13px 15px; margin-bottom:14px;
+  .quote{
+    font-size:13.5px; color:#4A4740; line-height:1.7; background:var(--white);
+    border:1px solid rgba(22,21,18,.10); border-radius:12px; padding:13px 15px; margin-bottom:13px;
   }
-  .ask-lead b{font-weight:900; color:var(--green-deep);}
+  .quote .qlab{display:block; font-size:10.5px; font-weight:900; letter-spacing:.1em; color:var(--green); margin-bottom:5px;}
   .ask-list{display:flex; flex-direction:column; gap:10px;}
-  .ask{
-    position:relative; background:var(--white); border:1px solid rgba(22,21,18,.10);
-    border-radius:13px; padding:14px 15px 13px 16px; overflow:hidden;
-  }
+  .ask{position:relative; background:var(--white); border:1px solid rgba(22,21,18,.10);
+    border-radius:13px; padding:14px 15px 13px 16px; overflow:hidden;}
   .ask::before{content:""; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--green);}
   .ask h4{display:flex; align-items:center; gap:8px; font-size:14px; font-weight:900; color:var(--green-deep); margin-bottom:6px;}
-  .ask h4 .n{
-    flex:none; width:20px; height:20px; border-radius:6px; display:grid; place-items:center;
-    background:var(--green-pale); color:var(--green-deep); font-size:11px; font-weight:900;
-  }
+  .ask h4 .n{flex:none; width:20px; height:20px; border-radius:6px; display:grid; place-items:center;
+    background:var(--green-pale); color:var(--green-deep); font-size:11px; font-weight:900;}
   .ask p{font-size:13.5px; color:#4A4740; line-height:1.7;}
   .ask p b{color:var(--ink); font-weight:700;}
-  .goal{display:flex; flex-direction:column; gap:6px; margin-top:9px;}
-  .goal-row{
-    display:flex; align-items:center; gap:8px; font-size:12.5px; color:#3B382F;
-    background:var(--paper); border-radius:9px; padding:7px 11px; line-height:1.5;
+
+  /* ── 원거리 방문 안내 ── */
+  .far{display:flex; gap:12px; align-items:flex-start; background:var(--white);
+    border:1px solid rgba(22,21,18,.10); border-radius:14px; padding:15px 16px; margin-top:13px;}
+  .far .fi{flex:none; width:30px; height:30px; border-radius:9px; display:grid; place-items:center;
+    background:var(--green-pale); color:var(--green-deep);}
+  .far .fi svg{width:16px; height:16px;}
+  .far h3{font-size:14px; font-weight:900; color:var(--green-deep); margin-bottom:4px;}
+  .far p{font-size:13.5px; color:#3B382F; line-height:1.7;}
+  .far p b{font-weight:900; color:var(--ink);}
+
+  .major-line{display:flex; align-items:center; gap:9px; background:var(--green-pale);
+    border-radius:11px; padding:11px 14px; margin-top:11px;}
+  .major-line .ml{flex:none; font-size:10.5px; font-weight:900; color:var(--white);
+    background:var(--green); border-radius:999px; padding:2px 9px;}
+  .major-line .mt{font-size:14.5px; font-weight:900; color:var(--green-deep);}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:10px;}
+  .chip{font-size:13px; font-weight:700; color:var(--ink); background:var(--white);
+    border:1px solid rgba(22,21,18,.12); border-radius:999px; padding:7px 13px;}
+
+  .ask-list{display:flex; flex-direction:column; gap:10px;}
+  .ask{position:relative; background:var(--white); border:1px solid rgba(22,21,18,.10);
+    border-radius:13px; padding:14px 15px 13px 16px; overflow:hidden;}
+  .ask::before{content:""; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--green);}
+  .ask h4{display:flex; align-items:center; gap:8px; font-size:14px; font-weight:900; color:var(--green-deep); margin-bottom:6px;}
+  .ask h4 .n{flex:none; width:20px; height:20px; border-radius:6px; display:grid; place-items:center;
+    background:var(--green-pale); color:var(--green-deep); font-size:11px; font-weight:900;}
+  .ask p{font-size:13.5px; color:#4A4740; line-height:1.7;}
+  .ask p b{color:var(--ink); font-weight:700;}
+
+  /* ── 일정 변경 · 시간 선택 ── */
+  .changed{
+    position:relative; overflow:hidden; border-radius:16px;
+    background:var(--green-pale); border:1px solid rgba(14,123,69,.22); padding:17px 17px 16px;
   }
-  .goal-row .who{
-    flex:none; font-size:10.5px; font-weight:900; color:var(--white);
-    background:var(--green); border-radius:999px; padding:2px 8px;
+  .changed::before{content:""; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--green);}
+  .changed h3{display:flex; align-items:center; gap:9px; font-size:15px; font-weight:900; color:var(--green-deep); margin-bottom:10px;}
+  .changed h3 svg{width:18px; height:18px;}
+  .swap{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px;}
+  .swap .old{font-size:13.5px; color:var(--muted); text-decoration:line-through;}
+  .swap .arw{color:var(--green); font-weight:900;}
+  .swap .new{font-size:15px; font-weight:900; color:var(--green-deep);}
+  .changed > p{font-size:13.5px; color:#3B382F; line-height:1.7;}
+  .changed > p b{font-weight:900; color:var(--green-deep);}
+  .slots{display:flex; gap:9px; margin-top:12px;}
+  .slot{flex:1; background:var(--white); border:1.5px solid rgba(22,21,18,.10); border-radius:12px; padding:13px 10px; text-align:center;}
+  .slot .st{font-family:var(--serif); font-size:19px; font-weight:700; color:var(--ink); line-height:1.2;}
+  .slot .sl{font-size:11px; font-weight:900; letter-spacing:.06em; margin-top:5px; color:var(--green);}
+  .slot .se{font-size:11px; color:var(--muted); margin-top:3px;}
+  .pick-btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:7px; width:100%; min-height:48px;
+    margin-top:13px; border-radius:12px; font-size:14.5px; font-weight:700; text-decoration:none;
+    background:var(--green); color:var(--white); transition:transform .15s ease; -webkit-tap-highlight-color:transparent;
   }
-  .goal-row .who.p{background:var(--muted);}
+  .pick-btn svg{width:18px; height:18px;}
+  .pick-btn:active{transform:scale(.98);}
+
+  /* ── 상담 요청 ── */
+  .quote{
+    font-size:13.5px; color:#4A4740; line-height:1.7; background:var(--white);
+    border:1px solid rgba(22,21,18,.10); border-radius:12px; padding:13px 15px; margin-bottom:12px;
+  }
+  .quote .qlab{display:block; font-size:10.5px; font-weight:900; letter-spacing:.1em; color:var(--green); margin-bottom:5px;}
+  .answer{
+    position:relative; overflow:hidden; border-radius:13px;
+    background:var(--green-pale); border:1px solid rgba(14,123,69,.22); padding:14px 15px 13px 16px;
+  }
+  .answer::before{content:""; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--green);}
+  .answer h4{font-size:14px; font-weight:900; color:var(--green-deep); margin-bottom:7px;}
+  .answer p{font-size:13.5px; color:#3B382F; line-height:1.7;}
+  .answer p b{font-weight:900; color:var(--green-deep);}
+  .steps2{list-style:none; display:flex; flex-direction:column; gap:9px; margin-top:11px;}
+  .steps2 li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:#3B382F; line-height:1.6;}
+  .steps2 .num{flex:none; width:21px; height:21px; border-radius:50%; display:grid; place-items:center; margin-top:1px;
+    background:var(--green); color:var(--white); font-size:11px; font-weight:900;}
+  .steps2 b{color:var(--ink); font-weight:900;}
+
+  /* ── 희망 대학 목록 ── */
+  .univ{display:flex; flex-direction:column; gap:6px; margin-top:11px;}
+  .univ-item{
+    display:flex; align-items:flex-start; gap:9px; font-size:13px; color:#3B382F;
+    background:var(--white); border:1px solid rgba(22,21,18,.10);
+    border-radius:10px; padding:9px 12px; line-height:1.5;
+  }
+  .univ-item .u{flex:none; font-size:10.5px; font-weight:900; color:var(--white);
+    background:var(--green); border-radius:999px; padding:2px 8px; margin-top:1px; white-space:nowrap;}
+  .univ-item .m{flex:1; min-width:0;}
+  .univ-item .m b{font-weight:900; color:var(--ink);}
+  .major-line{
+    display:flex; align-items:center; gap:9px; background:var(--green-pale);
+    border-radius:11px; padding:11px 14px; margin-top:11px;
+  }
+  .major-line .ml{flex:none; font-size:10.5px; font-weight:900; color:var(--white);
+    background:var(--green); border-radius:999px; padding:2px 9px;}
+  .major-line .mt{font-size:14.5px; font-weight:900; color:var(--green-deep);}
+  .major-line{display:flex; align-items:center; gap:9px; background:var(--green-pale);
+    border-radius:11px; padding:11px 14px; margin-top:11px;}
+  .major-line .ml{flex:none; font-size:10.5px; font-weight:900; color:var(--white);
+    background:var(--green); border-radius:999px; padding:2px 9px;}
+  .major-line .mt{font-size:14.5px; font-weight:900; color:var(--green-deep);}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:10px;}
+  .chip{
+    font-size:13px; font-weight:700; color:var(--ink); background:var(--white);
+    border:1px solid rgba(22,21,18,.12); border-radius:999px; padding:7px 13px;
+  }
+  .univ-cap{font-size:12px; font-weight:900; color:var(--muted); letter-spacing:.04em; margin-top:14px;}
 
   /* ── 필수 안내 배너 ── */
   .must{
@@ -387,7 +485,7 @@
       </svg>
       후츠파입시컨설팅 원격학원
     </div>
-    <div class="topdate">2026.08.03 MON · JINJU</div>
+    <div class="topdate">2026.09.02 WED · JINJU</div>
   </header>
 
   <!-- 히어로 -->
@@ -396,7 +494,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       예약 확정 안내
     </span>
-    <h1><span class="uline">김지한<svg viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M2 5 Q 50 1 98 5"/></svg></span> 학생의<br>상담 예약이 확정되었습니다</h1>
+    <h1><span class="uline">김지현<svg viewBox="0 0 100 8" preserveAspectRatio="none"><path d="M2 5 Q 50 1 98 5"/></svg></span> 학생의<br>상담 예약이 확정되었습니다</h1>
     <p class="hero-sub">수시 6장, 합격 시나리오 설계</p>
 
     <div class="count">
@@ -413,8 +511,40 @@
 
   <!-- 인사말 -->
   <section class="sec greet rv">
-    <p class="lead">안녕하세요, 최혜린 학부모님.</p>
-    <p>김지한 학생의 입시 여정을 함께하게 되어 진심으로 감사드립니다. 신청해 주신 <b>수시 원서 전략 상담</b>의 예약이 확정되었습니다. 상세히 남겨주신 <b>고민과 질문</b>을 잘 읽었으며, 아래에 정리해 두었습니다. 상담 당일 하나씩 데이터로 답을 드리겠습니다.</p>
+    <p class="lead">안녕하세요, 박정화 학부모님.</p>
+    <p>김지현 학생의 입시 여정을 함께하게 되어 진심으로 감사드립니다. 신청해 주신 <b>수시 원서 전략 상담</b>의 예약이 확정되었습니다. 남겨주신 <b>조건</b>을 잘 읽었으며, 아래에 정리해 두었습니다. 먼저 <b>상담 시간</b>부터 확정해 주시면 감사하겠습니다. 아래 <b>사전 준비 사항</b>을 꼭 확인해 주시면 훨씬 깊이 있는 상담이 가능합니다.</p>
+  </section>
+
+  <!-- 일정 변경 · 시간 선택 -->
+  <section class="sec rv">
+    <div class="changed">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+        일정 변경 요청을 확인했습니다
+      </h3>
+      <div class="swap">
+        <span class="old">9월 5일(토) 오후 7시</span>
+        <span class="arw">→</span>
+        <span class="new">9월 2일(수)</span>
+      </div>
+      <p>말씀해 주신 대로 <b>9월 2일(수)</b>로 조정해 드리겠습니다. 아래 두 시간 모두 가능하니, <b>편하신 시간</b>을 알려주시면 확정해 드리겠습니다.</p>
+      <div class="slots">
+        <div class="slot">
+          <div class="st">오후 5:00</div>
+          <div class="sl">선택 가능</div>
+          <div class="se">~ 6:30 종료</div>
+        </div>
+        <div class="slot">
+          <div class="st">오후 7:00</div>
+          <div class="sl">선택 가능</div>
+          <div class="se">~ 8:30 종료</div>
+        </div>
+      </div>
+      <a class="pick-btn" href="tel:010-4449-0829">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z"/></svg>
+        편하신 시간 알려주기
+      </a>
+    </div>
   </section>
 
   <!-- 예약 정보 -->
@@ -423,10 +553,11 @@
       <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
       <div><p class="eyebrow">Reservation</p><h2>예약 정보</h2></div>
     </div>
+
     <div class="info">
-      <div class="row"><span class="k">학생</span><span class="v"><span class="var">김지한</span></span></div>
-      <div class="row"><span class="k">예약자</span><span class="v"><span class="var">최혜린</span> 학부모님</span></div>
-      <div class="row"><span class="k">예약 일정</span><span class="v"><span class="var">2026년 8월 3일(월) 오후 7시</span><span class="tag-soon" id="dayTag">내일</span></span></div>
+      <div class="row"><span class="k">학생</span><span class="v"><span class="var">김지현</span></span></div>
+      <div class="row"><span class="k">예약자</span><span class="v"><span class="var">박정화</span> 학부모님</span></div>
+      <div class="row"><span class="k">예약 일정</span><span class="v"><span class="var">2026년 9월 2일(수)</span><br><span style="font-size:13px;color:var(--green-deep);font-weight:900;">오후 5시 또는 7시 (조율 중)</span><span class="tag-soon" id="dayTag">내일</span></span></div>
       <div class="row"><span class="k">소요 시간</span><span class="v"><b>90분 내외</b></span></div>
       <div class="row">
         <span class="k">신청 상품</span>
@@ -435,7 +566,7 @@
           <span class="prod-desc">단 한 번의 상담으로 끝나지 않습니다. 수시 원서 접수 기간(<b>2026년 9월 7일 월 ~ 11일 금</b>)까지, 최종 <b>6장의 원서</b>를 확정하는 순간까지 학생의 합격 가능성을 극대화하는 지원 조합을 함께 결정해 드립니다.</span>
         </span>
       </div>
-      <div class="row"><span class="k">예약번호</span><span class="v dim">1304974833</span></div>
+      <div class="row"><span class="k">예약번호</span><span class="v dim">1338061942</span></div>
     </div>
   </section>
 
@@ -446,37 +577,26 @@
       <div><p class="eyebrow">Your Questions</p><h2>남겨주신 상담 요청</h2></div>
     </div>
 
-    <p class="ask-lead">남겨주신 질문을 <b>다섯 가지 주제</b>로 정리했습니다. 상담 당일 이 순서대로, <b>객관적인 데이터</b>를 근거로 하나씩 답을 드리겠습니다.</p>
+    <div class="quote">
+      <span class="qlab">남겨주신 말씀</span>
+      서울권 대학을 희망하며, 수능 최저가 있는 곳을 찾고 있습니다.
+    </div>
 
     <div class="ask-list">
       <div class="ask">
-        <h4><span class="n">1</span>생기부 경쟁력과 수시 라인 평가</h4>
-        <p>현재 상경계 생기부의 경쟁력을 <b>상 / 중 / 하</b>로 진단하고, 교과·학종 각각의 지원 가능 라인을 제시해 드립니다.</p>
+        <h4><span class="n">1</span>서울권 · 최저 있는 전형</h4>
+        <p>수능 최저가 있는 전형은 <b>지원자가 걸러지기 때문에</b> 내신 합격선이 낮게 형성되는 경우가 많습니다. 최저를 충족할 수 있다면 <b>실질적으로 유리한 통로</b>가 됩니다.</p>
+        <p style="margin-top:8px;">서울권 생명 · 수학 계열에서 <b>최저가 설정된 전형</b>을 정리하고, 김지현 학생의 모의고사 성적으로 <b>충족 가능한 수준인지</b> 함께 판단해 드리겠습니다.</p>
       </div>
 
       <div class="ask">
-        <h4><span class="n">2</span>계열·학과 변경 가능성</h4>
-        <p>타 학과로 지원해 <b>학교 레벨을 올리는 전략</b>이 실제로 가능한지 검토하고, 가능하다면 김지한 학생의 생기부와 맞는 <b>추천 학과</b>를 함께 정리해 드립니다.</p>
-      </div>
-
-      <div class="ask">
-        <h4><span class="n">3</span>지역거점대 vs 인서울 비교</h4>
-        <p>비선호 인서울 학종과, 수능 최저를 맞춘 <b>부산대·경북대 경영</b> 등 지거국 지원 중 어느 쪽이 유리한지 비교해 드립니다. <b>취업·지역인재전형·학교 지원</b> 등 현실 조건을 함께 고려합니다.</p>
-      </div>
-
-      <div class="ask">
-        <h4><span class="n">4</span>대학 브랜드 vs 학과 우선순위</h4>
-        <p>문과에서 학교와 학과 중 무엇을 앞세워야 하는지, 그리고 <b>복수전공·전과의 실제 난이도</b>를 사례를 들어 설명드립니다.</p>
-      </div>
-
-      <div class="ask">
-        <h4><span class="n">5</span>수능 최저·정시에 대한 현실 인식</h4>
-        <p>6월 모평 백분위 하락을 반영해 <b>수능 최저 충족 가능성</b>을 냉정하게 짚어 드립니다. 학생이 스스로 현실적인 라인을 이해하고 남은 기간의 방향을 잡을 수 있도록 데이터로 안내하겠습니다.</p>
+        <h4><span class="n">2</span>최저 미충족 대비까지 함께</h4>
+        <p>최저 전략은 <b>수능 결과에 따라 결과가 갈립니다.</b> 그래서 6장 전체를 최저 있는 전형으로만 채우면 위험합니다. <b>최저 없는 안정 카드</b>를 몇 장 어떻게 섞을지까지 함께 설계해, 어떤 상황에서도 결과를 남길 수 있게 준비하겠습니다.</p>
       </div>
     </div>
 
-    <div class="notice" style="margin-top:14px;">
-      <b>※</b> 위 내용을 미리 검토하고 있습니다. 상담 전까지 <b>학생부와 성적 자료</b>를 보내주시면 김지한 학생에게 맞는 구체적인 지원 조합까지 준비해 두겠습니다.
+    <div class="notice" style="margin-top:13px;">
+      <b>※</b> 모의고사 성적을 미리 보내주시면 <b>최저 충족 가능성</b>을 미리 계산해 두겠습니다. 그러면 당일에는 바로 <b>전형 선택</b>에 집중하실 수 있습니다.
     </div>
   </section>
 
@@ -495,24 +615,22 @@
       </div>
     </div>
 
-    <div class="grade">
-      <div class="grade-box"><div class="grade-lab">전체 내신</div><div class="grade-num">2.45</div><div class="grade-sub">등급</div></div>
-      <div class="grade-box"><div class="grade-lab">수학</div><div class="grade-num">3.2</div><div class="grade-sub">등급</div></div>
-      <div class="grade-box"><div class="grade-lab">6월 모평</div><div class="grade-num">↓</div><div class="grade-sub">백분위 하락</div></div>
-    </div>
-
     <div class="prep-box">
-      <div class="prep-row"><span class="pk">학교 · 학년</span><span class="pv">진주동명고등학교 · 고등학교 3학년</span></div>
-      <div class="prep-row"><span class="pk">희망 계열</span><span class="pv">상경계열 (경영 · 경제)</span></div>
-      <div class="prep-row"><span class="pk">생기부</span><span class="pv">상경계 활동 중심</span></div>
+      <div class="prep-row"><span class="pk">학교 · 학년</span><span class="pv">진양고등학교 · 고등학교 3학년</span></div>
+      <div class="prep-row"><span class="pk">희망 계열</span><span class="pv">자연과학계열 (생명 · 수학)</span></div>
     </div>
 
-    <div class="goal">
-      <div class="goal-row"><span class="who">학생</span>건국대 이상 학종 지원 희망</div>
-      <div class="goal-row"><span class="who p">학부모</span>취업·현실성 고려 시 부산대 경영 등 지역거점대 희망</div>
+    <div class="major-line">
+      <span class="ml">관심 분야</span>
+      <span class="mt">생명 · 수학</span>
     </div>
 
-    <p class="prep-note">두 분의 목표가 다른 지점부터 <b>객관적인 데이터로 함께 정리</b>해 드리겠습니다. 변경되었거나 추가로 전달하실 내용이 있다면 편하게 알려주세요.</p>
+    <p class="univ-cap">희망 조건</p>
+    <div class="univ">
+      <div class="univ-item"><span class="u">지역</span><span class="m"><b>서울권 대학</b> 중심</span></div>
+      <div class="univ-item"><span class="u">전형</span><span class="m"><b>수능 최저가 있는</b> 전형 선호</span></div>
+    </div>
+    <p class="prep-note">서울권 · 수능 최저 있는 전형이라는 <b>명확한 조건</b>을 주셔서 검토 범위를 좁히기 좋습니다. 생명 · 수학 계열에서 조건에 맞는 대학을 정리해 <b>상향 · 적정 · 안정</b>의 균형을 맞춘 6장을 구성해 드리겠습니다.</p>
   </section>
 
   <!-- 사전 준비 (체크리스트) -->
@@ -598,6 +716,7 @@
         <span id="addrLabel">주소 복사</span>
       </button>
     </div>
+
   </section>
 
   <!-- 주차 -->
@@ -611,12 +730,12 @@
         <span class="when">평일 ~ 18시</span>
         <span class="free">1시간 무료</span>
       </div>
-      <div class="park-item hit">
-        <span class="when">평일 18시 이후<br>토·일·공휴일<span class="park-tag">▸ 이번 상담에 해당됩니다</span></span>
+      <div class="park-item">
+        <span class="when">평일 18시 이후<br>토·일·공휴일</span>
         <span class="free">3시간 무료</span>
       </div>
     </div>
-    <p class="park-note">※ 윙스타워 건물 내 주차장을 이용해 주세요. 상담이 90분 내외로 진행되는 점 참고 부탁드립니다.</p>
+    <p class="park-note">※ 윙스타워 건물 내 주차장을 이용해 주세요. <b>오후 5시</b> 상담은 1시간 무료, <b>오후 7시</b> 상담은 3시간 무료가 적용됩니다.</p>
   </section>
 
   <!-- FAQ -->
@@ -702,7 +821,7 @@
 <div class="sticky" id="sticky">
   <div class="sticky-in">
     <div class="sticky-txt">
-      <div class="sticky-d" id="stickyD">D-1 · 8월 3일(월) 오후 7시</div>
+      <div class="sticky-d" id="stickyD">D-1 · 9월 2일(수)</div>
       <div class="sticky-s">진주 윙스타워 14층 A1401호 · 90분</div>
     </div>
     <a class="sticky-btn sb-map" href="https://map.naver.com/p/search/진주시%20동부로169번길%2012%20윙스타워" target="_blank" rel="noopener">
@@ -721,9 +840,9 @@
 <script>
 (function(){
   var CONFIG = {
-    apptISO:   "2026-08-03T19:00:00+09:00",
-    apptEnd:   "2026-08-03T20:30:00+09:00",
-    apptLabel: "8월 3일(월) 오후 7시",
+    apptISO:   "2026-09-02T17:00:00+09:00",
+    apptEnd:   "2026-09-02T20:30:00+09:00",
+    apptLabel: "9월 2일(수)",
     address:   "경상남도 진주시 동부로169번길 12 A1401호 (충무공동, 윙스타워)"
   };
   var $ = function(s){ return document.querySelector(s); };
